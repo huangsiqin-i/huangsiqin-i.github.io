@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>虹织译桥 - 邦典文化体验地图</title>
+  <title>邦典文化体验地图</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <style>
@@ -43,7 +43,7 @@
     <div class="container mx-auto flex justify-between items-center">
       <a href="index.html" class="flex items-center gap-2 text-slate-800">
         <i class="fa fa-scissors text-2xl text-primary-indigo"></i>
-        <span class="font-bold text-xl">虹织译桥</span>
+        <span class="font-bold text-xl">邦典</span>
       </a>
       <nav class="flex gap-6 text-base">
         <a href="decode.html" class="text-slate-600 hover:text-primary-indigo transition-colors duration-300">文化解码</a>
@@ -187,7 +187,7 @@
       <div id="successTip" class="hidden text-center py-8">
         <i class="fa fa-check-circle text-4xl text-green-600 mb-3"></i>
         <h4 class="text-lg font-bold text-slate-800 mb-2">预约申请提交成功！</h4>
-        <p class="text-slate-600 mb-4">虹织译桥客服将在1个工作日内与您联系确认</p>
+        <p class="text-slate-600 mb-4">客服将在1个工作日内与您联系确认</p>
         <p class="text-slate-500 text-xs mb-6">温馨提示：支持双语导览、国际游客专属预约服务</p>
         <button onclick="closeModal()" class="px-5 py-2 bg-primary-indigo text-white rounded-lg font-semibold hover:bg-indigo-800 transition-colors">关闭</button>
       </div>
@@ -208,7 +208,7 @@
     function openModal(workshopName) {
       currentWorkshop = workshopName;
       // 更新弹窗标题
-      document.getElementById('workshopTitle').textContent = `虹织译桥 - 预约体验·${workshopName}`;
+      document.getElementById('workshopTitle').textContent = `预约体验·${workshopName}`;
       // 重置表单和提示
       document.getElementById('bookingForm').reset();
       document.getElementById('bookingForm').classList.remove('hidden');
@@ -268,7 +268,7 @@
         people: document.getElementById('people').value,
         remark: document.getElementById('remark').value
       };
-      console.log('虹织译桥预约表单数据：', formData);
+      console.log('预约表单数据：', formData);
       // 模拟表单提交加载
       const submitBtn = e.target.querySelector('button[type="submit"]');
       submitBtn.disabled = true;
