@@ -1,0 +1,1443 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>沉浸式体验 - 邦典藏族文化</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    .card-hover { transition: all 0.4s ease; }
+    .card-hover:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0,0,0,0.1); }
+    
+    /* 模态框样式 */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+    }
+    
+    .modal-content {
+      background-color: white;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 500px;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      animation: modalFadeIn 0.3s ease-out;
+    }
+    
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .color-card {
+      border-radius: 16px;
+      border: 2px solid #e2e8f0;
+      padding: 20px;
+      margin-bottom: 16px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .color-card.selected {
+      border-color: #4f46e5;
+      background-color: #f8fafc;
+      transform: translateX(4px);
+    }
+    
+    .color-card.selected::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      background-color: #4f46e5;
+      border-radius: 16px 0 0 16px;
+    }
+    
+    .color-preview {
+      width: 100%;
+      height: 60px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .color-preview.white {
+      border: 2px solid #cbd5e1;
+    }
+    
+    .checkmark {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 24px;
+      height: 24px;
+      background-color: #4f46e5;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.3s ease;
+    }
+    
+    .color-card.selected .checkmark {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    /* 宣言结果样式 */
+    .declaration-result, .payment-view, .payment-success-view, .image-viewer-modal {
+      display: none;
+    }
+    
+    .declaration-header {
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .selected-colors-preview {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    
+    .color-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #1f2937;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .color-circle.white {
+      border: 2px solid #cbd5e1;
+      color: #1f2937;
+    }
+    
+    .declaration-content {
+      padding: 20px;
+    }
+    
+    .declaration-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #4f46e5;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .declaration-text {
+      background-color: #f8fafc;
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid #4f46e5;
+      margin-bottom: 20px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #374151;
+    }
+    
+    .fusion-text {
+      background-color: #f0f9ff;
+      padding: 16px;
+      border-radius: 12px;
+      border-left: 4px solid #0ea5e9;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #0369a1;
+      margin-bottom: 20px;
+    }
+    
+    /* 支付选项卡片 */
+    .payment-card {
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .payment-card:hover {
+      border-color: #4f46e5;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(79, 70, 229, 0.1);
+    }
+    
+    .payment-card.selected {
+      border-color: #4f46e5;
+      background-color: #f5f3ff;
+    }
+    
+    .price-tag {
+      background-color: #4f46e5;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    
+    /* 支付二维码样式 */
+    .qr-container {
+      width: 200px;
+      height: 200px;
+      margin: 20px auto;
+      padding: 10px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .qr-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    /* 支付成功样式 */
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background-color: #10b981;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin: 20px auto;
+    }
+    
+    .bangdian-image {
+      width: 100%;
+      max-width: 300px;
+      margin: 20px auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    
+    .bangdian-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    /* 工坊定制步骤 */
+    .workshop-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      background-color: #f9fafb;
+      border-radius: 12px;
+      border-left: 4px solid #f59e0b;
+    }
+    
+    .step-number {
+      background-color: #f59e0b;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    
+    .step-content h5 {
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 4px;
+    }
+    
+    .step-content p {
+      font-size: 14px;
+      color: #6b7280;
+      line-height: 1.4;
+    }
+    
+    /* 图片查看器样式 */
+    .image-viewer-content {
+      background-color: white;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 600px;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      animation: modalFadeIn 0.3s ease-out;
+    }
+    
+    .full-size-image {
+      width: 100%;
+      height: auto;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+    
+    /* 自定义滚动条 */
+    .modal-content::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .modal-content::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 10px;
+    }
+    
+    .modal-content::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 10px;
+    }
+    
+    .modal-content::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    
+    /* 适配小屏幕 */
+    @media (max-width: 480px) {
+      .modal-content {
+        border-radius: 16px;
+        max-height: 90vh;
+      }
+      
+      .color-card, .payment-card {
+        padding: 16px;
+      }
+      
+      .color-preview {
+        height: 50px;
+      }
+      
+      .color-circle {
+        width: 50px;
+        height: 50px;
+        font-size: 14px;
+      }
+      
+      .qr-container {
+        width: 180px;
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans">
+  <!-- 导航栏 - 当前页面高亮 【LOGO点击返回主页】 -->
+  <header class="fixed w-full z-50 py-4 px-5 md:px-8 bg-white shadow-sm">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2 text-slate-800">
+        <i class="fa fa-paint-brush text-2xl text-indigo-800"></i>
+        <span class="font-bold text-xl">邦典</span>
+      </a>
+      <nav class="flex gap-6 text-base">
+        <a href="decode.html" class="text-slate-600 hover:text-indigo-800 transition-colors duration-300">文化解码</a>
+        <a href="experience.html" class="text-indigo-800 font-medium border-b-2 border-indigo-800 pb-1">沉浸式体验</a>
+        <a href="map.html" class="text-slate-600 hover:text-indigo-800 transition-colors duration-300">体验地图</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 沉浸式体验完整内容 -->
+  <section class="w-full min-h-screen pt-24 pb-16 px-5 md:px-8">
+    <div class="container mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-[clamp(1.8rem,5vw,2.6rem)] font-bold text-indigo-800 mb-3">邦典 · 沉浸式体验设计</h2>
+        <p class="text-slate-600 text-lg">从文化认知到亲手创造，赋予邦典属于你的生命故事</p>
+        <div class="w-20 h-1 bg-amber-500 mx-auto mt-4"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-xl overflow-hidden shadow-xl card-hover">
+          <div class="h-64 overflow-hidden">
+            <img src="图片12.png" alt="邦典设计工坊" class="w-full h-full object-cover">
+          </div>
+          <div class="p-7">
+            <h3 class="text-xl font-bold text-indigo-800 mb-4">我的邦典 · 专属设计工坊</h3>
+            <p class="text-slate-600 mb-5 text-sm leading-relaxed">
+              基于文化解码的认知，亲手设计属于你的数字邦典。自由搭配传统色彩，创作专属纹样，撰写你的生命宣言，让邦典成为你的身份表达。
+            </p>
+            <ul class="space-y-2 mb-6 text-slate-700">
+              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 6大藏族经典色系自由搭配</li>
+              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 12种传统纹样随心组合</li>
+              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 撰写个人化设计宣言</li>
+              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 生成高清数字作品</li>
+            </ul>
+            <a href="#" id="designBtn" class="inline-block w-full text-center px-6 py-3 bg-indigo-800 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors duration-300">
+              开启设计之旅 <i class="fa fa-magic ml-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl overflow-hidden shadow-xl card-hover">
+          <div class="h-64 overflow-hidden">
+            <img src="图片13.png" alt="人生纹样游戏" class="w-full h-full object-cover">
+          </div>
+          <div class="p-7">
+            <h3 class="text-xl font-bold text-rose-800 mb-4">编织人生 · 互动叙事游戏</h3>
+            <p class="text-slate-600 mb-5 text-sm leading-relaxed">
+              沉浸式体验藏族女孩的成长历程，从少女到成年，每一次人生选择都会改变邦典的纹样与色彩，感受邦典与生命的紧密联结。
+            </p>
+            <ul class="space-y-2 mb-6 text-slate-700">
+              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 5个关键人生成长阶段体验</li>
+              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 了解邦典完整制作工艺</li>
+              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 选择决定纹样的最终形态</li>
+              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 解锁邦典背后的文化故事</li>
+            </ul>
+            <a href="gam.html" class="inline-block w-full text-center px-6 py-3 bg-rose-800 text-white rounded-lg font-semibold hover:bg-rose-700 transition-colors duration-300">
+              开始互动体验 <i class="fa fa-gamepad ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 底部返回主页按钮 -->
+      <div class="text-center mt-12">
+        <a href="index.html" class="px-8 py-3 bg-indigo-800 text-white rounded-full font-semibold hover:bg-indigo-700 transition-colors duration-300 inline-flex items-center gap-2">
+          <i class="fa fa-home"></i> 返回主页
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 颜色选择模态框 - 卡片式布局 -->
+  <div id="colorModal" class="modal-overlay">
+    <div class="modal-content">
+      <!-- 颜色选择视图 -->
+      <div id="colorSelectionView">
+        <!-- 模态框头部 -->
+        <div class="sticky top-0 bg-white z-10 p-6 border-b border-slate-200">
+          <div class="flex justify-between items-center mb-3">
+            <h3 class="text-xl font-bold text-indigo-800 flex items-center">
+              <i class="fa fa-palette mr-3"></i> 选择您的邦典色彩
+            </h3>
+            <button id="closeModal" class="text-slate-500 hover:text-slate-800 text-xl transition-colors">
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
+          <p class="text-slate-600 text-sm">每种颜色都承载独特的藏族文化意义，请选择3种颜色进行搭配</p>
+          <div class="mt-4 bg-indigo-50 p-3 rounded-lg">
+            <div class="flex items-center text-sm text-indigo-800">
+              <i class="fa fa-info-circle mr-2"></i>
+              <span>已选择 <span id="selectedCount" class="font-bold">0</span> 种颜色（需要选择3种）</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 颜色卡片列表 -->
+        <div class="p-6" id="colorCardsContainer">
+          <!-- 颜色卡片将通过JavaScript动态生成 -->
+        </div>
+        
+        <!-- 底部按钮 -->
+        <div class="sticky bottom-0 bg-white border-t border-slate-200 p-6">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <button id="cancelBtn" class="px-6 py-3 text-slate-700 font-medium hover:bg-slate-100 rounded-lg transition-colors flex-1">
+              取消
+            </button>
+            <button id="confirmBtn" class="px-6 py-3 bg-indigo-800 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors flex-1 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+              <i class="fa fa-check mr-2"></i> 确认选择 (0/3)
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 宣言结果视图 -->
+      <div id="declarationResultView" class="declaration-result">
+        <div class="declaration-header">
+          <h3 class="text-xl font-bold text-indigo-800 flex items-center justify-center">
+            <i class="fa fa-quote-left mr-3"></i> 您的邦典色彩宣言
+          </h3>
+          <p class="text-slate-600 text-sm mt-2">基于您选择的色彩组合，以下是您的专属邦典宣言</p>
+        </div>
+        
+        <div class="selected-colors-preview" id="selectedColorsPreview">
+          <!-- 选择的颜色将动态显示在这里 -->
+        </div>
+        
+        <div class="declaration-content">
+          <div class="declaration-title">
+            <i class="fa fa-paint-brush"></i>
+            <span>色彩融合</span>
+          </div>
+          <div class="fusion-text" id="fusionText">
+            <!-- 色彩融合描述将动态显示在这里 -->
+          </div>
+          
+          <div class="declaration-title">
+            <i class="fa fa-flag"></i>
+            <span>邦典宣言</span>
+          </div>
+          <div class="declaration-text" id="declarationText">
+            <!-- 宣言将动态显示在这里 -->
+          </div>
+          
+          <!-- 生成邦典按钮 -->
+          <div class="mt-8 text-center">
+            <button id="generateBangdianBtn" class="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-full hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+              <i class="fa fa-image mr-2"></i> 生成专属邦典图
+            </button>
+            <p class="text-slate-500 text-sm mt-3">生成您的专属邦典图案，可选择数字版或实体版设计图</p>
+          </div>
+        </div>
+        
+        <div class="sticky bottom-0 bg-white border-t border-slate-200 p-6">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <button id="backToSelectionBtn" class="px-6 py-3 text-slate-700 font-medium hover:bg-slate-100 rounded-lg transition-colors flex-1">
+              <i class="fa fa-arrow-left mr-2"></i> 重新选择颜色
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 支付视图 -->
+      <div id="paymentView" class="payment-view">
+        <div class="sticky top-0 bg-white z-10 p-6 border-b border-slate-200">
+          <div class="flex justify-between items-center mb-3">
+            <h3 class="text-xl font-bold text-indigo-800 flex items-center">
+              <i class="fa fa-credit-card mr-3"></i> 生成专属邦典
+            </h3>
+            <button id="closePaymentBtn" class="text-slate-500 hover:text-slate-800 text-xl transition-colors">
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
+          <p class="text-slate-600 text-sm">选择您想要的邦典类型并完成支付</p>
+        </div>
+        
+        <div class="p-6">
+          <!-- 支付选项 -->
+          <div class="mb-8">
+            <h4 class="text-lg font-semibold text-slate-800 mb-4">选择邦典类型</h4>
+            
+            <div class="payment-card" id="digitalCard" data-type="digital" data-price="0.1">
+              <div class="flex justify-between items-start mb-3">
+                <div>
+                  <h5 class="font-bold text-lg text-slate-800">数字邦典高清图片</h5>
+                  <p class="text-slate-600 text-sm mt-1">生成专属高清数字邦典图，可用于分享、打印</p>
+                </div>
+                <div class="price-tag">¥0.1</div>
+              </div>
+              <ul class="space-y-2 text-slate-700 text-sm">
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 高清分辨率 (3000×3000)</li>
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> PNG格式，背景透明</li>
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 无水印永久使用</li>
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 支持社交媒体分享</li>
+              </ul>
+            </div>
+            
+            <div class="payment-card" id="physicalCard" data-type="physical" data-price="4.99">
+              <div class="flex justify-between items-start mb-3">
+                <div>
+                  <h5 class="font-bold text-lg text-slate-800">实体邦典设计图 + 工坊制作</h5>
+                  <p class="text-slate-600 text-sm mt-1">生成实体设计图并委托工坊制作实物邦典</p>
+                </div>
+                <div class="price-tag">¥4.99</div>
+              </div>
+              <ul class="space-y-2 text-slate-700 text-sm">
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 专业级实体设计图纸</li>
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 可委托藏族工坊制作</li>
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 传统手工技艺制作</li>
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 工坊按设计图制作，周期15-20天</li>
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 联系商家可邮寄到家</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- 工坊定制步骤说明 -->
+          <div id="workshopCustomization" style="display: none;">
+            <h4 class="text-lg font-semibold text-slate-800 mb-4">实体邦典定制流程</h4>
+            <div class="workshop-steps">
+              <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h5>前往合作工坊</h5>
+                  <p>凭设计图前往《西藏非遗深度体验地图》中的合作工坊</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h5>选择邦典材质</h5>
+                  <p>根据个人偏好选择材质（基础棉质或高端羊毛）</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h5>支付定制费用</h5>
+                  <p>基础棉质：100-400元，高端羊毛：401-800元</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <h5>等待制作完成</h5>
+                  <p>工坊按设计图制作，周期15-20天，联系商家可邮寄到家</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 支付二维码 -->
+          <div class="text-center mb-8" id="qrCodeSection">
+            <h4 class="text-lg font-semibold text-slate-800 mb-4">扫码支付</h4>
+            <p class="text-slate-600 mb-2">请使用微信或支付宝扫描下方二维码完成支付</p>
+            <p class="text-slate-800 font-bold mb-4" id="paymentAmount">支付金额：¥0.00</p>
+            
+            <div class="qr-container">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=weixin://wxpay/bizpayurl?pr=yourpaymentcode" alt="支付二维码" id="qrCodeImage">
+            </div>
+            
+            <p class="text-slate-500 text-sm mt-4">支付成功后，将自动生成您的专属邦典</p>
+          </div>
+          
+          <!-- 支付中状态 -->
+          <div class="text-center mb-8" id="paymentProcessing" style="display: none;">
+            <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+            <h4 class="text-lg font-semibold text-slate-800 mb-2">支付处理中...</h4>
+            <p class="text-slate-600">正在验证您的支付信息，请稍候</p>
+          </div>
+        </div>
+        
+        <div class="sticky bottom-0 bg-white border-t border-slate-200 p-6">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <button id="backToDeclarationBtn" class="px-6 py-3 text-slate-700 font-medium hover:bg-slate-100 rounded-lg transition-colors flex-1">
+              <i class="fa fa-arrow-left mr-2"></i> 返回宣言
+            </button>
+            <button id="confirmPaymentBtn" class="px-6 py-3 bg-indigo-800 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors flex-1 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+              <i class="fa fa-credit-card mr-2"></i> 确认支付
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 支付成功视图 -->
+      <div id="paymentSuccessView" class="payment-success-view">
+        <div class="sticky top-0 bg-white z-10 p-6 border-b border-slate-200">
+          <div class="flex justify-between items-center mb-3">
+            <h3 class="text-xl font-bold text-emerald-700 flex items-center">
+              <i class="fa fa-check-circle mr-3"></i> 支付成功！
+            </h3>
+            <button id="closeSuccessBtn" class="text-slate-500 hover:text-slate-800 text-xl transition-colors">
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
+          <p class="text-slate-600 text-sm">您的专属邦典已生成</p>
+        </div>
+        
+        <div class="p-6">
+          <!-- 成功图标 -->
+          <div class="success-icon">
+            <i class="fa fa-check"></i>
+          </div>
+          
+          <div class="text-center mb-8">
+            <h4 class="text-xl font-bold text-slate-800 mb-2">支付成功！</h4>
+            <p class="text-slate-600 mb-1">订单号：<span id="orderNumber" class="font-mono">BD2023<span id="randomOrder">123456</span></span></p>
+            <p class="text-slate-600 mb-4">支付时间：<span id="paymentTime">2023-11-15 14:30:25</span></p>
+            
+            <div class="bg-emerald-50 p-4 rounded-lg mb-6">
+              <p class="text-emerald-700 font-medium" id="successMessage">您的数字邦典高清图片已生成！</p>
+            </div>
+          </div>
+          
+          <!-- 生成的邦典图片 -->
+          <div class="bangdian-image" id="bangdianImageContainer">
+            <!-- 邦典图片将动态显示在这里 -->
+          </div>
+          
+          <!-- 查看高清图片按钮 -->
+          <div class="mt-8 text-center">
+            <button id="viewImageBtn" class="px-8 py-3 bg-indigo-800 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors duration-300 inline-flex items-center">
+              <i class="fa fa-eye mr-2"></i> 查看高清图片
+            </button>
+          </div>
+          
+          <!-- 实体邦典定制信息 -->
+          <div class="mt-8 p-4 bg-amber-50 rounded-lg border border-amber-200" id="physicalOrderInfo" style="display: none;">
+            <h5 class="font-bold text-amber-800 mb-3 flex items-center">
+              <i class="fa fa-info-circle mr-2"></i> 实体邦典定制流程
+            </h5>
+            
+            <div class="mb-4">
+              <p class="text-amber-700 text-sm mb-3">您的实体邦典设计图已生成！凭借此设计图可前往合作工坊定制实体邦典。</p>
+              
+              <div class="bg-white p-3 rounded-lg mb-4">
+                <h6 class="font-semibold text-slate-800 mb-2">下一步操作：</h6>
+                <ol class="text-slate-700 text-sm space-y-2 ml-4 list-decimal">
+                  <li>前往《西藏非遗深度体验地图》中的合作工坊</li>
+                  <li>出示设计图，选择材质（基础棉质或高端羊毛）</li>
+                  <li>支付定制费用：基础棉质100-400元，高端羊毛401-800元</li>
+                  <li>工坊按设计图制作，周期15-20天，联系商家可邮寄到家</li>
+                </ol>
+              </div>
+              
+              <div class="mt-4 bg-blue-50 p-3 rounded-lg border border-blue-200">
+                <p class="text-blue-800 text-sm font-medium flex items-center">
+                  <i class="fa fa-phone mr-2"></i>
+                  工坊联系方式：23804798
+                </p>
+                <p class="text-blue-600 text-xs mt-1">想要邮寄到家，可以联系工坊安排邮寄服务</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="sticky bottom-0 bg-white border-t border-slate-200 p-6">
+          <button id="backToHomeBtn" class="px-6 py-3 w-full text-slate-700 font-medium hover:bg-slate-100 rounded-lg transition-colors flex items-center justify-center">
+            <i class="fa fa-home mr-2"></i> 返回体验主页
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 图片查看器模态框 -->
+  <div id="imageViewerModal" class="modal-overlay image-viewer-modal">
+    <div class="image-viewer-content">
+      <div class="sticky top-0 bg-white z-10 p-6 border-b border-slate-200">
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="text-xl font-bold text-indigo-800 flex items-center">
+            <i class="fa fa-image mr-3"></i> 高清邦典图片
+          </h3>
+          <button id="closeImageViewer" class="text-slate-500 hover:text-slate-800 text-xl transition-colors">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+        <p class="text-slate-600 text-sm">您的专属邦典高清图片</p>
+      </div>
+      
+      <div class="p-6">
+        <div id="fullSizeImageContainer">
+          <!-- 高清图片将动态显示在这里 -->
+        </div>
+        
+        <div class="text-center mt-6">
+          <button id="closeViewerBtn" class="px-6 py-3 text-slate-700 font-medium hover:bg-slate-100 rounded-lg transition-colors">
+            关闭
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 颜色数据 - 来自颜色宣言.docx
+    const colorData = [
+      {
+        id: 1,
+        name: "白色",
+        simpleName: "白",
+        colorCode: "#FFFFFF",
+        symbol: "雪山、云朵",
+        meaning: "象征纯洁无瑕、质朴本真",
+        declaration: "以雪域之白为底色，坚守初心本真，于纷繁之中不染尘俗，让设计与生活回归纯粹的本貌。"
+      },
+      {
+        id: 2,
+        name: "黄色",
+        simpleName: "黄",
+        colorCode: "#F59E0B",
+        symbol: "草原、金沙",
+        meaning: "象征富足繁荣、生机盎然",
+        declaration: "撷取高原金黄的生机，织就繁盛的愿景，让每一寸色彩都承载对生活的热忱，传递富足安康的祈愿。"
+      },
+      {
+        id: 3,
+        name: "红色",
+        simpleName: "红",
+        colorCode: "#DC2626",
+        symbol: "火焰、暖阳",
+        meaning: "象征热情奔放、赤诚热烈",
+        declaration: "以炽烈的红色为魂，怀揣赤诚之心，将民族文化的温度注入经纬，让设计迸发直击人心的力量。"
+      },
+      {
+        id: 4,
+        name: "蓝色",
+        simpleName: "蓝",
+        colorCode: "#2563EB",
+        symbol: "天空、湖泊",
+        meaning: "象征深邃辽阔、宁静致远",
+        declaration: "借天空湖泊的湛蓝，容纳天地的辽阔，于设计中沉淀思考，让作品承载深邃的文化底蕴与从容的气度。"
+      },
+      {
+        id: 5,
+        name: "绿色",
+        simpleName: "绿",
+        colorCode: "#16A34A",
+        symbol: "森林、青稞田",
+        meaning: "象征生机活力、生生不息",
+        declaration: "萃取草木的青绿生机，传承民族文化的生长之力，让传统在现代设计中焕发蓬勃的新生。"
+      },
+      {
+        id: 6,
+        name: "黑色",
+        simpleName: "黑",
+        colorCode: "#1F2937",
+        symbol: "大地、岩石",
+        meaning: "象征沉稳坚韧、底蕴厚重",
+        declaration: "以大地岩石的玄黑为基，承载千年文化的厚重，于沉稳中坚守传承，让每一道纹路都镌刻历史的印记。"
+      }
+    ];
+
+    // 颜色搭配宣言数据 - 来自20种颜色宣言.docx
+    // 为每种搭配添加对应的图片URL（20种不同的邦典图片）
+    const colorCombinations = [
+      {
+        colors: ["白", "黄", "红"],
+        fusion: "纯洁本真为底，富足生机为韵，热烈赤诚为魂，是高原天地间最鲜活的生命图景。",
+        declaration: "以雪域白坚守初心，以高原黄承载繁盛，以炽烈红传递赤诚，让设计织就民族文化里最鲜活的生活祈愿。",
+        imageUrl:"1.jig"
+      },
+      {
+        colors: ["白", "黄", "蓝"],
+        fusion: "雪山的纯净、草原的丰饶、天空的辽阔，勾勒出高原宁静而富足的底色。",
+        declaration: "撷雪域之白守本真，取草原之黄纳繁盛，借苍穹之蓝容辽阔，让作品在纯粹中沉淀深邃，在从容中彰显生机。",
+        imageUrl: "2.jpg"
+      },
+      {
+        colors: ["白", "黄", "绿"],
+        fusion: "云朵的洁白、金沙的璀璨、草木的青翠，是自然馈赠的生长与希望之景。",
+        declaration: "以白为底存本真，以黄为脉载富足，以绿为姿焕生机，让传统纹样在现代设计里生长出蓬勃的新生力量。",
+        imageUrl: "3.jpg"
+      },
+      {
+        colors: ["白", "黄", "黑"],
+        fusion: "雪山的圣洁、草原的丰盈、大地的厚重，是高原文化传承的根基与底色。",
+        declaration: "携雪域白坚守初心，拥高原黄拥抱繁盛，立大地黑承载厚重，让每一寸织纹都镌刻民族千年的传承与风骨。",
+        imageUrl: "4.jpg"
+      },
+      {
+        colors: ["白", "红", "蓝"],
+        fusion: "云朵的纯净、火焰的炽热、天空的深邃，碰撞出民族文化中热烈而从容的精神内核。",
+        declaration: "以白守本真不染尘，以红燃赤诚传温度，以蓝纳辽阔蕴深邃，让设计在炽烈与宁静间，传递直击人心的文化力量。",
+        imageUrl: "5.jpg"
+      },
+      {
+        colors: ["白", "红", "绿"],
+        fusion: "雪山的纯洁、火焰的热烈、青稞田的生机，是高原生命活力的极致绽放。",
+        declaration: "取白之纯粹守初心，得红之炽热传温度，撷绿之鲜活焕新生，让民族文化的火种在蓬勃生机里永续传承。",
+        imageUrl: "6.jpg"
+      },
+      {
+        colors: ["白", "红", "黑"],
+        fusion: "云朵的洁白、火焰的赤诚、大地的沉稳，是民族精神中坚守与热忱的交融。",
+        declaration: "以白为底守本真之姿，以红为魂燃赤诚之心，以黑为基承厚重之韵，让设计在纯粹与热烈间，锚定文化传承的根脉。",
+        imageUrl: "7.jpg"
+      },
+      {
+        colors: ["白", "蓝", "绿"],
+        fusion: "天空的湛蓝、云朵的洁白、草木的青绿，是高原自然里宁静生长的诗意画卷。",
+        declaration: "借天空之蓝纳辽阔，拥雪域之白守本真，撷草木之绿焕生机，让作品在从容沉淀中，生长出传统与现代共生的活力。",
+        imageUrl: "8.jpg"
+      },
+      {
+        colors: ["白", "蓝", "黑"],
+        fusion: "云朵的纯净、湖泊的深邃、大地的厚重，是高原文化中内敛而深邃的精神底色。",
+        declaration: "以白存本真之态，以蓝蕴深邃之思，以黑承厚重之魂，让每一道纹路都承载民族文化的从容气度与千年底蕴。",
+        imageUrl: "9.jpg"
+      },
+      {
+        colors: ["白", "绿", "黑"],
+        fusion: "雪山的圣洁、青稞田的生机、大地的沉稳，是高原生命传承中生长与坚守的力量。",
+        declaration: "携白之纯粹守初心，拥绿之鲜活焕新生，立黑之厚重承传承，让传统在现代设计中，扎根大地，蓬勃生长。",
+        imageUrl: "10.jpg"
+      },
+      {
+        colors: ["黄", "红", "蓝"],
+        fusion: "草原的丰饶、火焰的热烈、天空的辽阔，是高原生活里热忱与富足的交响。",
+        declaration: "取草原之黄纳繁盛，燃火焰之红传赤诚，借苍穹之蓝容天地，让设计织就对生活的热忱祈愿与辽阔胸怀。",
+        imageUrl: "11.jpg"
+      },
+      {
+        colors: ["黄", "红", "绿"],
+        fusion: "金沙的璀璨、火焰的炽热、草木的青翠，是高原大地生机盎然、富足热烈的缩影。",
+        declaration: "以黄载富足安康之愿，以红燃赤诚热烈之心，以绿焕生生不息之力，让民族纹样在色彩碰撞中迸发蓬勃的生命力。",
+        imageUrl: "12.jpg"
+      },
+      {
+        colors: ["黄", "红", "黑"],
+        fusion: "草原的丰盈、火焰的赤诚、大地的厚重，是民族文化传承中热忱与坚守的根基。",
+        declaration: "拥高原黄揽繁盛之景，燃炽烈红怀赤诚之心，立大地黑承千年之韵，让设计在热烈与沉稳间，镌刻文化传承的印记。",
+        imageUrl: "13.jpg"
+      },
+      {
+        colors: ["黄", "蓝", "绿"],
+        fusion: "草原的金黄、天空的湛蓝、青稞田的青绿，是高原自然里富足、宁静与生机的共生。",
+        declaration: "撷草原之黄纳繁盛，借天空之蓝容辽阔，取草木之绿焕新生，让作品在从容的底色里，生长出富足与活力的双重美好。",
+        imageUrl: "14.jpg"
+      },
+      {
+        colors: ["黄", "蓝", "黑"],
+        fusion: "金沙的璀璨、湖泊的深邃、大地的厚重，是高原文化里富足底蕴与沉稳风骨的融合。",
+        declaration: "以黄载繁盛之愿，以蓝蕴深邃之思，以黑承厚重之魂，让每一寸色彩都承载民族千年的富足祈愿与传承力量。",
+        imageUrl: "15.jpg"
+      },
+      {
+        colors: ["黄", "绿", "黑"],
+        fusion: "草原的丰盈、草木的生机、大地的沉稳，是高原生命扎根大地、蓬勃生长的力量写照。",
+        declaration: "拥黄之繁盛纳生活热忱，揽绿之鲜活焕传承生机，立黑之厚重承千年根基，让传统设计在大地的滋养中焕发新生。",
+        imageUrl: "16.jpg"
+      },
+      {
+        colors: ["红", "蓝", "绿"],
+        fusion: "火焰的热烈、天空的深邃、草木的生机，是民族文化中温度、底蕴与活力的交织。",
+        declaration: "以红燃文化温度，以蓝纳天地辽阔，以绿焕传承生机，让设计在炽烈与从容间，迸发传统与现代交融的蓬勃力量。",
+        imageUrl: "17.jpg"
+      },
+      {
+        colors: ["红", "蓝", "黑"],
+        fusion: "火焰的赤诚、湖泊的深邃、大地的厚重，是民族精神中热烈而沉稳的文化内核。",
+        declaration: "燃红之赤诚传民族温度，纳蓝之深邃承文化底蕴，立黑之厚重守传承根脉，让作品在热烈与内敛间，彰显千年文化的风骨。",
+        imageUrl: "18.jpg"
+      },
+      {
+        colors: ["红", "绿", "黑"],
+        fusion: "火焰的炽热、草木的生机、大地的沉稳，是高原生命在坚守中蓬勃生长的力量象征。",
+        declaration: "以红燃赤诚之心，以绿焕新生之力，以黑承厚重之魂，让民族文化的火种扎根大地，在蓬勃生机里永续传递。",
+        imageUrl: "19.jpg"
+      },
+      {
+        colors: ["蓝", "绿", "黑"],
+        fusion: "天空的辽阔、草木的生机、大地的厚重，是高原自然与文化共生的宁静底色。",
+        declaration: "借蓝之辽阔纳天地胸襟，撷绿之鲜活焕传承生机，立黑之厚重承千年底蕴，让设计在从容沉淀中，彰显文化传承的从容气度。",
+        imageUrl: "20.jpg"
+      }
+    ];
+
+    // 全局状态变量
+    let selectedColors = [];
+    let selectedPaymentType = null;
+    let selectedPaymentPrice = 0;
+    let currentOrderNumber = '';
+    let currentCombination = null;
+
+    // DOM元素
+    const designBtn = document.getElementById('designBtn');
+    const colorModal = document.getElementById('colorModal');
+    const closeModal = document.getElementById('closeModal');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const confirmBtn = document.getElementById('confirmBtn');
+    const colorCardsContainer = document.getElementById('colorCardsContainer');
+    const selectedCount = document.getElementById('selectedCount');
+    
+    // 宣言视图元素
+    const colorSelectionView = document.getElementById('colorSelectionView');
+    const declarationResultView = document.getElementById('declarationResultView');
+    const selectedColorsPreview = document.getElementById('selectedColorsPreview');
+    const fusionText = document.getElementById('fusionText');
+    const declarationText = document.getElementById('declarationText');
+    const backToSelectionBtn = document.getElementById('backToSelectionBtn');
+    const generateBangdianBtn = document.getElementById('generateBangdianBtn');
+    
+    // 支付视图元素
+    const paymentView = document.getElementById('paymentView');
+    const closePaymentBtn = document.getElementById('closePaymentBtn');
+    const digitalCard = document.getElementById('digitalCard');
+    const physicalCard = document.getElementById('physicalCard');
+    const qrCodeSection = document.getElementById('qrCodeSection');
+    const paymentProcessing = document.getElementById('paymentProcessing');
+    const paymentAmount = document.getElementById('paymentAmount');
+    const qrCodeImage = document.getElementById('qrCodeImage');
+    const backToDeclarationBtn = document.getElementById('backToDeclarationBtn');
+    const confirmPaymentBtn = document.getElementById('confirmPaymentBtn');
+    
+    // 支付成功视图元素
+    const paymentSuccessView = document.getElementById('paymentSuccessView');
+    const closeSuccessBtn = document.getElementById('closeSuccessBtn');
+    const orderNumber = document.getElementById('orderNumber');
+    const randomOrder = document.getElementById('randomOrder');
+    const paymentTime = document.getElementById('paymentTime');
+    const successMessage = document.getElementById('successMessage');
+    const additionalInfo = document.getElementById('additionalInfo');
+    const bangdianImageContainer = document.getElementById('bangdianImageContainer');
+    const physicalOrderInfo = document.getElementById('physicalOrderInfo');
+    const viewImageBtn = document.getElementById('viewImageBtn');
+    const backToHomeBtn = document.getElementById('backToHomeBtn');
+    
+    // 图片查看器元素
+    const imageViewerModal = document.getElementById('imageViewerModal');
+    const closeImageViewer = document.getElementById('closeImageViewer');
+    const closeViewerBtn = document.getElementById('closeViewerBtn');
+    const fullSizeImageContainer = document.getElementById('fullSizeImageContainer');
+
+    // 打开模态框
+    designBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      colorModal.style.display = 'flex';
+      showColorSelectionView();
+      document.body.style.overflow = 'hidden';
+    });
+
+    // 关闭模态框
+    function closeColorModal() {
+      colorModal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    closeModal.addEventListener('click', closeColorModal);
+    cancelBtn.addEventListener('click', closeColorModal);
+    closePaymentBtn.addEventListener('click', closeColorModal);
+    closeSuccessBtn.addEventListener('click', closeColorModal);
+
+    // 显示颜色选择视图
+    function showColorSelectionView() {
+      colorSelectionView.style.display = 'block';
+      declarationResultView.style.display = 'none';
+      paymentView.style.display = 'none';
+      paymentSuccessView.style.display = 'none';
+      selectedColors = [];
+      currentCombination = null;
+      updateSelectionUI();
+    }
+
+    // 显示宣言结果视图
+    function showDeclarationView() {
+      colorSelectionView.style.display = 'none';
+      declarationResultView.style.display = 'block';
+      paymentView.style.display = 'none';
+      paymentSuccessView.style.display = 'none';
+      
+      // 显示选择的颜色
+      displaySelectedColors();
+      
+      // 查找匹配的颜色组合宣言
+      const selectedSimpleNames = selectedColors.map(id => {
+        const color = colorData.find(c => c.id === id);
+        return color.simpleName;
+      }).sort();
+      
+      // 查找匹配的组合
+      currentCombination = colorCombinations.find(combo => {
+        const comboColorsSorted = [...combo.colors].sort();
+        return JSON.stringify(comboColorsSorted) === JSON.stringify(selectedSimpleNames);
+      });
+      
+      if (currentCombination) {
+        fusionText.textContent = currentCombination.fusion;
+        declarationText.textContent = currentCombination.declaration;
+      } else {
+        fusionText.textContent = "您的色彩组合展现了独特的文化意蕴，是高原天地间生动的生命图景。";
+        declarationText.textContent = "以所选色彩为媒，织就民族文化里最鲜活的生活祈愿，让设计承载高原的纯净、富足与热忱。";
+      }
+    }
+
+    // 显示支付视图
+    function showPaymentView() {
+      colorSelectionView.style.display = 'none';
+      declarationResultView.style.display = 'none';
+      paymentView.style.display = 'block';
+      paymentSuccessView.style.display = 'none';
+      
+      // 重置支付选择
+      selectedPaymentType = null;
+      selectedPaymentPrice = 0;
+      digitalCard.classList.remove('selected');
+      physicalCard.classList.remove('selected');
+      confirmPaymentBtn.disabled = true;
+      qrCodeSection.style.display = 'block';
+      paymentProcessing.style.display = 'none';
+      paymentAmount.textContent = '支付金额：¥0.00';
+      
+      // 隐藏工坊定制信息
+      const workshopCustomization = document.getElementById('workshopCustomization');
+      if (workshopCustomization) {
+        workshopCustomization.style.display = 'none';
+      }
+      
+      // 更新二维码（模拟不同金额）
+      updateQRCode();
+    }
+
+    // 显示支付成功视图
+    function showPaymentSuccessView() {
+      colorSelectionView.style.display = 'none';
+      declarationResultView.style.display = 'none';
+      paymentView.style.display = 'none';
+      paymentSuccessView.style.display = 'block';
+      
+      // 生成随机订单号
+      const randomNum = Math.floor(100000 + Math.random() * 900000);
+      randomOrder.textContent = randomNum;
+      currentOrderNumber = `BD2023${randomNum}`;
+      
+      // 设置当前时间
+      const now = new Date();
+      const formattedTime = now.toLocaleString('zh-CN', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      paymentTime.textContent = formattedTime;
+      
+      // 根据支付类型显示不同内容
+      if (selectedPaymentType === 'digital') {
+        successMessage.textContent = '您的数字邦典高清图片已生成！';
+        physicalOrderInfo.style.display = 'none';
+      } else if (selectedPaymentType === 'physical') {
+        successMessage.textContent = '您的实体邦典设计图已生成！';
+        physicalOrderInfo.style.display = 'block';
+      }
+      
+      // 生成邦典图片（根据颜色组合显示对应的图片）
+      generateBangdianImage();
+    }
+
+    // 显示高清图片查看器
+    function showImageViewer() {
+      imageViewerModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      
+      // 清空容器
+      fullSizeImageContainer.innerHTML = '';
+      
+      // 创建高清图片
+      const fullSizeImg = document.createElement('img');
+      
+      // 使用当前颜色组合对应的图片
+      if (currentCombination && currentCombination.imageUrl) {
+        fullSizeImg.src = currentCombination.imageUrl;
+        fullSizeImg.alt = `邦典配色：${currentCombination.colors.join('、')}`;
+        fullSizeImg.className = 'full-size-image';
+      } else {
+        // 如果没有找到对应的组合，使用默认图片
+        fullSizeImg.src = 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80';
+        fullSizeImg.alt = '高清邦典图片';
+        fullSizeImg.className = 'full-size-image';
+      }
+      
+      fullSizeImageContainer.appendChild(fullSizeImg);
+    }
+
+    // 关闭图片查看器
+    function closeImageViewerModal() {
+      imageViewerModal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // 显示选择的颜色预览
+    function displaySelectedColors() {
+      selectedColorsPreview.innerHTML = '';
+      
+      selectedColors.forEach(id => {
+        const color = colorData.find(c => c.id === id);
+        const colorCircle = document.createElement('div');
+        colorCircle.className = `color-circle ${color.name === '白色' ? 'white' : ''}`;
+        colorCircle.style.backgroundColor = color.colorCode;
+        colorCircle.textContent = color.simpleName;
+        
+        if (color.name === '白色') {
+          colorCircle.style.color = '#1f2937';
+        } else {
+          colorCircle.style.color = 'white';
+        }
+        
+        selectedColorsPreview.appendChild(colorCircle);
+      });
+    }
+
+    // 生成邦典图片（根据颜色组合显示对应的图片）
+    function generateBangdianImage() {
+      bangdianImageContainer.innerHTML = '';
+      
+      // 创建图片容器
+      const imgContainer = document.createElement('div');
+      imgContainer.className = 'bangdian-image';
+      
+      // 创建图片
+      const img = document.createElement('img');
+      
+      // 使用当前颜色组合对应的图片
+      if (currentCombination && currentCombination.imageUrl) {
+        img.src = currentCombination.imageUrl;
+        img.alt = `邦典配色：${currentCombination.colors.join('、')}`;
+      } else {
+        // 如果没有找到对应的组合，使用默认图片
+        img.src = 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80';
+        img.alt = '默认邦典图片';
+      }
+      
+      imgContainer.appendChild(img);
+      bangdianImageContainer.appendChild(imgContainer);
+    }
+
+    // 更新支付二维码
+    function updateQRCode() {
+      if (selectedPaymentType && selectedPaymentPrice > 0) {
+        // 模拟不同金额的二维码
+        const qrData = `weixin://wxpay/bizpayurl?pr=bd${selectedPaymentPrice.replace('.', '')}&order=${Date.now()}`;
+        qrCodeImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrData)}`;
+        paymentAmount.textContent = `支付金额：¥${selectedPaymentPrice}`;
+      }
+    }
+
+    // 确认选择
+    confirmBtn.addEventListener('click', () => {
+      if (selectedColors.length !== 3) {
+        alert('请选择3种颜色进行搭配');
+        return;
+      }
+      
+      showDeclarationView();
+    });
+
+    // 生成邦典按钮
+    generateBangdianBtn.addEventListener('click', () => {
+      showPaymentView();
+    });
+
+    // 返回颜色选择
+    backToSelectionBtn.addEventListener('click', () => {
+      showColorSelectionView();
+    });
+
+    // 返回宣言
+    backToDeclarationBtn.addEventListener('click', () => {
+      showDeclarationView();
+    });
+
+    // 支付卡片选择
+    digitalCard.addEventListener('click', () => {
+      digitalCard.classList.add('selected');
+      physicalCard.classList.remove('selected');
+      selectedPaymentType = 'digital';
+      selectedPaymentPrice = '0.1';  // 修改为0.1元
+      confirmPaymentBtn.disabled = false;
+      updateQRCode();
+      
+      // 隐藏工坊定制信息
+      const workshopCustomization = document.getElementById('workshopCustomization');
+      if (workshopCustomization) {
+        workshopCustomization.style.display = 'none';
+      }
+    });
+
+    physicalCard.addEventListener('click', () => {
+      physicalCard.classList.add('selected');
+      digitalCard.classList.remove('selected');
+      selectedPaymentType = 'physical';
+      selectedPaymentPrice = '4.99';  // 修改为4.99元
+      confirmPaymentBtn.disabled = false;
+      updateQRCode();
+      
+      // 显示工坊定制信息
+      const workshopCustomization = document.getElementById('workshopCustomization');
+      if (workshopCustomization) {
+        workshopCustomization.style.display = 'block';
+      }
+    });
+
+    // 确认支付
+    confirmPaymentBtn.addEventListener('click', () => {
+      if (!selectedPaymentType) {
+        alert('请选择邦典类型');
+        return;
+      }
+      
+      // 显示支付处理中
+      qrCodeSection.style.display = 'none';
+      paymentProcessing.style.display = 'block';
+      confirmPaymentBtn.disabled = true;
+      
+      // 模拟支付处理过程
+      setTimeout(() => {
+        showPaymentSuccessView();
+      }, 2000);
+    });
+
+    // 查看高清图片
+    viewImageBtn.addEventListener('click', () => {
+      showImageViewer();
+    });
+
+    // 返回体验主页
+    backToHomeBtn.addEventListener('click', () => {
+      closeColorModal();
+    });
+
+    // 关闭图片查看器
+    closeImageViewer.addEventListener('click', closeImageViewerModal);
+    closeViewerBtn.addEventListener('click', closeImageViewerModal);
+
+    // 点击模态框外部关闭
+    colorModal.addEventListener('click', (e) => {
+      if (e.target === colorModal) {
+        closeColorModal();
+      }
+    });
+
+    imageViewerModal.addEventListener('click', (e) => {
+      if (e.target === imageViewerModal) {
+        closeImageViewerModal();
+      }
+    });
+
+    // 按ESC键关闭模态框
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && colorModal.style.display === 'flex') {
+        closeColorModal();
+      }
+      if (e.key === 'Escape' && imageViewerModal.style.display === 'flex') {
+        closeImageViewerModal();
+      }
+    });
+
+    // 生成颜色卡片
+    function generateColorCards() {
+      colorCardsContainer.innerHTML = '';
+      
+      colorData.forEach(color => {
+        const isSelected = selectedColors.includes(color.id);
+        const textColor = color.name === '白色' ? 'text-slate-800' : 'text-white';
+        const shadowClass = color.name === '白色' ? 'shadow-inner' : '';
+        
+        const card = document.createElement('div');
+        card.className = `color-card ${isSelected ? 'selected' : ''}`;
+        card.dataset.id = color.id;
+        
+        card.innerHTML = `
+          <div class="color-preview ${color.name === '白色' ? 'white' : ''} ${shadowClass}" style="background-color: ${color.colorCode};">
+            <span class="${textColor} font-bold text-lg">${color.name}</span>
+            <div class="checkmark">
+              <i class="fa fa-check"></i>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <div class="flex items-center mb-1">
+              <i class="fa fa-mountain text-slate-500 mr-2"></i>
+              <span class="text-slate-700 font-medium">对应：${color.symbol}</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fa fa-star text-slate-500 mr-2"></i>
+              <span class="text-slate-700 font-medium">象征：${color.meaning}</span>
+            </div>
+          </div>
+          
+          <div class="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg">
+            <div class="flex items-start mb-1">
+              <i class="fa fa-quote-left text-slate-400 mr-2 mt-1"></i>
+              <span class="italic">${color.declaration}</span>
+            </div>
+          </div>
+        `;
+        
+        colorCardsContainer.appendChild(card);
+        
+        // 添加卡片点击事件
+        card.addEventListener('click', () => {
+          toggleColorSelection(color.id);
+        });
+      });
+      
+      updateSelectionUI();
+    }
+
+    // 切换颜色选择
+    function toggleColorSelection(colorId) {
+      const index = selectedColors.indexOf(colorId);
+      
+      if (index === -1) {
+        // 如果未选中且已选数量小于3，添加到选中列表
+        if (selectedColors.length < 3) {
+          selectedColors.push(colorId);
+        } else {
+          // 如果已选3个，提示用户
+          alert('最多只能选择3种颜色进行搭配');
+          return;
+        }
+      } else {
+        // 如果已选中，从选中列表移除
+        selectedColors.splice(index, 1);
+      }
+      
+      updateSelectionUI();
+    }
+
+    // 更新选择UI
+    function updateSelectionUI() {
+      // 更新卡片选中状态
+      const cards = document.querySelectorAll('.color-card');
+      cards.forEach(card => {
+        const id = parseInt(card.dataset.id);
+        if (selectedColors.includes(id)) {
+          card.classList.add('selected');
+        } else {
+          card.classList.remove('selected');
+        }
+      });
+      
+      // 更新计数
+      const count = selectedColors.length;
+      selectedCount.textContent = count;
+      
+      // 更新确认按钮状态
+      if (count === 3) {
+        confirmBtn.disabled = false;
+        confirmBtn.innerHTML = `<i class="fa fa-check mr-2"></i> 确认选择 (3/3)`;
+      } else {
+        confirmBtn.disabled = true;
+        confirmBtn.innerHTML = `<i class="fa fa-check mr-2"></i> 确认选择 (${count}/3)`;
+      }
+    }
+
+    // 初始化颜色卡片
+    generateColorCards();
+  </script>
+</body>
+</html>
+[file content end]

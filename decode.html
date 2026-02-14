@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文化解码 - 邦典藏族文化</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    .color-item:hover .color-tips { opacity: 1; transform: translateY(0); }
+    .color-tips { 
+      opacity: 0; 
+      transition: all 0.3s ease; 
+      pointer-events: none;
+      transform: translateY(10px);
+    }
+    .pattern-card {
+      transition: all 0.3s ease;
+      border-left: 4px solid transparent;
+    }
+    .pattern-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    .stage-item {
+      transition: transform 0.3s ease;
+    }
+    .stage-item:hover {
+      transform: translateY(-5px);
+    }
+    .tab-item {
+      transition: all 0.3s ease;
+    }
+    .life-meaning-card {
+      transition: all 0.3s ease;
+      border-top: 4px solid transparent;
+    }
+    .life-meaning-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-gray-50 to-white font-sans">
+  <!-- 导航栏 - 当前页面高亮 【LOGO点击返回主页】 -->
+  <header class="fixed w-full z-50 py-4 px-5 md:px-8 bg-white/90 backdrop-blur-sm shadow-sm">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2 text-slate-800 hover:text-indigo-800 transition-colors duration-300">
+        <i class="fa fa-paint-brush text-2xl text-indigo-800"></i>
+        <span class="font-bold text-xl">邦典</span>
+      </a>
+      <nav class="flex gap-6 text-base">
+        <a href="decode.html" class="text-indigo-800 font-medium border-b-2 border-indigo-800 pb-1">文化解码</a>
+        <a href="experience.html" class="text-slate-600 hover:text-indigo-800 transition-colors duration-300">沉浸式体验</a>
+        <a href="map.html" class="text-slate-600 hover:text-indigo-800 transition-colors duration-300">体验地图</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 文化解码完整内容 -->
+  <section class="w-full min-h-screen pt-24 pb-16 px-5 md:px-8">
+    <div class="container mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-[clamp(1.8rem,5vw,2.6rem)] font-bold bg-gradient-to-r from-indigo-800 to-amber-600 bg-clip-text text-transparent mb-3">邦典 · 文化解码与共鸣</h2>
+        <p class="text-slate-600 text-lg max-w-2xl mx-auto">解码邦典色彩密码与纹样寓意，读懂藏族女性的生命传记</p>
+        <div class="w-24 h-1.5 bg-gradient-to-r from-indigo-800 to-amber-500 mx-auto mt-6 rounded-full"></div>
+      </div>
+
+      <!-- 图片与色彩解码部分 -->
+      <div class="flex flex-col lg:flex-row gap-10 mb-16">
+        <!-- 图片区域 -->
+        <div class="w-full lg:w-2/5 relative">
+          <div class="rounded-2xl overflow-hidden shadow-2xl relative border-8 border-white">
+            <img src="zhan.png" alt="藏族邦典展示" class="w-full h-auto object-cover">
+            
+            <!-- 中央显示区域 -->
+            <div id="central-display" class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div class="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-2xl max-w-sm text-center mx-4 transition-all duration-300 opacity-0">
+                <h4 class="font-bold text-slate-800 text-xl mb-2">悬停色点查看色彩寓意</h4>
+                <p class="text-slate-700">将鼠标悬停在色点上，了解每个色彩的深刻含义</p>
+              </div>
+            </div>
+            
+            <!-- 6个颜色标注点 -->
+            <div class="absolute top-[15%] left-[15%] color-item" 
+                 onmouseenter="showColorInfo('雪山云白', '寓意纯洁、吉祥，象征雪域高原的圣洁，是藏族的吉祥之色<br>染料：天然矿物/植物汁', 'slate-300')">
+              <div class="w-8 h-8 bg-white rounded-full border-4 border-slate-300 cursor-pointer flex items-center justify-center shadow-lg">
+                <div class="w-4 h-4 rounded-full bg-slate-300"></div>
+              </div>
+            </div>
+            
+            <div class="absolute top-[35%] left-[10%] color-item"
+                 onmouseenter="showColorInfo('金沙暖阳', '代表智慧、尊贵与富足，象征高原的阳光与黄金，是地位与美好的象征<br>染料：姜黄', 'amber-600')">
+              <div class="w-8 h-8 bg-amber-600 rounded-full border-4 border-white cursor-pointer shadow-lg"></div>
+            </div>
+            
+            <div class="absolute bottom-[40%] left-[20%] color-item"
+                 onmouseenter="showColorInfo('珊瑚绯红', '象征生命、热情与安康，代表高原珍宝珊瑚，寓意生生不息的生命力<br>染料：茜草', 'rose-800')">
+              <div class="w-8 h-8 bg-rose-800 rounded-full border-4 border-white cursor-pointer shadow-lg"></div>
+            </div>
+            
+            <div class="absolute top-[20%] right-[20%] color-item"
+                 onmouseenter="showColorInfo('天空藏蓝', '藏族文化中最神圣的色彩，象征苍穹、自由与永恒，代表对天地的敬畏<br>染料：蓼蓝草', 'indigo-800')">
+              <div class="w-8 h-8 bg-indigo-800 rounded-full border-4 border-white cursor-pointer shadow-lg"></div>
+            </div>
+            
+            <div class="absolute top-[55%] right-[15%] color-item"
+                 onmouseenter="showColorInfo('森林青稞', '象征生命力、生长与丰收，代表高原的森林与青稞，寓意生生不息<br>染料：天然植物汁', 'emerald-700')">
+              <div class="w-8 h-8 bg-emerald-700 rounded-full border-4 border-white cursor-pointer shadow-lg"></div>
+            </div>
+            
+            <div class="absolute bottom-[25%] right-[25%] color-item"
+                 onmouseenter="showColorInfo('大地岩石', '代表坚实、稳重与根基，象征高原的大地与岩石，寓意稳固与传承<br>染料：天然矿物', 'slate-900')">
+              <div class="w-8 h-8 bg-slate-900 rounded-full border-4 border-white cursor-pointer shadow-lg"></div>
+            </div>
+            
+            <div class="absolute bottom-4 right-4 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full">
+              <p class="text-slate-700 text-sm font-medium">悬停色点查看色彩寓意</p>
+            </div>
+          </div>
+          
+          <div class="mt-6 text-center">
+            <p class="text-slate-600 text-sm">邦典六大经典色系：白、黄、红、蓝、绿、黑，取自高原天然万物</p>
+          </div>
+        </div>
+
+        <!-- 文化内涵区域（新增Tab切换） -->
+        <div class="w-full lg:w-3/5">
+          <div class="bg-white rounded-2xl p-8 shadow-xl h-full border border-slate-100">
+            <div class="flex items-center mb-8">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-800 to-amber-500 flex items-center justify-center mr-4">
+                <i class="fa fa-book text-white text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-slate-800">邦典文化内涵</h3>
+                <p class="text-slate-500">藏族女性的生命传记与文化载体</p>
+              </div>
+            </div>
+            
+            <!-- 四大文化内涵Tab切换 -->
+            <div class="flex flex-wrap gap-3 mb-6 border-b border-slate-200 pb-3">
+              <div class="tab-item active px-4 py-2 rounded-lg cursor-pointer bg-indigo-800 text-white font-medium" data-index="0">
+                自然崇拜
+              </div>
+              <div class="tab-item px-4 py-2 rounded-lg cursor-pointer bg-slate-100 text-slate-700 hover:bg-indigo-100" data-index="1">
+                宗教信仰
+              </div>
+              <div class="tab-item px-4 py-2 rounded-lg cursor-pointer bg-slate-100 text-slate-700 hover:bg-indigo-100" data-index="2">
+                人生礼俗
+              </div>
+              <div class="tab-item px-4 py-2 rounded-lg cursor-pointer bg-slate-100 text-slate-700 hover:bg-indigo-100" data-index="3">
+                族群文化
+              </div>
+            </div>
+            
+            <!-- Tab内容区域 -->
+            <div class="culture-content">
+              <div class="content-item active text-slate-700 leading-relaxed">
+                取之于自然的色系与染料，体现人与自然共生的朴素生态观，六大色系对应高原万物，是藏族先民敬畏自然、顺应自然的生存智慧体现。
+                <div class="flex flex-wrap gap-4 mt-4 pt-4 border-t border-slate-100">
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-white border border-slate-300"></div>
+                    <div class="text-sm">
+                      <div class="font-medium">白色</div>
+                      <div class="text-xs text-slate-500">→ 雪山、云朵</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-amber-500"></div>
+                    <div class="text-sm">
+                      <div class="font-medium">黄色</div>
+                      <div class="text-xs text-slate-500">→ 草原、金沙</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-rose-800"></div>
+                    <div class="text-sm">
+                      <div class="font-medium">红色</div>
+                      <div class="text-xs text-slate-500">→ 火焰、暖阳</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-indigo-800"></div>
+                    <div class="text-sm">
+                      <div class="font-medium">蓝色</div>
+                      <div class="text-xs text-slate-500">→ 天空、湖泊</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-emerald-700"></div>
+                    <div class="text-sm">
+                      <div class="font-medium">绿色</div>
+                      <div class="text-xs text-slate-500">→ 森林、青稞</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-slate-900"></div>
+                    <div class="text-sm">
+                      <div class="font-medium">黑色</div>
+                      <div class="text-xs text-slate-500">→ 大地、岩石</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="content-item hidden text-slate-700 leading-relaxed">
+                藏传佛教+本土苯教融合纹样，是行走的信仰徽章，吉祥八宝、雍仲纹、十相自在纹等承载着藏族人对精神世界的追求，寄托消灾祈福、福运绵长的愿望。邦典上的纹样或织或绣，将宗教信仰融入日常服饰，成为藏族人精神世界的外在表达。
+              </div>
+              <div class="content-item hidden text-slate-700 leading-relaxed">
+                与藏族女性五个人生阶段深度绑定，是身份转变的仪式信物，从少女的简纹浅色系到老年的素纹深色系，每一个阶段都有专属的邦典特征。邦典的款式、色彩、纹样随人生阶段更迭，见证着藏族女性从成长、婚嫁到持家、传承的完整生命历程。
+              </div>
+              <div class="content-item hidden text-slate-700 leading-relaxed">
+                手工纺线、天然染色、腰机织造的技艺手口相传延续千年，是族群文化认同与传承的纽带。在藏历新年、锅庄舞会等族群活动中，身着邦典的女性是最鲜明的文化标识；如今邦典更走进博物馆、登上文化展演舞台，成为向外传递藏族文化的重要载体，维系着族群的历史记忆。
+              </div>
+            </div>
+            
+            <div class="mt-8 pt-6 border-t border-slate-100">
+              <p class="text-slate-700 italic text-center">
+                "邦典，是藏族女性腰间的彩虹，更是藏族女性的生命传记。"
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 人生阶段与邦典绑定 -->
+      <div class="mb-16">
+        <div class="text-center mb-10">
+          <div class="inline-flex items-center justify-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-rose-600 to-amber-500 flex items-center justify-center">
+              <i class="fa fa-female text-white"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-800">邦典：藏族女性的一生成长见证</h3>
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-amber-500 to-emerald-600 flex items-center justify-center">
+              <i class="fa fa-life-ring text-white"></i>
+            </div>
+          </div>
+          <p class="text-slate-600 max-w-3xl mx-auto">邦典的款式、色彩随人生阶段更迭，见证藏族女性完整的生命历程</p>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div class="stage-item bg-white rounded-xl p-6 shadow-lg border-t-4 border-indigo-500">
+            <div class="text-lg font-bold text-indigo-800 mb-3">少女</div>
+            <div class="text-slate-700 text-sm mb-3">简纹浅色系邦典，标志着青春期的启蒙，是成长路上的重要仪式。</div>
+            <div class="text-sm">
+              <span class="font-medium text-slate-800">推荐纹样：</span>
+              <span class="text-indigo-700">吉祥结</span>
+            </div>
+          </div>
+          
+          <div class="stage-item bg-white rounded-xl p-6 shadow-lg border-t-4 border-rose-500">
+            <div class="text-lg font-bold text-rose-800 mb-3">成年礼</div>
+            <div class="text-slate-700 text-sm mb-3">彩纹系邦典，宣告获得社交资格，象征着步入成年的身份转变。</div>
+            <div class="text-sm">
+              <span class="font-medium text-slate-800">推荐纹样：</span>
+              <span class="text-rose-700">吉祥结、妙莲、金鱼</span>
+            </div>
+          </div>
+          
+          <div class="stage-item bg-white rounded-xl p-6 shadow-lg border-t-4 border-amber-500">
+            <div class="text-lg font-bold text-amber-800 mb-3">新婚</div>
+            <div class="text-slate-700 text-sm mb-3">繁纹华彩系邦典，承载家庭责任与婚姻祈愿，是对新生活的美好期许。</div>
+            <div class="text-sm">
+              <span class="font-medium text-slate-800">推荐纹样：</span>
+              <span class="text-amber-700">吉祥结、妙莲、宝伞、宝瓶、金鱼</span>
+            </div>
+          </div>
+          
+          <div class="stage-item bg-white rounded-xl p-6 shadow-lg border-t-4 border-emerald-500">
+            <div class="text-lg font-bold text-emerald-800 mb-3">持家立业</div>
+            <div class="text-slate-700 text-sm mb-3">沉稳色系邦典，彰显担当与付出，寓意家庭安康、万事顺遂。</div>
+            <div class="text-sm">
+              <span class="font-medium text-slate-800">推荐纹样：</span>
+              <span class="text-emerald-700">宝瓶、雍仲纹、十相自在</span>
+            </div>
+          </div>
+          
+          <div class="stage-item bg-white rounded-xl p-6 shadow-lg border-t-4 border-slate-600">
+            <div class="text-lg font-bold text-slate-800 mb-3">老年</div>
+            <div class="text-slate-700 text-sm mb-3">素纹深色系邦典，是岁月沉淀的象征，更是文化传承的纽带。</div>
+            <div class="text-sm">
+              <span class="font-medium text-slate-800">推荐纹样：</span>
+              <span class="text-slate-700">宝瓶、雍仲纹</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 优化：邦典纹样的生命意义板块 -->
+      <div class="mb-16">
+        <div class="text-center mb-10">
+          <div class="inline-flex items-center justify-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-700 to-indigo-700 flex items-center justify-center">
+              <i class="fa fa-heartbeat text-white"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-800">邦典纹样的生命意义</h3>
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-700 to-rose-700 flex items-center justify-center">
+              <i class="fa fa-lightbulb-o text-white"></i>
+            </div>
+          </div>
+          <p class="text-slate-600 max-w-3xl mx-auto">藏民族对生命本质、生存状态与精神信仰的具象化表达，承载贯穿生命全程的哲思与祈愿</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- 第一层：对生命本源的敬畏与认同 -->
+          <div class="life-meaning-card bg-white rounded-xl p-7 shadow-lg border-top-4 border-indigo-600">
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center mr-4">
+                <i class="fa fa-mountain text-indigo-800 text-xl"></i>
+              </div>
+              <div>
+                <span class="inline-block px-3 py-1 bg-indigo-50 text-indigo-800 text-xs font-medium rounded-full mb-1">第一层</span>
+                <h4 class="font-bold text-xl text-slate-800">对生命本源的敬畏与认同</h4>
+              </div>
+            </div>
+            
+            <div class="text-slate-700 leading-relaxed text-base space-y-3">
+              <p>邦典纹样的灵感根植于高原的自然生命与原始信仰，是藏民族对生命本源的敬畏表达：</p>
+              <ul class="space-y-2 pl-5">
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-indigo-600 mt-1 mr-2"></i>
+                  <span><span class="font-medium text-indigo-800">雍仲纹</span>：形似旋转的太阳与火焰，象征生命的永恒轮回与不竭活力</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-indigo-600 mt-1 mr-2"></i>
+                  <span><span class="font-medium text-indigo-800">十字纹</span>：源自太阳崇拜，寓意阳光滋养万物、生命蓬勃生长</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-indigo-600 mt-1 mr-2"></i>
+                  <span><span class="font-medium text-indigo-800">回旋纹</span>：模仿水流云絮轨迹，象征生命如自然万物生生不息</span>
+                </li>
+              </ul>
+              <p class="text-sm text-slate-600 italic mt-2">传递"人与自然同生共荣"的生命认知</p>
+            </div>
+          </div>
+
+          <!-- 第二层：对生命历程的守护与祈愿 -->
+          <div class="life-meaning-card bg-white rounded-xl p-7 shadow-lg border-top-4 border-rose-600">
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 rounded-full bg-rose-100 flex items-center justify-center mr-4">
+                <i class="fa fa-shield text-rose-800 text-xl"></i>
+              </div>
+              <div>
+                <span class="inline-block px-3 py-1 bg-rose-50 text-rose-800 text-xs font-medium rounded-full mb-1">第二层</span>
+                <h4 class="font-bold text-xl text-slate-800">对生命历程的守护与祈愿</h4>
+              </div>
+            </div>
+            
+            <div class="text-slate-700 leading-relaxed text-base space-y-3">
+              <p>不同纹样守护生命不同阶段，成为藏族女性一生的"精神护身符"：</p>
+              <ul class="space-y-2 pl-5">
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-rose-600 mt-1 mr-2"></i>
+                  <span><span class="font-medium text-rose-800">少女时期</span>：简版吉祥结，祈愿成长顺遂和睦</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-rose-600 mt-1 mr-2"></i>
+                  <span><span class="font-medium text-rose-800">成年/婚嫁</span>：吉祥八宝纹样，寄托婚姻美满、家庭富足</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-rose-600 mt-1 mr-2"></i>
+                  <span><span class="font-medium text-rose-800">持家阶段</span>：十相自在纹，寓意家庭安康、生命与宇宙和谐</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-rose-600 mt-1 mr-2"></i>
+                  <span><span class="font-medium text-rose-800">老年阶段</span>：古朴宝瓶纹，象征生命圆满、庇佑后代</span>
+                </li>
+              </ul>
+              <p class="text-sm text-slate-600 italic mt-2">每个纹样都承载着对生命的美好祈愿</p>
+            </div>
+          </div>
+
+          <!-- 第三层：对生命传承的承载与延续 -->
+          <div class="life-meaning-card bg-white rounded-xl p-7 shadow-lg border-top-4 border-emerald-600">
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mr-4">
+                <i class="fa fa-handshake-o text-emerald-800 text-xl"></i>
+              </div>
+              <div>
+                <span class="inline-block px-3 py-1 bg-emerald-50 text-emerald-800 text-xs font-medium rounded-full mb-1">第三层</span>
+                <h4 class="font-bold text-xl text-slate-800">对生命传承的承载与延续</h4>
+              </div>
+            </div>
+            
+            <div class="text-slate-700 leading-relaxed text-base space-y-3">
+              <p>邦典纹样是连接过去与未来的生命纽带，承载文化与精神的代际传递：</p>
+              <ul class="space-y-2 pl-5">
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-emerald-600 mt-1 mr-2"></i>
+                  <span>织造纹样时，将祖辈流传的故事与信仰织入经纬</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-emerald-600 mt-1 mr-2"></i>
+                  <span>讲解纹样寓意，传递藏民族的生命观与价值观</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-emerald-600 mt-1 mr-2"></i>
+                  <span>纹样代代相传，延续生命智慧与文化根脉</span>
+                </li>
+              </ul>
+              <p class="text-sm text-slate-600 italic mt-2">让每一代藏族人都能从纹样中找到精神归属</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 纹样寓意部分 -->
+      <div class="mb-16">
+        <div class="text-center mb-10">
+          <div class="inline-flex items-center justify-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-amber-500 to-rose-600 flex items-center justify-center">
+              <i class="fa fa-star text-white"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-800">12种纹样专属文化寓意</h3>
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-700 to-emerald-600 flex items-center justify-center">
+              <i class="fa fa-snowflake-o text-white"></i>
+            </div>
+          </div>
+          <p class="text-slate-600 max-w-3xl mx-auto">邦典上的纹样是藏传佛教与本土苯教文化融合的视觉符号，承载着消灾祈福、福运绵长的愿望</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- 第1-4个纹样 -->
+          <div class="pattern-card bg-white rounded-xl p-5 shadow-lg border-t-4 border-indigo-600">
+            <div class="flex items-start mb-3">
+              <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3 flex-shrink-0">
+                <span class="text-indigo-800 font-bold">1</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">吉祥结</h4>
+                <p class="text-slate-700 text-sm">两个相连的万字字徽，象征团结、和睦、祥和，是藏族女性成长路上的顺遂祈愿。</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="pattern-card bg-white rounded-xl p-5 shadow-lg border-t-4 border-indigo-600">
+            <div class="flex items-start mb-3">
+              <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3 flex-shrink-0">
+                <span class="text-indigo-800 font-bold">2</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">妙莲</h4>
+                <p class="text-slate-700 text-sm">开敷绽放、花果俱全的莲花图案，寓意高贵圣洁，是对婚姻与品格的美好祈愿。</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="pattern-card bg-white rounded-xl p-5 shadow-lg border-t-4 border-indigo-600">
+            <div class="flex items-start mb-3">
+              <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3 flex-shrink-0">
+                <span class="text-indigo-800 font-bold">3</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">宝伞</h4>
+                <p class="text-slate-700 text-sm">寓能消除众生的贪、嗔、痴、慢、疑五毒，象征拯救苦难，守护生命历程的安宁。</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="pattern-card bg-white rounded-xl p-5 shadow-lg border-t-4 border-amber-500">
+            <div class="flex items-start mb-3">
+              <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-3 flex-shrink-0">
+                <span class="text-amber-800 font-bold">4</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">右旋海螺</h4>
+                <p class="text-slate-700 text-sm">常为白色，象征佛法之音遍布四方，传递生命与信仰共生的精神内核。</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="pattern-card bg-white rounded-xl p-5 shadow-lg border-t-4 border-amber-500">
+            <div class="flex items-start mb-3">
+              <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-3 flex-shrink-0">
+                <span class="text-amber-800 font-bold">5</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">金轮</h4>
+                <p class="text-slate-700 text-sm">象征佛法无边，运转不息，寓意生命如法轮般生生不息、循环向前。</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="pattern-card bg-white rounded-xl p-5 shadow-lg border-t-4 border-amber-500">
+            <div class="flex items-start mb-3">
+              <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-3 flex-shrink-0">
+                <span class="text-amber-800 font-bold">6</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">金幢</h4>
+                <p class="text-slate-700 text-sm">象征佛法无上，坚固不衰，能获最终解脱，是对生命终极圆满的祈愿。</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="pattern-card bg-white rounded-xl p-5 shadow-lg border-t-4 border-rose-600">
+            <div class="flex items-start mb-3">
+              <div class="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center mr-3 flex-shrink-0">
+                <span class="text-rose-800 font-bold">7</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">宝瓶</h4>
+                <p class="text-slate-700 text-sm">聚不竭的万千甘露，包罗善业智慧，可满足众生圆满正觉的愿望，是生命福泽绵长的象征。</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="pattern-card bg-white rounded-xl p-5 shadow-lg border-t-4 border-rose-600">
+            <div class="flex items-start mb-3">
+              <div class="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center mr-3 flex-shrink-0">
+                <span class="text-rose-800 font-bold">8</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">金鱼</h4>
+                <p class="text-slate-700 text-sm">象征解脱的境地，又有复苏、永生、再生等意，代表生命挣脱束缚、获得自在。</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="pattern-card bg-white rounded-xl p-5 shadow-lg border-t-4 border-emerald-600">
+            <div class="flex items-start mb-3">
+              <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center mr-3 flex-shrink-0">
+                <span class="text-emerald-800 font-bold">9</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">雍仲纹</h4>
+                <p class="text-slate-700 text-sm">即"卐"字纹，被认为是火和太阳的象征，代表永恒生命力与轮回，是对生命本源的敬畏表达。</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="pattern-card bg-white rounded-xl p-5 shadow-lg border-t-4 border-emerald-600">
+            <div class="flex items-start mb-3">
+              <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center mr-3 flex-shrink-0">
+                <span class="text-emerald-800 font-bold">10</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">十字纹</h4>
+                <p class="text-slate-700 text-sm">在藏族中代表太阳，有富足、美满、生命蓬勃生长等含义，是对自然滋养生命的感恩。</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="pattern-card bg-white rounded-xl p-5 shadow-lg border-t-4 border-purple-600">
+            <div class="flex items-start mb-3">
+              <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3 flex-shrink-0">
+                <span class="text-purple-800 font-bold">11</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">回旋纹</h4>
+                <p class="text-slate-700 text-sm">也叫狗鼻纹或唐草纹，形似狗鼻，旋转的花叶富有韵律感，象征生命如自然万物般生生不息。</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="pattern-card bg-white rounded-xl p-5 shadow-lg border-t-4 border-purple-600">
+            <div class="flex items-start mb-3">
+              <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3 flex-shrink-0">
+                <span class="text-purple-800 font-bold">12</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">十相自在</h4>
+                <p class="text-slate-700 text-sm">由时轮佛心咒七个梵文字和三个附加符号组成，象征宇宙和生命合一、家庭安康，守护持家阶段的生命和谐。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 底部返回主页按钮 -->
+      <div class="text-center">
+        <a href="index.html" class="px-10 py-4 bg-gradient-to-r from-indigo-800 to-indigo-700 text-white rounded-full font-semibold hover:shadow-xl transition-all duration-300 inline-flex items-center gap-3 shadow-lg hover:shadow-indigo-200">
+          <i class="fa fa-home"></i> 返回主页
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // 显示颜色信息的函数
+    function showColorInfo(title, description, colorClass) {
+      const centralDisplay = document.getElementById('central-display');
+      const displayContent = centralDisplay.querySelector('div');
+      
+      // 设置内容
+      displayContent.innerHTML = `
+        <h4 class="font-bold text-slate-800 text-xl mb-2">${title}</h4>
+        <p class="text-slate-700">${description}</p>
+        <div class="mt-3">
+          <div class="w-8 h-8 rounded-full bg-${colorClass} mx-auto border-2 border-white shadow-md"></div>
+        </div>
+      `;
+      
+      // 显示内容
+      displayContent.classList.remove('opacity-0');
+      displayContent.classList.add('opacity-100');
+    }
+    
+    // 鼠标离开图片区域时重置显示
+    document.querySelector('.rounded-2xl.overflow-hidden').addEventListener('mouseleave', function() {
+      const centralDisplay = document.getElementById('central-display');
+      const displayContent = centralDisplay.querySelector('div');
+      
+      displayContent.innerHTML = `
+        <h4 class="font-bold text-slate-800 text-xl mb-2">悬停色点查看色彩寓意</h4>
+        <p class="text-slate-700">将鼠标悬停在色点上，了解每个色彩的深刻含义</p>
+      `;
+      
+      displayContent.classList.remove('opacity-100');
+      displayContent.classList.add('opacity-0');
+    });
+    
+    // 页面加载时初始化
+    document.addEventListener('DOMContentLoaded', function() {
+      const centralDisplay = document.getElementById('central-display');
+      const displayContent = centralDisplay.querySelector('div');
+      displayContent.classList.add('opacity-100');
+
+      // Tab切换交互逻辑
+      const tabItems = document.querySelectorAll('.tab-item');
+      const contentItems = document.querySelectorAll('.content-item');
+
+      tabItems.forEach(item => {
+        item.addEventListener('click', () => {
+          // 移除所有active类并重置样式
+          tabItems.forEach(tab => {
+            tab.classList.remove('active', 'bg-indigo-800', 'text-white');
+            tab.classList.add('bg-slate-100', 'text-slate-700');
+          });
+          contentItems.forEach(content => content.classList.remove('active'));
+          contentItems.forEach(content => content.classList.add('hidden'));
+          
+          // 添加当前active类
+          const index = item.dataset.index;
+          item.classList.add('active', 'bg-indigo-800', 'text-white');
+          item.classList.remove('bg-slate-100', 'text-slate-700');
+          contentItems[index].classList.add('active');
+          contentItems[index].classList.remove('hidden');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

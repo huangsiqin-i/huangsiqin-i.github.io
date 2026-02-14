@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>藏族邦典：人生历程的文化印记</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+        }
+        /* 藏式主题配色体系 */
+        :root {
+            --primary: #2A4B7C; /* 藏蓝（主色） */
+            --primary-light: #EBF0F7;
+            --primary-hover: #1E3A60;
+            --accent: #E6B879; /* 藏式暖黄 */
+            --accent-light: #F9F2E8;
+            --accent-deep: #D49F58; 
+            --bg-main: #FCFCFC;
+            --bg-card: #FFFFFF;
+            --text-main: #333840;
+            --text-secondary: #6A7078;
+            --text-light: #9499A0;
+            --border: #E5E8EC;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.1);
+            --tibet-pattern: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 0L12 5H18L13 8L15 14L10 11L5 14L7 8L2 5H8L10 0Z' fill='%23EBF0F7' fill-opacity='0.5'%3E%3C/path%3E%3C/svg%3E");
+            --gradient-main: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-deep));
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 20px 0;
+            min-height: 100vh;
+            background-image: var(--tibet-pattern);
+            background-repeat: repeat;
+            background-size: 80px;
+            scroll-behavior: smooth;
+        }
+        .container {
+            max-width: 1920px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 返回按钮样式 */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
+            padding: 12px 24px;
+            background-color: var(--bg-card);
+            color: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-top-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .back-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-main);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+        .back-btn:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            border-color: transparent;
+        }
+        .back-btn:hover::before {
+            left: 0;
+        }
+        .back-btn:active {
+            transform: translateY(1px);
+        }
+        @media (max-width: 768px) {
+            .back-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                top: 15px;
+                left: 15px;
+            }
+        }
+
+        /* 头部区域样式 */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+            position: relative;
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border-top-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            margin-top: 20px;
+        }
+        .header::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-main);
+            margin: 25px auto 0;
+            border-radius: 4px;
+        }
+        .header::before {
+            content: "";
+            display: block;
+            width: 100%;
+            max-width: 700px;
+            height: 10px;
+            background: var(--gradient-accent);
+            margin: 0 auto 25px;
+            border-radius: 5px;
+            opacity: 0.7;
+        }
+        .header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            position: relative;
+            padding: 0 20px;
+            text-shadow: 0 2px 4px rgba(42, 75, 124, 0.1);
+        }
+        .header h1 span {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .header-intro {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            padding: 0 20px;
+            text-align: justify;
+        }
+        .header-tip {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            font-style: italic;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: var(--primary-light);
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        /* 游戏按钮样式 */
+        .game-btn-container {
+            text-align: center;
+            margin: 20px 0 60px;
+        }
+        .game-btn {
+            padding: 16px 45px;
+            background: var(--gradient-main);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.15rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border-top-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 0 15px rgba(42, 75, 124, 0.2);
+            font-weight: 600;
+        }
+        .game-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 20px rgba(42, 75, 124, 0.3);
+            background: linear-gradient(135deg, var(--primary-hover), var(--primary));
+        }
+        .game-btn:active {
+            transform: translateY(1px);
+        }
+        @media (max-width: 768px) {
+            .game-btn {
+                padding: 14px 35px;
+                font-size: 1rem;
+                width: 90%;
+            }
+        }
+
+        /* 游戏弹窗样式 */
+        .game-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .game-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: var(--bg-card);
+            padding: 45px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--border);
+            position: relative;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--accent);
+            border-bottom: 4px solid var(--primary);
+            border-top-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+        .game-modal.active .modal-content {
+            transform: translateY(0) scale(1);
+        }
+        .modal-title {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .modal-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-accent);
+            border-radius: 3px;
+        }
+        .game-link {
+            display: inline-block;
+            padding: 14px 40px;
+            background: var(--gradient-main);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            margin: 25px 0;
+            border: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border-top-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 0 10px rgba(42, 75, 124, 0.2);
+        }
+        .game-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(42, 75, 124, 0.3);
+            background: linear-gradient(135deg, var(--primary-hover), var(--primary));
+        }
+        .close-modal {
+            padding: 12px 30px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            border-top-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+        .close-modal:hover {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(42, 75, 124, 0.2);
+        }
+
+        /* 人物卡片：核心优化 - 图片完整显示无滑动 */
+        .characters-grid {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap; /* 改为换行布局，避免横向滚动 */
+            gap: 20px; /* 增大间距，提升视觉效果 */
+            margin-bottom: 80px;
+            padding: 0 10px;
+        }
+        /* 卡片适配900×1875竖版长图：完整显示无滑动 */
+        .character-card {
+            flex: 0 0 calc(20% - 16px); /* 每行5个卡片，均匀分布 */
+            max-width: calc(20% - 16px);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--accent);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            /* 关键：按900×1875比例设置卡片尺寸，保证图片完整显示 */
+            aspect-ratio: 900 / 1875; /* 精准匹配图片比例 */
+            height: auto; /* 高度自适应，避免固定高度导致滑动 */
+            min-height: 600px; /* 保证最小显示高度 */
+        }
+        .character-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.05));
+            z-index: 1;
+            pointer-events: none;
+        }
+        .character-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-light);
+            box-shadow: 0 0 25px rgba(230, 184, 121, 0.4);
+        }
+        .character-card.active {
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 0 5px var(--primary-light);
+            border-top: 4px solid var(--accent-deep);
+        }
+        /* 图片容器：核心优化 - 完整显示900×1875图片 */
+        .character-img {
+            width: 100%;
+            height: calc(100% - 30px); /* 预留文字区域高度 */
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-light);
+            background-image: var(--tibet-pattern);
+            background-size: 40px;
+            border-radius: 18px 18px 0 0;
+            position: relative;
+        }
+        /* 关键：完整显示900×1875图片，无裁剪、无滑动 */
+        .character-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* 改为contain，完整显示图片 */
+            object-position: center; /* 居中显示 */
+            transition: transform 0.5s ease, opacity 0.8s ease;
+            opacity: 0;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+        .character-img img.loaded {
+            opacity: 1;
+        }
+        .character-img::after {
+            content: "加载中...";
+            position: absolute;
+            color: var(--primary);
+            font-size: 0.9rem;
+            z-index: 0;
+        }
+        .character-card:hover .character-img img {
+            transform: scale(1.02); /* 轻微缩放，不影响完整显示 */
+        }
+        /* 文字区域：固定高度，不挤压图片 */
+        .character-name {
+            padding: 5px 4px;
+            text-align: center;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.8rem;
+            line-height: 1.2;
+            background: linear-gradient(to right, var(--primary-light), var(--accent-light));
+            position: relative;
+            z-index: 2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 30px; /* 固定高度，保证图片显示空间 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 故事详情样式 */
+        .story-details {
+            max-width: 1200px; 
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            display: none;
+            border: 1px solid var(--border);
+            border-top-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(10px);
+            transition: all 0.5s ease;
+        }
+        .story-details::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background: var(--accent-light);
+            border-bottom-left-radius: 80px;
+            opacity: 0.6;
+        }
+        .story-details.active {
+            display: block;
+            animation: fadeIn 0.8s ease;
+            transform: translateY(0);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .story-title {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-left: 5px solid var(--accent-deep);
+            padding-left: 20px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .story-age {
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+            padding: 8px 15px;
+            background-color: var(--accent-light);
+            border-radius: 20px;
+            display: inline-block;
+            border: 1px solid var(--accent);
+        }
+        .story-content {
+            line-height: 1.8;
+            margin-bottom: 35px;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            text-align: justify;
+            letter-spacing: 0.3px;
+        }
+        .feature-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .feature-list li {
+            padding: 18px 25px;
+            background: linear-gradient(to right, var(--primary-light), var(--accent-light));
+            border-radius: 15px;
+            position: relative;
+            padding-left: 45px;
+            border: 1px solid var(--border);
+            color: var(--primary);
+            border-top-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .feature-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(42, 75, 124, 0.1);
+        }
+        .feature-list li:before {
+            content: "✓";
+            color: white;
+            background: var(--gradient-main);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 10px rgba(42, 75, 124, 0.3);
+        }
+        /* 朗读按钮样式 */
+        .read-btn {
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: var(--gradient-accent);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border-top-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 0 12px rgba(212, 159, 88, 0.3);
+        }
+        .read-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 18px rgba(212, 159, 88, 0.4);
+            background: linear-gradient(135deg, var(--accent-deep), var(--accent));
+        }
+        .read-btn.stop {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            box-shadow: 0 0 12px rgba(231, 76, 60, 0.3);
+        }
+
+        /* 响应式适配：保证图片完整显示 */
+        @media (max-width: 1400px) {
+            .character-card {
+                flex: 0 0 calc(25% - 15px);
+                max-width: calc(25% - 15px);
+                min-height: 550px;
+            }
+        }
+        @media (max-width: 1024px) {
+            .character-card {
+                flex: 0 0 calc(33.33% - 13px);
+                max-width: calc(33.33% - 13px);
+                min-height: 500px;
+            }
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .header-intro {
+                font-size: 1.05rem;
+            }
+            .modal-title {
+                font-size: 1.6rem;
+            }
+            .story-details {
+                padding: 35px 25px;
+            }
+            .story-title {
+                font-size: 1.7rem;
+            }
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+            .read-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            /* 平板端：每行2个卡片，完整显示图片 */
+            .character-card {
+                flex: 0 0 calc(50% - 10px);
+                max-width: calc(50% - 10px);
+                min-height: 450px;
+            }
+        }
+        @media (max-width: 480px) {
+            .game-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+                width: 90%;
+                justify-content: center;
+            }
+            .modal-content {
+                padding: 35px 25px;
+            }
+            /* 手机端：单行1个卡片，最大化显示图片 */
+            .character-card {
+                flex: 0 0 100%;
+                max-width: 100%;
+                min-height: 400px;
+            }
+            .character-name {
+                font-size: 0.9rem;
+                padding: 6px 5px;
+            }
+            .story-content {
+                font-size: 1rem;
+            }
+            .back-btn {
+                width: calc(100% - 30px);
+                justify-content: center;
+                left: 15px;
+                top: auto;
+                bottom: 20px;
+                z-index: 998;
+            }
+        }
+
+        /* 回到顶部按钮 */
+        .to-top-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 998;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-main);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-hover);
+            transition: all 0.3s ease;
+        }
+        .to-top-btn.show {
+            display: flex;
+        }
+        .to-top-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(42, 75, 124, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <button class="back-btn" id="back-button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M5 12l7 7M5 12l7-7"/>
+        </svg>
+        返回上一页
+    </button>
+
+    <button class="to-top-btn" id="to-top-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
+    
+    <div class="container">
+        <div class="header">
+            <h1>藏族邦典：<span>人生历程的文化印记</span></h1>
+            <p class="header-intro">藏族邦典作为藏族女性的标志性围裙，不仅是承载民族美学的服饰符号，更与女性从少女到长者的人生成长阶段深度绑定，每一段邦典的更换与佩戴，都对应着身份的转变、责任的承接与文化的传承。</p>
+            <p class="header-tip">点击下方人物，聆听不同人生阶段的邦典故事</p>
+        </div>
+
+        <div class="game-btn-container">
+            <button class="game-btn" id="game-button">
+                🎮 体验邦典文化互动游戏
+            </button>
+        </div>
+
+        <div class="game-modal" id="game-modal">
+            <div class="modal-content">
+                <h3 class="modal-title">邦典文化互动游戏</h3>
+                <p>点击下方链接，体验我们设计的邦典文化互动游戏：</p>
+                <a href="https://your-game-link.com" target="_blank" class="game-link">点击进入游戏</a>
+                <p style="color: var(--text-light); font-size: 0.9rem;">（温馨提示：游戏将在新窗口打开）</p>
+                <button class="close-modal" id="close-modal">关闭</button>
+            </div>
+        </div>
+
+        <div class="characters-grid">
+            <!-- 替换为你的900×1875分辨率图片实际链接 -->
+            <div class="character-card" data-index="0">
+                <div class="character-img">
+                    <!-- 第一张图：替换成你的实际图片URL -->
+                    <img src="图片14.png" alt="少女成长期的藏族邦典" loading="lazy">
+                </div>
+                <div class="character-name">少女成长期 (12-15岁)</div>
+            </div>
+            <div class="character-card" data-index="1">
+                <div class="character-img">
+                    <!-- 第二张图：替换成你的实际图片URL -->
+                    <img src="图片15.png" alt="成年礼阶段的藏族邦典" loading="lazy">
+                </div>
+                <div class="character-name">成年礼阶段 (16-18岁)</div>
+            </div>
+            <div class="character-card" data-index="2">
+                <div class="character-img">
+                    <!-- 第三张图：替换成你的实际图片URL -->
+                    <img src="图片16.png" alt="新婚嫁阶段的藏族邦典" loading="lazy">
+                </div>
+                <div class="character-name">新婚嫁阶段 (1-3年)</div>
+            </div>
+            <div class="character-card" data-index="3">
+                <div class="character-img">
+                    <!-- 第四张图：替换成你的实际图片URL -->
+                    <img src="图片17.png" alt="持家立业期的藏族邦典" loading="lazy">
+                </div>
+                <div class="character-name">持家立业期 (30-50岁)</div>
+            </div>
+            <div class="character-card" data-index="4">
+                <div class="character-img">
+                    <!-- 第五张图：替换成你的实际图片URL -->
+                    <img src="图片18.png" alt="长者尊荣期的藏族邦典" loading="lazy">
+                </div>
+                <div class="character-name">长者尊荣期 (50岁以上)</div>
+            </div>
+        </div>
+
+        <div class="story-details" id="story-container">
+            <h2 class="story-title" id="story-title">少女成长期：初佩简纹邦典，启萌文化认知</h2>
+            <p class="story-age" id="story-age">年龄阶段：约12-15岁</p>
+            <p class="story-content" id="story-content">
+                这一阶段是藏族少女的“邦典初戴礼”，标志着从孩童向少女的过渡。少女佩戴的邦典多以浅白、浅蓝等清新色系为主，纹样简洁素雅，常见少量回旋纹、十字纹。佩戴邦典的仪式，是长辈向少女传授藏族服饰文化、礼仪规范的开端，少女在学习系扎邦典的过程中，初识身为藏族女性的文化身份，萌生出对民族传统的敬畏之心。
+            </p>
+            <ul class="feature-list" id="story-features">
+                <li>色彩：浅白、浅蓝等清新色系</li>
+                <li>纹样：简洁素雅，少量回旋纹、十字纹</li>
+                <li>意义：初识民族文化身份，萌生对传统的敬畏</li>
+            </ul>
+            <button class="read-btn" id="read-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+                朗读故事
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 返回按钮逻辑
+        const backButton = document.getElementById('back-button');
+        backButton.addEventListener('click', function() {
+            window.location.href = 'experience.html';
+        });
+
+        // 游戏弹窗交互
+        const gameButton = document.getElementById('game-button');
+        const gameModal = document.getElementById('game-modal');
+        const closeModal = document.getElementById('close-modal');
+
+        gameButton.addEventListener('click', function() {
+            gameModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeModal.addEventListener('click', function() {
+            gameModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        gameModal.addEventListener('click', function(e) {
+            if (e.target === gameModal) {
+                gameModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // 邦典故事数据
+        const storyData = [
+            {
+                title: "少女成长期：初佩简纹邦典，启萌文化认知",
+                age: "年龄阶段：约12-15岁",
+                content: "这一阶段是藏族少女的“邦典初戴礼”，标志着从孩童向少女的过渡。少女佩戴的邦典多以浅白、浅蓝等清新色系为主，纹样简洁素雅，常见少量回旋纹、十字纹。佩戴邦典的仪式，是长辈向少女传授藏族服饰文化、礼仪规范的开端，少女在学习系扎邦典的过程中，初识身为藏族女性的文化身份，萌生出对民族传统的敬畏之心。",
+                features: ["色彩：浅白、浅蓝等清新色系", "纹样：简洁素雅，少量回旋纹、十字纹", "意义：初识民族文化身份，萌生对传统的敬畏"]
+            },
+            {
+                title: "成年礼阶段：换上彩纹邦典，确立成年身份",
+                age: "年龄阶段：16-18岁",
+                content: "成年礼是人生的重要里程碑，此时少女会换上色彩明艳、纹样丰富的邦典，以白、黄、红、蓝、绿、黑六大经典色系的组合为主，点缀吉祥结、妙莲等纹样。在亲友的见证下换上新邦典，意味着正式获得成年女性的身份，从此可参与部落或家族的社交、节庆活动。这一阶段的邦典，是少女向世界宣告成年的信物，承载着长辈对其独立生活的期许。",
+                features: ["色彩：白、黄、红、蓝、绿、黑六大色系组合", "纹样：吉祥结、妙莲等吉祥纹样", "意义：宣告成年，承载长辈对独立生活的期许"]
+            },
+            {
+                title: "新婚嫁阶段：身着繁纹邦典，承载家庭责任",
+                age: "年龄阶段：新婚1-3年",
+                content: "新婚阶段的邦典是女性服饰中最为华丽的，多采用高饱和度的色彩搭配，纹样以吉祥八宝（吉祥结、妙莲、宝伞等）、雍仲纹为主，工艺繁复精美。新婚女性佩戴这样的邦典，既是对婚姻的珍视，也是对新家庭责任的承接。在婚礼、走亲访友等场合，繁纹邦典象征着新媳妇的端庄与体面，更寓意着为家庭带来吉祥与富足，开启相夫教子、操持家务的人生新篇。",
+                features: ["色彩：高饱和度色彩搭配", "纹样：吉祥八宝、雍仲纹等繁复纹样", "意义：寓意家庭吉祥富足，开启相夫教子新篇"]
+            },
+            {
+                title: "持家立业期：佩戴稳重大方邦典，践行担当使命",
+                age: "年龄阶段：30-50岁",
+                content: "这一阶段的女性成为家庭的中流砥柱，佩戴的邦典色调趋于沉稳，多以深蓝、墨绿、暗红为底色，纹样选择简洁大气的十相自在纹、金鱼纹，既保留民族特色，又兼顾劳作的实用性。此时的邦典，不再追求华丽繁复，而是与持家立业的人生状态相契合。女性在田间劳作、照料家人、参与宗族事务时，身上的邦典是责任与担当的象征，见证着她们为家庭和族群付出的岁月。",
+                features: ["色彩：深蓝、墨绿、暗红等沉稳色调", "纹样：十相自在纹、金鱼纹等简洁大气纹样", "意义：象征责任与担当，见证为家庭族群的付出"]
+            },
+            {
+                title: "长者尊荣期：身着素纹深色邦典，传承文化根脉",
+                age: "年龄阶段：50岁以上",
+                content: "步入长者阶段，女性的邦典回归素雅，多以深色为底，搭配少量古朴的雍仲纹、宝瓶纹，象征着历经岁月沉淀后的从容与尊荣。此时的长者，不仅是家庭的长辈，更是民族文化的传承者。她们会向晚辈传授邦典的织造技艺、纹样寓意，讲述邦典背后的人生故事，让邦典承载的文化记忆代代相传。这一阶段的邦典，是岁月的勋章，更是连接民族过去与未来的文化纽带。",
+                features: ["色彩：深色为底，素雅简约", "纹样：古朴雍仲纹、宝瓶纹", "意义：岁月的勋章，连接民族过去与未来的文化纽带"]
+            }
+        ];
+
+        // 人物卡片交互
+        const characterCards = document.querySelectorAll('.character-card');
+        const storyContainer = document.getElementById('story-container');
+        const storyTitle = document.getElementById('story-title');
+        const storyAge = document.getElementById('story-age');
+        const storyContent = document.getElementById('story-content');
+        const storyFeatures = document.getElementById('story-features');
+
+        characterCards.forEach(card => {
+            card.addEventListener('click', function() {
+                characterCards.forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                
+                const index = parseInt(this.getAttribute('data-index'));
+                const data = storyData[index];
+                
+                storyTitle.textContent = data.title;
+                storyAge.textContent = data.age;
+                storyContent.textContent = data.content;
+                
+                storyFeatures.innerHTML = '';
+                data.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.textContent = feature;
+                    storyFeatures.appendChild(li);
+                });
+                
+                storyContainer.classList.add('active');
+                stopReading();
+            });
+        });
+
+        // 初始化显示第一个故事
+        characterCards[0].click();
+
+        // 图片懒加载+加载完成样式（适配900×1875长图）
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        images.forEach(img => {
+            img.addEventListener('load', function() {
+                this.classList.add('loaded');
+            });
+            img.addEventListener('error', function() {
+                // 加载失败时显示备用图（适配900×1875比例）
+                this.src = 'https://via.placeholder.com/900x1875?text=藏族邦典文化&color=2A4B7C&bg=EBF0F7';
+                this.alt = '藏族邦典文化展示图';
+                this.classList.add('loaded');
+            });
+        });
+
+        // 文本朗读功能
+        let speechSynthesis = window.speechSynthesis;
+        let currentUtterance = null;
+        const readBtn = document.getElementById('read-btn');
+
+        readBtn.addEventListener('click', function() {
+            if (speechSynthesis.speaking && currentUtterance) {
+                stopReading();
+                return;
+            }
+            startReading();
+        });
+
+        function startReading() {
+            const text = `${storyTitle.textContent}。${storyAge.textContent}。${storyContent.textContent}。特点有：${Array.from(storyFeatures.children).map(li => li.textContent).join('。')}。`;
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            currentUtterance.lang = 'zh-CN';
+            currentUtterance.rate = 0.9;
+            currentUtterance.pitch = 1.1;
+            currentUtterance.volume = 1;
+
+            readBtn.classList.add('stop');
+            readBtn.innerHTML = `
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="6" y="4" width="4" height="16"></rect>
+                    <rect x="14" y="4" width="4" height="16"></rect>
+                </svg>
+                停止朗读
+            `;
+
+            currentUtterance.onend = function() {
+                resetReadBtn();
+            };
+
+            speechSynthesis.speak(currentUtterance);
+        }
+
+        function stopReading() {
+            if (speechSynthesis.speaking) {
+                speechSynthesis.cancel();
+            }
+            resetReadBtn();
+        }
+
+        function resetReadBtn() {
+            readBtn.classList.remove('stop');
+            readBtn.innerHTML = `
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+                朗读故事
+            `;
+        }
+
+        window.addEventListener('beforeunload', stopReading);
+
+        // 回到顶部功能
+        const toTopBtn = document.getElementById('to-top-btn');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                toTopBtn.classList.add('show');
+            } else {
+                toTopBtn.classList.remove('show');
+            }
+        });
+
+        toTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
