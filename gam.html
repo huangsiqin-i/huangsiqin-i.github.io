@@ -313,19 +313,19 @@
             box-shadow: 0 0 10px rgba(42, 75, 124, 0.2);
         }
 
-        /* 人物卡片：核心优化 - 图片完整显示无滑动 */
+        /* 人物卡片：核心修改 - 缩小图片显示尺寸 */
         .characters-grid {
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            flex-wrap: wrap; /* 改为换行布局，避免横向滚动 */
-            gap: 20px; /* 增大间距，提升视觉效果 */
+            flex-wrap: wrap;
+            gap: 20px;
             margin-bottom: 80px;
             padding: 0 10px;
         }
-        /* 卡片适配900×1875竖版长图：完整显示无滑动 */
+        /* 卡片尺寸调整 - 整体缩小，降低图片占比 */
         .character-card {
-            flex: 0 0 calc(20% - 16px); /* 每行5个卡片，均匀分布 */
+            flex: 0 0 calc(20% - 16px);
             max-width: calc(20% - 16px);
             cursor: pointer;
             transition: all 0.4s ease;
@@ -338,10 +338,10 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            /* 关键：按900×1875比例设置卡片尺寸，保证图片完整显示 */
-            aspect-ratio: 900 / 1875; /* 精准匹配图片比例 */
-            height: auto; /* 高度自适应，避免固定高度导致滑动 */
-            min-height: 600px; /* 保证最小显示高度 */
+            /* 核心修改：降低卡片整体高度，从原来的min-height: 600px调整 */
+            aspect-ratio: 900 / 1200; /* 调整比例，缩短高度 */
+            height: auto;
+            min-height: 350px; /* 大幅降低最小高度 */
         }
         .character-card::before {
             content: "";
@@ -365,10 +365,10 @@
             box-shadow: 0 0 0 5px var(--primary-light);
             border-top: 4px solid var(--accent-deep);
         }
-        /* 图片容器：核心优化 - 完整显示900×1875图片 */
+        /* 图片容器：核心修改 - 缩小图片显示区域 */
         .character-img {
             width: 100%;
-            height: calc(100% - 30px); /* 预留文字区域高度 */
+            height: calc(100% - 40px); /* 预留更多文字区域 */
             flex: 1;
             overflow: hidden;
             display: flex;
@@ -379,13 +379,15 @@
             background-size: 40px;
             border-radius: 18px 18px 0 0;
             position: relative;
+            /* 新增：限制图片容器最大高度 */
+            max-height: 300px;
         }
-        /* 关键：完整显示900×1875图片，无裁剪、无滑动 */
+        /* 图片样式优化 - 保证缩小后清晰 */
         .character-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* 改为contain，完整显示图片 */
-            object-position: center; /* 居中显示 */
+            width: 90%; /* 核心修改：图片宽度从100%改为90%，缩小显示 */
+            height: 90%; /* 核心修改：图片高度从100%改为90%，缩小显示 */
+            object-fit: contain;
+            object-position: center;
             transition: transform 0.5s ease, opacity 0.8s ease;
             opacity: 0;
             image-rendering: -webkit-optimize-contrast;
@@ -402,23 +404,23 @@
             z-index: 0;
         }
         .character-card:hover .character-img img {
-            transform: scale(1.02); /* 轻微缩放，不影响完整显示 */
+            transform: scale(1.02);
         }
-        /* 文字区域：固定高度，不挤压图片 */
+        /* 文字区域：扩大高度，提升文字可见性 */
         .character-name {
-            padding: 5px 4px;
+            padding: 8px 4px;
             text-align: center;
             color: var(--primary);
             font-weight: 600;
-            font-size: 0.8rem;
-            line-height: 1.2;
+            font-size: 0.9rem; /* 放大字体 */
+            line-height: 1.4;
             background: linear-gradient(to right, var(--primary-light), var(--accent-light));
             position: relative;
             z-index: 2;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            height: 30px; /* 固定高度，保证图片显示空间 */
+            height: 40px; /* 增加文字区域高度 */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -440,6 +442,8 @@
             overflow: hidden;
             transform: translateY(10px);
             transition: all 0.5s ease;
+            /* 新增：提升故事区域的视觉优先级 */
+            margin-top: 20px;
         }
         .story-details::before {
             content: "";
@@ -559,19 +563,19 @@
             box-shadow: 0 0 12px rgba(231, 76, 60, 0.3);
         }
 
-        /* 响应式适配：保证图片完整显示 */
+        /* 响应式适配：同步调整移动端图片尺寸 */
         @media (max-width: 1400px) {
             .character-card {
                 flex: 0 0 calc(25% - 15px);
                 max-width: calc(25% - 15px);
-                min-height: 550px;
+                min-height: 320px; /* 降低移动端最小高度 */
             }
         }
         @media (max-width: 1024px) {
             .character-card {
                 flex: 0 0 calc(33.33% - 13px);
                 max-width: calc(33.33% - 13px);
-                min-height: 500px;
+                min-height: 300px; /* 降低移动端最小高度 */
             }
         }
         @media (max-width: 768px) {
@@ -597,11 +601,15 @@
                 width: 100%;
                 justify-content: center;
             }
-            /* 平板端：每行2个卡片，完整显示图片 */
+            /* 平板端：同步调整卡片尺寸 */
             .character-card {
                 flex: 0 0 calc(50% - 10px);
                 max-width: calc(50% - 10px);
-                min-height: 450px;
+                min-height: 280px; /* 降低移动端最小高度 */
+            }
+            .character-img img {
+                width: 90%; /* 保持图片缩放比例 */
+                height: 90%;
             }
         }
         @media (max-width: 480px) {
@@ -614,15 +622,16 @@
             .modal-content {
                 padding: 35px 25px;
             }
-            /* 手机端：单行1个卡片，最大化显示图片 */
+            /* 手机端：同步调整卡片尺寸 */
             .character-card {
                 flex: 0 0 100%;
                 max-width: 100%;
-                min-height: 400px;
+                min-height: 250px; /* 降低移动端最小高度 */
             }
             .character-name {
-                font-size: 0.9rem;
-                padding: 6px 5px;
+                font-size: 1rem;
+                padding: 8px 5px;
+                height: 45px; /* 增加手机端文字高度 */
             }
             .story-content {
                 font-size: 1rem;
@@ -634,6 +643,10 @@
                 top: auto;
                 bottom: 20px;
                 z-index: 998;
+            }
+            .character-img img {
+                width: 85%; /* 手机端进一步缩小图片 */
+                height: 85%;
             }
         }
 
@@ -860,15 +873,15 @@
         // 初始化显示第一个故事
         characterCards[0].click();
 
-        // 图片懒加载+加载完成样式（适配900×1875长图）
+        // 图片懒加载+加载完成样式
         const images = document.querySelectorAll('img[loading="lazy"]');
         images.forEach(img => {
             img.addEventListener('load', function() {
                 this.classList.add('loaded');
             });
             img.addEventListener('error', function() {
-                // 加载失败时显示备用图（适配900×1875比例）
-                this.src = 'https://via.placeholder.com/900x1875?text=藏族邦典文化&color=2A4B7C&bg=EBF0F7';
+                // 加载失败时显示备用图
+                this.src = 'https://via.placeholder.com/900x1200?text=藏族邦典文化&color=2A4B7C&bg=EBF0F7';
                 this.alt = '藏族邦典文化展示图';
                 this.classList.add('loaded');
             });
