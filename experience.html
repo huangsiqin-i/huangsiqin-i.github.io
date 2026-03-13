@@ -1,15 +1,14 @@
-
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>沉浸式体验 - 邦典藏族文化</title>
+  <title>Immersive Experience - Bangdian Tibetan Culture</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; }
+    * { margin: 0; padding: 0; box-sizing: border-box; word-wrap: break-word; }
+    html, body { height: 100%; line-height: 1.7; }
     .card-hover { transition: all 0.4s ease; }
     .card-hover:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0,0,0,0.1); }
     
@@ -169,8 +168,9 @@
       border-left: 4px solid #4f46e5;
       margin-bottom: 20px;
       font-size: 15px;
-      line-height: 1.6;
+      line-height: 1.8;
       color: #374151;
+      letter-spacing: 0.3px;
     }
     
     .fusion-text {
@@ -179,9 +179,10 @@
       border-radius: 12px;
       border-left: 4px solid #0ea5e9;
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.7;
       color: #0369a1;
       margin-bottom: 20px;
+      letter-spacing: 0.2px;
     }
     
     /* 支付选项卡片 */
@@ -303,7 +304,7 @@
     .step-content p {
       font-size: 14px;
       color: #6b7280;
-      line-height: 1.4;
+      line-height: 1.6;
     }
     
     /* 图片查看器样式 */
@@ -345,6 +346,12 @@
       background: #94a3b8;
     }
     
+    /* 英文排版优化：避免文字溢出，调整行高 */
+    .text-en {
+      line-height: 1.8;
+      letter-spacing: 0.3px;
+    }
+    
     /* 适配小屏幕 */
     @media (max-width: 480px) {
       .modal-content {
@@ -370,21 +377,26 @@
         width: 180px;
         height: 180px;
       }
+      
+      /* 小屏幕英文文本字号调整 */
+      .declaration-text, .fusion-text, .step-content p {
+        font-size: 13px;
+      }
     }
   </style>
 </head>
 <body class="bg-gray-50 font-sans">
-  <!-- 导航栏 - 当前页面高亮 【LOGO点击返回主页】 -->
+  <!-- 导航栏 - Current page highlight 【LOGO click to return homepage】 -->
   <header class="fixed w-full z-50 py-4 px-5 md:px-8 bg-white shadow-sm">
     <div class="container mx-auto flex justify-between items-center">
       <a href="index.html" class="flex items-center gap-2 text-slate-800">
         <i class="fa fa-paint-brush text-2xl text-indigo-800"></i>
-        <span class="font-bold text-xl">邦典</span>
+        <span class="font-bold text-xl">Bangdian</span>
       </a>
       <nav class="flex gap-6 text-base">
-        <a href="decode.html" class="text-slate-600 hover:text-indigo-800 transition-colors duration-300">文化解码</a>
-        <a href="experience.html" class="text-indigo-800 font-medium border-b-2 border-indigo-800 pb-1">沉浸式体验</a>
-        <a href="map.html" class="text-slate-600 hover:text-indigo-800 transition-colors duration-300">体验地图</a>
+        <a href="decode.html" class="text-slate-600 hover:text-indigo-800 transition-colors duration-300">Cultural Decoding</a>
+        <a href="experience.html" class="text-indigo-800 font-medium border-b-2 border-indigo-800 pb-1">Immersive Experience</a>
+        <a href="map.html" class="text-slate-600 hover:text-indigo-800 transition-colors duration-300">Experience Map</a>
       </nav>
     </div>
   </header>
@@ -393,50 +405,51 @@
   <section class="w-full min-h-screen pt-24 pb-16 px-5 md:px-8">
     <div class="container mx-auto">
       <div class="text-center mb-10">
-        <h2 class="text-[clamp(1.8rem,5vw,2.6rem)] font-bold text-indigo-800 mb-3">邦典 · 沉浸式体验设计</h2>
-        <p class="text-slate-600 text-lg">从文化认知到亲手创造，赋予邦典属于你的生命故事</p>
+        <h2 class="text-[clamp(1.8rem,5vw,2.6rem)] font-bold text-indigo-800 mb-3">Bangdian · Immersive Experience Design</h2>
+        <p class="text-slate-600 text-lg text-en">From cultural cognition to hands-on creation, endow Bangdian with your own life story</p>
         <div class="w-20 h-1 bg-amber-500 mx-auto mt-4"></div>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8">
         <div class="bg-white rounded-xl overflow-hidden shadow-xl card-hover">
           <div class="h-64 overflow-hidden">
-            <img src="图片12.png" alt="邦典设计工坊" class="w-full h-full object-cover">
+            <img src="图片12.png" alt="Bangdian Design Workshop" class="w-full h-full object-cover">
           </div>
           <div class="p-7">
-            <h3 class="text-xl font-bold text-indigo-800 mb-4">我的邦典 · 专属设计工坊</h3>
-            <p class="text-slate-600 mb-5 text-sm leading-relaxed">
-              基于文化解码的认知，亲手设计属于你的数字邦典。自由搭配传统色彩，创作专属纹样，撰写你的生命宣言，让邦典成为你的身份表达。
+            <h3 class="text-xl font-bold text-indigo-800 mb-4">My Bangdian · Exclusive Design Workshop</h3>
+            <p class="text-slate-600 mb-5 text-sm leading-relaxed text-en">
+              Based on the cognition of cultural decoding, design your own digital Bangdian with your own hands. Freely match traditional colors, create exclusive patterns, write your life declaration, and let Bangdian become your identity expression.
             </p>
             <ul class="space-y-2 mb-6 text-slate-700">
-              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 6大藏族经典色系自由搭配</li>
-              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 12种传统纹样随心组合</li>
-              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 撰写个人化设计宣言</li>
-              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 生成高清数字作品</li>
+              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> Freely match 6 classic Tibetan color systems</li>
+              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> Randomly combine 12 traditional patterns</li>
+              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> Write a personalized design declaration</li>
+              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> Generate high-definition digital works</li>
             </ul>
-            <a href="#" id="designBtn" class="inline-block w-full text-center px-6 py-3 bg-indigo-800 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors duration-300">
-              开启设计之旅 <i class="fa fa-magic ml-2"></i>
-            </a>
+            <!-- 修改按钮：移除href，只保留id用于绑定事件 -->
+            <button id="designBtn" class="inline-block w-full text-center px-6 py-3 bg-indigo-800 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors duration-300">
+              Start your design journey <i class="fa fa-magic ml-2"></i>
+            </button>
           </div>
         </div>
 
         <div class="bg-white rounded-xl overflow-hidden shadow-xl card-hover">
           <div class="h-64 overflow-hidden">
-            <img src="图片13.png" alt="人生纹样游戏" class="w-full h-full object-cover">
+            <img src="图片13.png" alt="Weaving Life Interactive Narrative Game" class="w-full h-full object-cover">
           </div>
           <div class="p-7">
-            <h3 class="text-xl font-bold text-rose-800 mb-4">编织人生 · 互动叙事游戏</h3>
-            <p class="text-slate-600 mb-5 text-sm leading-relaxed">
-              沉浸式体验藏族女孩的成长历程，从少女到成年，每一次人生选择都会改变邦典的纹样与色彩，感受邦典与生命的紧密联结。
+            <h3 class="text-xl font-bold text-rose-800 mb-4">Weaving Life: Interactive Narrative Game</h3>
+            <p class="text-slate-600 mb-5 text-sm leading-relaxed text-en">
+              Immerse yourself in the growth journey of a Tibetan girl, from adolescence to adulthood. Every life choice transforms the patterns and hues of the Bangdian, revealing its profound connection with life.
             </p>
             <ul class="space-y-2 mb-6 text-slate-700">
-              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 5个关键人生成长阶段体验</li>
-              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 了解邦典完整制作工艺</li>
-              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 选择决定纹样的最终形态</li>
-              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 解锁邦典背后的文化故事</li>
+              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> Five Key Life Stages Experiences</li>
+              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> Learn about the complete production process of Bangdian</li>
+              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> Determine the final form of the pattern</li>
+              <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> Unlocking the cultural stories behind the Bangdian</li>
             </ul>
             <a href="gam.html" class="inline-block w-full text-center px-6 py-3 bg-rose-800 text-white rounded-lg font-semibold hover:bg-rose-700 transition-colors duration-300">
-              开始互动体验 <i class="fa fa-gamepad ml-2"></i>
+              Start interactive experience <i class="fa fa-gamepad ml-2"></i>
             </a>
           </div>
         </div>
@@ -445,7 +458,7 @@
       <!-- 底部返回主页按钮 -->
       <div class="text-center mt-12">
         <a href="index.html" class="px-8 py-3 bg-indigo-800 text-white rounded-full font-semibold hover:bg-indigo-700 transition-colors duration-300 inline-flex items-center gap-2">
-          <i class="fa fa-home"></i> 返回主页
+          <i class="fa fa-home"></i> Return to Home Page
         </a>
       </div>
     </div>
@@ -460,17 +473,17 @@
         <div class="sticky top-0 bg-white z-10 p-6 border-b border-slate-200">
           <div class="flex justify-between items-center mb-3">
             <h3 class="text-xl font-bold text-indigo-800 flex items-center">
-              <i class="fa fa-palette mr-3"></i> 选择您的邦典色彩
+              <i class="fa fa-palette mr-3"></i> Select your Bangdian colors
             </h3>
             <button id="closeModal" class="text-slate-500 hover:text-slate-800 text-xl transition-colors">
               <i class="fa fa-times"></i>
             </button>
           </div>
-          <p class="text-slate-600 text-sm">每种颜色都承载独特的藏族文化意义，请选择3种颜色进行搭配</p>
+          <p class="text-slate-600 text-sm text-en">Each color carries unique Tibetan cultural significance. Please select 3 colors for combination</p>
           <div class="mt-4 bg-indigo-50 p-3 rounded-lg">
             <div class="flex items-center text-sm text-indigo-800">
               <i class="fa fa-info-circle mr-2"></i>
-              <span>已选择 <span id="selectedCount" class="font-bold">0</span> 种颜色（需要选择3种）</span>
+              <span>Selected <span id="selectedCount" class="font-bold">0</span> colors (need to select 3)</span>
             </div>
           </div>
         </div>
@@ -484,10 +497,10 @@
         <div class="sticky bottom-0 bg-white border-t border-slate-200 p-6">
           <div class="flex flex-col sm:flex-row gap-3">
             <button id="cancelBtn" class="px-6 py-3 text-slate-700 font-medium hover:bg-slate-100 rounded-lg transition-colors flex-1">
-              取消
+              Cancel
             </button>
             <button id="confirmBtn" class="px-6 py-3 bg-indigo-800 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors flex-1 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-              <i class="fa fa-check mr-2"></i> 确认选择 (0/3)
+              <i class="fa fa-check mr-2"></i> Confirm Selection (0/3)
             </button>
           </div>
         </div>
@@ -497,9 +510,9 @@
       <div id="declarationResultView" class="declaration-result">
         <div class="declaration-header">
           <h3 class="text-xl font-bold text-indigo-800 flex items-center justify-center">
-            <i class="fa fa-quote-left mr-3"></i> 您的邦典色彩宣言
+            <i class="fa fa-quote-left mr-3"></i> Your Bangdian Color Declaration
           </h3>
-          <p class="text-slate-600 text-sm mt-2">基于您选择的色彩组合，以下是您的专属邦典宣言</p>
+          <p class="text-slate-600 text-sm mt-2 text-en">Based on the color combination you have chosen, here is your exclusive Bangdian declaration</p>
         </div>
         
         <div class="selected-colors-preview" id="selectedColorsPreview">
@@ -509,7 +522,7 @@
         <div class="declaration-content">
           <div class="declaration-title">
             <i class="fa fa-paint-brush"></i>
-            <span>色彩融合</span>
+            <span>Color Fusion</span>
           </div>
           <div class="fusion-text" id="fusionText">
             <!-- 色彩融合描述将动态显示在这里 -->
@@ -517,7 +530,7 @@
           
           <div class="declaration-title">
             <i class="fa fa-flag"></i>
-            <span>邦典宣言</span>
+            <span>Bangdian Declaration</span>
           </div>
           <div class="declaration-text" id="declarationText">
             <!-- 宣言将动态显示在这里 -->
@@ -526,16 +539,16 @@
           <!-- 生成邦典按钮 -->
           <div class="mt-8 text-center">
             <button id="generateBangdianBtn" class="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-full hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-              <i class="fa fa-image mr-2"></i> 生成专属邦典图
+              <i class="fa fa-image mr-2"></i> Generate Your Exclusive Bangdian Design
             </button>
-            <p class="text-slate-500 text-sm mt-3">生成您的专属邦典图案，可选择数字版或实体版设计图</p>
+            <p class="text-slate-500 text-sm mt-3 text-en">Generate your exclusive Bangdian pattern, available in digital or physical design version</p>
           </div>
         </div>
         
         <div class="sticky bottom-0 bg-white border-t border-slate-200 p-6">
           <div class="flex flex-col sm:flex-row gap-3">
             <button id="backToSelectionBtn" class="px-6 py-3 text-slate-700 font-medium hover:bg-slate-100 rounded-lg transition-colors flex-1">
-              <i class="fa fa-arrow-left mr-2"></i> 重新选择颜色
+              <i class="fa fa-arrow-left mr-2"></i> Reselect Colors
             </button>
           </div>
         </div>
@@ -546,84 +559,84 @@
         <div class="sticky top-0 bg-white z-10 p-6 border-b border-slate-200">
           <div class="flex justify-between items-center mb-3">
             <h3 class="text-xl font-bold text-indigo-800 flex items-center">
-              <i class="fa fa-credit-card mr-3"></i> 生成专属邦典
+              <i class="fa fa-credit-card mr-3"></i> Create Your Exclusive Bangdian
             </h3>
             <button id="closePaymentBtn" class="text-slate-500 hover:text-slate-800 text-xl transition-colors">
               <i class="fa fa-times"></i>
             </button>
           </div>
-          <p class="text-slate-600 text-sm">选择您想要的邦典类型并完成支付</p>
+          <p class="text-slate-600 text-sm text-en">Choose your preferred Bangdian type and complete payment</p>
         </div>
         
         <div class="p-6">
           <!-- 支付选项 -->
           <div class="mb-8">
-            <h4 class="text-lg font-semibold text-slate-800 mb-4">选择邦典类型</h4>
+            <h4 class="text-lg font-semibold text-slate-800 mb-4">Bangdian Type Options</h4>
             
             <div class="payment-card" id="digitalCard" data-type="digital" data-price="0.1">
               <div class="flex justify-between items-start mb-3">
                 <div>
-                  <h5 class="font-bold text-lg text-slate-800">数字邦典高清图片</h5>
-                  <p class="text-slate-600 text-sm mt-1">生成专属高清数字邦典图，可用于分享、打印</p>
+                  <h5 class="font-bold text-lg text-slate-800">Digital High-Definition Bangdian Image</h5>
+                  <p class="text-slate-600 text-sm mt-1 text-en">Generate an exclusive high-definition digital Bangdian image for sharing and printing</p>
                 </div>
                 <div class="price-tag">¥0.1</div>
               </div>
               <ul class="space-y-2 text-slate-700 text-sm">
-                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 高清分辨率 (3000×3000)</li>
-                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> PNG格式，背景透明</li>
-                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 无水印永久使用</li>
-                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 支持社交媒体分享</li>
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> High resolution (3000×3000)</li>
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> PNG format with transparent background</li>
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> Permanent use without watermark</li>
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> Supports social media sharing</li>
               </ul>
             </div>
             
             <div class="payment-card" id="physicalCard" data-type="physical" data-price="4.99">
               <div class="flex justify-between items-start mb-3">
                 <div>
-                  <h5 class="font-bold text-lg text-slate-800">实体邦典设计图 + 工坊制作</h5>
-                  <p class="text-slate-600 text-sm mt-1">生成实体设计图并委托工坊制作实物邦典</p>
+                  <h5 class="font-bold text-lg text-slate-800">Physical Bangdian Design + Workshop Production</h5>
+                  <p class="text-slate-600 text-sm mt-1 text-en">Generate a physical design and entrust the workshop to make a real Bangdian</p>
                 </div>
                 <div class="price-tag">¥4.99</div>
               </div>
               <ul class="space-y-2 text-slate-700 text-sm">
-                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 专业级实体设计图纸</li>
-                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 可委托藏族工坊制作</li>
-                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 传统手工技艺制作</li>
-                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 工坊按设计图制作，周期15-20天</li>
-                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> 联系商家可邮寄到家</li>
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> Professional physical design drawings</li>
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> Can be entrusted to Tibetan workshops</li>
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> Made with traditional handicraft skills</li>
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> Produced according to the design by the workshop, taking 15–20 days</li>
+                <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> Contact the merchant for home delivery</li>
               </ul>
             </div>
           </div>
           
           <!-- 工坊定制步骤说明 -->
           <div id="workshopCustomization" style="display: none;">
-            <h4 class="text-lg font-semibold text-slate-800 mb-4">实体邦典定制流程</h4>
+            <h4 class="text-lg font-semibold text-slate-800 mb-4">Physical Bangdian Customization Process</h4>
             <div class="workshop-steps">
               <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                  <h5>前往合作工坊</h5>
-                  <p>凭设计图前往《西藏非遗深度体验地图》中的合作工坊</p>
+                  <h5>Go to the Cooperative Workshop</h5>
+                  <p class="text-en">Take the design to the cooperative workshop listed in the In-depth Experience Map of Tibetan Intangible Cultural Heritage</p>
                 </div>
               </div>
               <div class="step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                  <h5>选择邦典材质</h5>
-                  <p>根据个人偏好选择材质（基础棉质或高端羊毛）</p>
+                  <h5>Choose Bangdian Material</h5>
+                  <p class="text-en">Select material according to personal preference (basic cotton or high-end wool)</p>
                 </div>
               </div>
               <div class="step">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                  <h5>支付定制费用</h5>
-                  <p>基础棉质：100-400元，高端羊毛：401-800元</p>
+                  <h5>Pay Customization Fee</h5>
+                  <p class="text-en">Basic cotton: ¥100–400, High-end wool: ¥401–800</p>
                 </div>
               </div>
               <div class="step">
                 <div class="step-number">4</div>
                 <div class="step-content">
-                  <h5>等待制作完成</h5>
-                  <p>工坊按设计图制作，周期15-20天，联系商家可邮寄到家</p>
+                  <h5>Wait for Completion</h5>
+                  <p class="text-en">The workshop will produce according to the design, taking 15–20 days; home delivery is available upon request</p>
                 </div>
               </div>
             </div>
@@ -631,32 +644,32 @@
           
           <!-- 支付二维码 -->
           <div class="text-center mb-8" id="qrCodeSection">
-            <h4 class="text-lg font-semibold text-slate-800 mb-4">扫码支付</h4>
-            <p class="text-slate-600 mb-2">请使用微信或支付宝扫描下方二维码完成支付</p>
-            <p class="text-slate-800 font-bold mb-4" id="paymentAmount">支付金额：¥0.00</p>
+            <h4 class="text-lg font-semibold text-slate-800 mb-4">Scan to Pay</h4>
+            <p class="text-slate-600 mb-2 text-en">Please scan the QR code below using WeChat or Alipay to complete payment</p>
+            <p class="text-slate-800 font-bold mb-4" id="paymentAmount">Payment Amount: ¥0.00</p>
             
             <div class="qr-container">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=weixin://wxpay/bizpayurl?pr=yourpaymentcode" alt="支付二维码" id="qrCodeImage">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=weixin://wxpay/bizpayurl?pr=yourpaymentcode" alt="Payment QR Code" id="qrCodeImage">
             </div>
             
-            <p class="text-slate-500 text-sm mt-4">支付成功后，将自动生成您的专属邦典</p>
+            <p class="text-slate-500 text-sm mt-4 text-en">After successful payment, your exclusive Bangdian will be generated automatically</p>
           </div>
           
           <!-- 支付中状态 -->
           <div class="text-center mb-8" id="paymentProcessing" style="display: none;">
             <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-            <h4 class="text-lg font-semibold text-slate-800 mb-2">支付处理中...</h4>
-            <p class="text-slate-600">正在验证您的支付信息，请稍候</p>
+            <h4 class="text-lg font-semibold text-slate-800 mb-2">Payment in progress...</h4>
+            <p class="text-slate-600 text-en">Your payment information is being verified. Please wait</p>
           </div>
         </div>
         
         <div class="sticky bottom-0 bg-white border-t border-slate-200 p-6">
           <div class="flex flex-col sm:flex-row gap-3">
             <button id="backToDeclarationBtn" class="px-6 py-3 text-slate-700 font-medium hover:bg-slate-100 rounded-lg transition-colors flex-1">
-              <i class="fa fa-arrow-left mr-2"></i> 返回宣言
+              <i class="fa fa-arrow-left mr-2"></i> Return to Declaration
             </button>
             <button id="confirmPaymentBtn" class="px-6 py-3 bg-indigo-800 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors flex-1 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-              <i class="fa fa-credit-card mr-2"></i> 确认支付
+              <i class="fa fa-credit-card mr-2"></i> Confirm Payment
             </button>
           </div>
         </div>
@@ -667,13 +680,13 @@
         <div class="sticky top-0 bg-white z-10 p-6 border-b border-slate-200">
           <div class="flex justify-between items-center mb-3">
             <h3 class="text-xl font-bold text-emerald-700 flex items-center">
-              <i class="fa fa-check-circle mr-3"></i> 支付成功！
+              <i class="fa fa-check-circle mr-3"></i> Payment Successful!
             </h3>
             <button id="closeSuccessBtn" class="text-slate-500 hover:text-slate-800 text-xl transition-colors">
               <i class="fa fa-times"></i>
             </button>
           </div>
-          <p class="text-slate-600 text-sm">您的专属邦典已生成</p>
+          <p class="text-slate-600 text-sm text-en">Your exclusive Bangdian has been generated</p>
         </div>
         
         <div class="p-6">
@@ -683,12 +696,12 @@
           </div>
           
           <div class="text-center mb-8">
-            <h4 class="text-xl font-bold text-slate-800 mb-2">支付成功！</h4>
-            <p class="text-slate-600 mb-1">订单号：<span id="orderNumber" class="font-mono">BD2023<span id="randomOrder">123456</span></span></p>
-            <p class="text-slate-600 mb-4">支付时间：<span id="paymentTime">2023-11-15 14:30:25</span></p>
+            <h4 class="text-xl font-bold text-slate-800 mb-2">Payment Successful!</h4>
+            <p class="text-slate-600 mb-1">Order Number: <span id="orderNumber" class="font-mono">BD2023<span id="randomOrder">123456</span></span></p>
+            <p class="text-slate-600 mb-4">Payment Time: <span id="paymentTime">2023-11-15 14:30:25</span></p>
             
             <div class="bg-emerald-50 p-4 rounded-lg mb-6">
-              <p class="text-emerald-700 font-medium" id="successMessage">您的数字邦典高清图片已生成！</p>
+              <p class="text-emerald-700 font-medium" id="successMessage">Your high-definition digital Bangdian image has been generated!</p>
             </div>
           </div>
           
@@ -700,35 +713,35 @@
           <!-- 查看高清图片按钮 -->
           <div class="mt-8 text-center">
             <button id="viewImageBtn" class="px-8 py-3 bg-indigo-800 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors duration-300 inline-flex items-center">
-              <i class="fa fa-eye mr-2"></i> 查看高清图片
+              <i class="fa fa-eye mr-2"></i> View HD Image
             </button>
           </div>
           
           <!-- 实体邦典定制信息 -->
           <div class="mt-8 p-4 bg-amber-50 rounded-lg border border-amber-200" id="physicalOrderInfo" style="display: none;">
             <h5 class="font-bold text-amber-800 mb-3 flex items-center">
-              <i class="fa fa-info-circle mr-2"></i> 实体邦典定制流程
+              <i class="fa fa-info-circle mr-2"></i> Physical Bangdian Customization Process
             </h5>
             
             <div class="mb-4">
-              <p class="text-amber-700 text-sm mb-3">您的实体邦典设计图已生成！凭借此设计图可前往合作工坊定制实体邦典。</p>
+              <p class="text-amber-700 text-sm mb-3 text-en">Your physical Bangdian design has been generated! You may use this design to customize a physical Bangdian at our cooperative workshops.</p>
               
               <div class="bg-white p-3 rounded-lg mb-4">
-                <h6 class="font-semibold text-slate-800 mb-2">下一步操作：</h6>
-                <ol class="text-slate-700 text-sm space-y-2 ml-4 list-decimal">
-                  <li>前往《西藏非遗深度体验地图》中的合作工坊</li>
-                  <li>出示设计图，选择材质（基础棉质或高端羊毛）</li>
-                  <li>支付定制费用：基础棉质100-400元，高端羊毛401-800元</li>
-                  <li>工坊按设计图制作，周期15-20天，联系商家可邮寄到家</li>
+                <h6 class="font-semibold text-slate-800 mb-2">Next Steps:</h6>
+                <ol class="text-slate-700 text-sm space-y-2 ml-4 list-decimal text-en">
+                  <li>Go to the cooperative workshop listed in the In-depth Experience Map of Tibetan Intangible Cultural Heritage</li>
+                  <li>Show the design and choose the material (basic cotton or premium wool)</li>
+                  <li>Pay the customization fee: ¥100–400 for basic cotton, ¥401–800 for premium wool</li>
+                  <li>The workshop will produce according to the design in 15–20 days. Contact the merchant for home delivery</li>
                 </ol>
               </div>
               
               <div class="mt-4 bg-blue-50 p-3 rounded-lg border border-blue-200">
                 <p class="text-blue-800 text-sm font-medium flex items-center">
                   <i class="fa fa-phone mr-2"></i>
-                  工坊联系方式：23804798
+                  Workshop Contact: 23804798
                 </p>
-                <p class="text-blue-600 text-xs mt-1">想要邮寄到家，可以联系工坊安排邮寄服务</p>
+                <p class="text-blue-600 text-xs mt-1 text-en">For home delivery, please contact the workshop to arrange the service</p>
               </div>
             </div>
           </div>
@@ -736,7 +749,7 @@
         
         <div class="sticky bottom-0 bg-white border-t border-slate-200 p-6">
           <button id="backToHomeBtn" class="px-6 py-3 w-full text-slate-700 font-medium hover:bg-slate-100 rounded-lg transition-colors flex items-center justify-center">
-            <i class="fa fa-home mr-2"></i> 返回体验主页
+            <i class="fa fa-home mr-2"></i> Back to Experience Homepage
           </button>
         </div>
       </div>
@@ -749,13 +762,13 @@
       <div class="sticky top-0 bg-white z-10 p-6 border-b border-slate-200">
         <div class="flex justify-between items-center mb-3">
           <h3 class="text-xl font-bold text-indigo-800 flex items-center">
-            <i class="fa fa-image mr-3"></i> 高清邦典图片
+            <i class="fa fa-image mr-3"></i> High-Definition Bangdian Image
           </h3>
           <button id="closeImageViewer" class="text-slate-500 hover:text-slate-800 text-xl transition-colors">
             <i class="fa fa-times"></i>
           </button>
         </div>
-        <p class="text-slate-600 text-sm">您的专属邦典高清图片</p>
+        <p class="text-slate-600 text-sm text-en">Your Exclusive High-Definition Bangdian Image</p>
       </div>
       
       <div class="p-6">
@@ -765,7 +778,7 @@
         
         <div class="text-center mt-6">
           <button id="closeViewerBtn" class="px-6 py-3 text-slate-700 font-medium hover:bg-slate-100 rounded-lg transition-colors">
-            关闭
+            Close
           </button>
         </div>
       </div>
@@ -773,670 +786,517 @@
   </div>
 
   <script>
-    // 颜色数据 - 来自颜色宣言.docx
+    // 颜色数据 - 来自体验(2).docx
     const colorData = [
       {
         id: 1,
-        name: "白色",
-        simpleName: "白",
+        name: "White",
+        simpleName: "White",
         colorCode: "#FFFFFF",
-        symbol: "雪山、云朵",
-        meaning: "象征纯洁无瑕、质朴本真",
-        declaration: "以雪域之白为底色，坚守初心本真，于纷繁之中不染尘俗，让设计与生活回归纯粹的本貌。"
+        symbol: "Snow-capped mountains, clouds",
+        meaning: "Symbolizing purity, innocence and authenticity",
+        declaration: "Taking the pure white of the snow land as the base, staying true to the original heart, remaining unsullied amid complexity, and returning design and life to their purest form."
       },
       {
         id: 2,
-        name: "黄色",
-        simpleName: "黄",
+        name: "Yellow",
+        simpleName: "Yellow",
         colorCode: "#F59E0B",
-        symbol: "草原、金沙",
-        meaning: "象征富足繁荣、生机盎然",
-        declaration: "撷取高原金黄的生机，织就繁盛的愿景，让每一寸色彩都承载对生活的热忱，传递富足安康的祈愿。"
+        symbol: "Grasslands, golden sands",
+        meaning: "Symbolizing abundance, prosperity and vitality",
+        declaration: "Drawing vitality from the golden plateau, weaving prosperous visions, letting every inch of color carry passion for life and convey wishes for abundance and well-being."
       },
       {
         id: 3,
-        name: "红色",
-        simpleName: "红",
+        name: "Red",
+        simpleName: "Red",
         colorCode: "#DC2626",
-        symbol: "火焰、暖阳",
-        meaning: "象征热情奔放、赤诚热烈",
-        declaration: "以炽烈的红色为魂，怀揣赤诚之心，将民族文化的温度注入经纬，让设计迸发直击人心的力量。"
+        symbol: "Flames, warm sunshine",
+        meaning: "Symbolizing enthusiasm, boldness and sincerity",
+        declaration: "Taking fiery red as the soul, with a sincere heart, infusing the warmth of ethnic culture into every thread, making design touch the heart directly."
       },
       {
         id: 4,
-        name: "蓝色",
-        simpleName: "蓝",
+        name: "Blue",
+        simpleName: "Blue",
         colorCode: "#2563EB",
-        symbol: "天空、湖泊",
-        meaning: "象征深邃辽阔、宁静致远",
-        declaration: "借天空湖泊的湛蓝，容纳天地的辽阔，于设计中沉淀思考，让作品承载深邃的文化底蕴与从容的气度。"
+        symbol: "Sky, lakes",
+        meaning: "Symbolizing depth, vastness, tranquility and vision",
+        declaration: "Borrowing the blue of sky and lakes, embracing the vastness of heaven and earth, settling thoughts in design, and endowing works with profound cultural heritage and calm grace."
       },
       {
         id: 5,
-        name: "绿色",
-        simpleName: "绿",
+        name: "Green",
+        simpleName: "Green",
         colorCode: "#16A34A",
-        symbol: "森林、青稞田",
-        meaning: "象征生机活力、生生不息",
-        declaration: "萃取草木的青绿生机，传承民族文化的生长之力，让传统在现代设计中焕发蓬勃的新生。"
+        symbol: "Forests, highland barley fields",
+        meaning: "Symbolizing vitality, energy and endless growth",
+        declaration: "Extracting the green vitality of plants, inheriting the growing power of ethnic culture, and reviving traditions in modern design."
       },
       {
         id: 6,
-        name: "黑色",
-        simpleName: "黑",
+        name: "Black",
+        simpleName: "Black",
         colorCode: "#1F2937",
-        symbol: "大地、岩石",
-        meaning: "象征沉稳坚韧、底蕴厚重",
-        declaration: "以大地岩石的玄黑为基，承载千年文化的厚重，于沉稳中坚守传承，让每一道纹路都镌刻历史的印记。"
+        symbol: "Earth, rocks",
+        meaning: "Symbolizing steadiness, resilience and profound heritage",
+        declaration: "Taking the deep black of earth and rocks as the foundation, carrying the weight of thousands of years of culture, upholding inheritance in calmness, and engraving historical marks in every pattern."
       }
     ];
 
-    // 颜色搭配宣言数据 - 来自20种颜色宣言.docx
-    // 为每种搭配添加对应的图片URL（20种不同的邦典图片）
+    // 颜色搭配宣言数据 - 来自体验(2).docx
     const colorCombinations = [
       {
-        colors: ["白", "黄", "红"],
-        fusion: "纯洁本真为底，富足生机为韵，热烈赤诚为魂，是高原天地间最鲜活的生命图景。",
-        declaration: "以雪域白坚守初心，以高原黄承载繁盛，以炽烈红传递赤诚，让设计织就民族文化里最鲜活的生活祈愿。",
-        imageUrl:"1.jig"
+        colors: ["White", "Yellow", "Red"],
+        fusion: "Purity and authenticity as the base, abundance and vitality as the rhythm, passion and sincerity as the soul — the most vivid scene of life on the plateau.",
+        declaration: "Uphold the original heart with snow-land white, carry prosperity with plateau yellow, convey sincerity with fiery red, and let design weave the most vivid life wishes of ethnic culture.",
+        imageUrl: "1.jpg"
       },
       {
-        colors: ["白", "黄", "蓝"],
-        fusion: "雪山的纯净、草原的丰饶、天空的辽阔，勾勒出高原宁静而富足的底色。",
-        declaration: "撷雪域之白守本真，取草原之黄纳繁盛，借苍穹之蓝容辽阔，让作品在纯粹中沉淀深邃，在从容中彰显生机。",
+        colors: ["White", "Yellow", "Blue"],
+        fusion: "The purity of snow mountains, the richness of grasslands, the vastness of the sky, outlining the tranquil and prosperous tone of the plateau.",
+        declaration: "Keep authenticity with snow-land white, embrace prosperity with grassland yellow, hold vastness with sky blue, letting works settle depth in purity and show vitality in calmness.",
         imageUrl: "2.jpg"
       },
       {
-        colors: ["白", "黄", "绿"],
-        fusion: "云朵的洁白、金沙的璀璨、草木的青翠，是自然馈赠的生长与希望之景。",
-        declaration: "以白为底存本真，以黄为脉载富足，以绿为姿焕生机，让传统纹样在现代设计里生长出蓬勃的新生力量。",
+        colors: ["White", "Yellow", "Green"],
+        fusion: "The white of clouds, the brightness of golden sands, the green of plants — a scene of growth and hope gifted by nature.",
+        declaration: "Preserve authenticity with white as the base, carry abundance with yellow as the vein, revive vitality with green as the form, letting traditional patterns grow vibrant new power in modern design.",
         imageUrl: "3.jpg"
       },
       {
-        colors: ["白", "黄", "黑"],
-        fusion: "雪山的圣洁、草原的丰盈、大地的厚重，是高原文化传承的根基与底色。",
-        declaration: "携雪域白坚守初心，拥高原黄拥抱繁盛，立大地黑承载厚重，让每一寸织纹都镌刻民族千年的传承与风骨。",
+        colors: ["White", "Yellow", "Black"],
+        fusion: "The holiness of snow mountains, the abundance of grasslands, and the profundity of the earth form the foundation and essence of plateau cultural inheritance.",
+        declaration: "Uphold the original heart with snow-land white, embrace prosperity with plateau yellow, carry profound heritage with earth black, letting every woven thread engrave the nation’s thousand-year inheritance and character.",
         imageUrl: "4.jpg"
       },
       {
-        colors: ["白", "红", "蓝"],
-        fusion: "云朵的纯净、火焰的炽热、天空的深邃，碰撞出民族文化中热烈而从容的精神内核。",
-        declaration: "以白守本真不染尘，以红燃赤诚传温度，以蓝纳辽阔蕴深邃，让设计在炽烈与宁静间，传递直击人心的文化力量。",
+        colors: ["White", "Red", "Blue"],
+        fusion: "The purity of clouds, the fervor of flames, and the depth of the sky ignite the passionate and calm spiritual core of ethnic culture.",
+        declaration: "Keep authenticity pure with white, convey warmth with sincere red, embrace vastness and depth with blue, letting design transmit touching cultural power between passion and tranquility.",
         imageUrl: "5.jpg"
       },
       {
-        colors: ["白", "红", "绿"],
-        fusion: "雪山的纯洁、火焰的热烈、青稞田的生机，是高原生命活力的极致绽放。",
-        declaration: "取白之纯粹守初心，得红之炽热传温度，撷绿之鲜活焕新生，让民族文化的火种在蓬勃生机里永续传承。",
+        colors: ["White", "Red", "Green"],
+        fusion: "The purity of snow mountains, the passion of flames, and the vitality of highland barley fields represent the ultimate bloom of plateau life.",
+        declaration: "Hold innocence with pure white, pass warmth with fiery red, revive vitality with fresh green, letting the fire of ethnic culture live on in vigorous life.",
         imageUrl: "6.jpg"
       },
       {
-        colors: ["白", "红", "黑"],
-        fusion: "云朵的洁白、火焰的赤诚、大地的沉稳，是民族精神中坚守与热忱的交融。",
-        declaration: "以白为底守本真之姿，以红为魂燃赤诚之心，以黑为基承厚重之韵，让设计在纯粹与热烈间，锚定文化传承的根脉。",
+        colors: ["White", "Red", "Black"],
+        fusion: "The whiteness of clouds, the sincerity of flames, and the steadiness of the earth embody the integration of perseverance and passion in national spirit.",
+        declaration: "Take white as the base for authenticity, red as the soul for sincerity, black as the foundation for profundity, letting design anchor the root of cultural inheritance between purity and passion.",
         imageUrl: "7.jpg"
       },
       {
-        colors: ["白", "蓝", "绿"],
-        fusion: "天空的湛蓝、云朵的洁白、草木的青绿，是高原自然里宁静生长的诗意画卷。",
-        declaration: "借天空之蓝纳辽阔，拥雪域之白守本真，撷草木之绿焕生机，让作品在从容沉淀中，生长出传统与现代共生的活力。",
+        colors: ["White", "Blue", "Green"],
+        fusion: "The blue of the sky, the white of clouds, and the green of plants compose a poetic picture of tranquil growth on the plateau.",
+        declaration: "Embrace vastness with sky blue, keep authenticity with snow white, revive vitality with plant green, letting works grow the vitality of tradition and modernity in calm accumulation.",
         imageUrl: "8.jpg"
       },
       {
-        colors: ["白", "蓝", "黑"],
-        fusion: "云朵的纯净、湖泊的深邃、大地的厚重，是高原文化中内敛而深邃的精神底色。",
-        declaration: "以白存本真之态，以蓝蕴深邃之思，以黑承厚重之魂，让每一道纹路都承载民族文化的从容气度与千年底蕴。",
+        colors: ["White", "Blue", "Black"],
+        fusion: "The purity of clouds, the depth of lakes, and the profundity of the earth form the restrained and profound spiritual tone of plateau culture.",
+        declaration: "Preserve authenticity with white, contain profound thoughts with blue, inherit the profound soul with black, letting every pattern carry the calm grace and thousand-year heritage of national culture.",
         imageUrl: "9.jpg"
       },
       {
-        colors: ["白", "绿", "黑"],
-        fusion: "雪山的圣洁、青稞田的生机、大地的沉稳，是高原生命传承中生长与坚守的力量。",
-        declaration: "携白之纯粹守初心，拥绿之鲜活焕新生，立黑之厚重承传承，让传统在现代设计中，扎根大地，蓬勃生长。",
+        colors: ["White", "Green", "Black"],
+        fusion: "The holiness of snow mountains, the vitality of highland barley fields, and the steadiness of the earth represent the power of growth and perseverance in plateau life inheritance.",
+        declaration: "Keep the original heart with pure white, revive new life with fresh green, inherit tradition with profound black, letting tradition take root and thrive in modern design.",
         imageUrl: "10.jpg"
       },
       {
-        colors: ["黄", "红", "蓝"],
-        fusion: "草原的丰饶、火焰的热烈、天空的辽阔，是高原生活里热忱与富足的交响。",
-        declaration: "取草原之黄纳繁盛，燃火焰之红传赤诚，借苍穹之蓝容天地，让设计织就对生活的热忱祈愿与辽阔胸怀。",
+        colors: ["Yellow", "Red", "Blue"],
+        fusion: "The abundance of grasslands, the passion of flames, and the vastness of the sky compose a symphony of enthusiasm and prosperity in plateau life.",
+        declaration: "Gather prosperity with grassland yellow, convey sincerity with flame red, embrace heaven and earth with sky blue, letting design weave warm wishes and broad minds for life.",
         imageUrl: "11.jpg"
       },
       {
-        colors: ["黄", "红", "绿"],
-        fusion: "金沙的璀璨、火焰的炽热、草木的青翠，是高原大地生机盎然、富足热烈的缩影。",
-        declaration: "以黄载富足安康之愿，以红燃赤诚热烈之心，以绿焕生生不息之力，让民族纹样在色彩碰撞中迸发蓬勃的生命力。",
+        colors: ["Yellow", "Red", "Green"],
+        fusion: "The brightness of golden sands, the fervor of flames, and the green of plants epitomize the vibrant, prosperous and passionate plateau land.",
+        declaration: "Carry wishes of abundance with yellow, ignite sincere hearts with red, revive endless vitality with green, letting national patterns burst with vigorous life in color collision.",
         imageUrl: "12.jpg"
       },
       {
-        colors: ["黄", "红", "黑"],
-        fusion: "草原的丰盈、火焰的赤诚、大地的厚重，是民族文化传承中热忱与坚守的根基。",
-        declaration: "拥高原黄揽繁盛之景，燃炽烈红怀赤诚之心，立大地黑承千年之韵，让设计在热烈与沉稳间，镌刻文化传承的印记。",
+        colors: ["Yellow", "Red", "Black"],
+        fusion: "The abundance of grasslands, the sincerity of flames, and the profundity of the earth form the foundation of passion and perseverance in ethnic cultural inheritance.",
+        declaration: "Embrace prosperity with plateau yellow, hold sincere hearts with fiery red, inherit thousand-year charm with earth black, letting design engrave the mark of cultural inheritance between passion and steadiness.",
         imageUrl: "13.jpg"
       },
       {
-        colors: ["黄", "蓝", "绿"],
-        fusion: "草原的金黄、天空的湛蓝、青稞田的青绿，是高原自然里富足、宁静与生机的共生。",
-        declaration: "撷草原之黄纳繁盛，借天空之蓝容辽阔，取草木之绿焕新生，让作品在从容的底色里，生长出富足与活力的双重美好。",
+        colors: ["Yellow", "Blue", "Green"],
+        fusion: "The golden of grasslands, the blue of the sky, and the green of highland barley fields represent the coexistence of abundance, tranquility and vitality in the plateau nature.",
+        declaration: "Gather prosperity with grassland yellow, embrace vastness with sky blue, revive new life with plant green, letting the work grow the dual beauty of abundance and vitality on a calm foundation.",
         imageUrl: "14.jpg"
       },
       {
-        colors: ["黄", "蓝", "黑"],
-        fusion: "金沙的璀璨、湖泊的深邃、大地的厚重，是高原文化里富足底蕴与沉稳风骨的融合。",
-        declaration: "以黄载繁盛之愿，以蓝蕴深邃之思，以黑承厚重之魂，让每一寸色彩都承载民族千年的富足祈愿与传承力量。",
+        colors: ["Yellow", "Blue", "Black"],
+        fusion: "The brightness of golden sands, the depth of lakes, and the profundity of the earth embody the integration of abundant heritage and steady character in plateau culture.",
+        declaration: "Carry the wish of prosperity with yellow, hold profound thoughts with blue, inherit the profound soul with black, letting every inch of color carry the nation’s thousand-year wishes of abundance and power of inheritance.",
         imageUrl: "15.jpg"
       },
       {
-        colors: ["黄", "绿", "黑"],
-        fusion: "草原的丰盈、草木的生机、大地的沉稳，是高原生命扎根大地、蓬勃生长的力量写照。",
-        declaration: "拥黄之繁盛纳生活热忱，揽绿之鲜活焕传承生机，立黑之厚重承千年根基，让传统设计在大地的滋养中焕发新生。",
+        colors: ["Yellow", "Green", "Black"],
+        fusion: "The abundance of grasslands, the vitality of plants, and the steadiness of the earth reflect the power of plateau life taking root and thriving on the land.",
+        declaration: "Embrace prosperity and passion for life with yellow, gather freshness and vitality of inheritance with green, uphold the thousand-year foundation with black, letting traditional design rejuvenate under the nourishment of the earth.",
         imageUrl: "16.jpg"
       },
       {
-        colors: ["红", "蓝", "绿"],
-        fusion: "火焰的热烈、天空的深邃、草木的生机，是民族文化中温度、底蕴与活力的交织。",
-        declaration: "以红燃文化温度，以蓝纳天地辽阔，以绿焕传承生机，让设计在炽烈与从容间，迸发传统与现代交融的蓬勃力量。",
+        colors: ["Red", "Blue", "Green"],
+        fusion: "The passion of flames, the depth of the sky, and the vitality of plants interweave warmth, heritage and vitality in ethnic culture.",
+        declaration: "Ignite cultural warmth with red, embrace the vastness of heaven and earth with blue, revive the vitality of inheritance with green, letting design burst with the vigorous power of tradition and modernity between passion and calmness.",
         imageUrl: "17.jpg"
       },
       {
-        colors: ["红", "蓝", "黑"],
-        fusion: "火焰的赤诚、湖泊的深邃、大地的厚重，是民族精神中热烈而沉稳的文化内核。",
-        declaration: "燃红之赤诚传民族温度，纳蓝之深邃承文化底蕴，立黑之厚重守传承根脉，让作品在热烈与内敛间，彰显千年文化的风骨。",
+        colors: ["Red", "Blue", "Black"],
+        fusion: "The sincerity of flames, the depth of lakes, and the profundity of the earth form the passionate and steady cultural core of national spirit.",
+        declaration: "Convey national warmth with sincere red, inherit cultural profundity with deep blue, uphold the root of inheritance with steady black, letting the work show the character of thousand-year culture between passion and restraint.",
         imageUrl: "18.jpg"
       },
       {
-        colors: ["红", "绿", "黑"],
-        fusion: "火焰的炽热、草木的生机、大地的沉稳，是高原生命在坚守中蓬勃生长的力量象征。",
-        declaration: "以红燃赤诚之心，以绿焕新生之力，以黑承厚重之魂，让民族文化的火种扎根大地，在蓬勃生机里永续传递。",
+        colors: ["Red", "Green", "Black"],
+        fusion: "The fervor of flames, the vitality of plants, and the steadiness of the earth symbolize the power of plateau life thriving through perseverance.",
+        declaration: "Ignite sincere hearts with red, revive new power with green, inherit the profound soul with black, letting the fire of national culture take root in the earth and pass on forever in vigorous vitality.",
         imageUrl: "19.jpg"
       },
       {
-        colors: ["蓝", "绿", "黑"],
-        fusion: "天空的辽阔、草木的生机、大地的厚重，是高原自然与文化共生的宁静底色。",
-        declaration: "借蓝之辽阔纳天地胸襟，撷绿之鲜活焕传承生机，立黑之厚重承千年底蕴，让设计在从容沉淀中，彰显文化传承的从容气度。",
+        colors: ["Blue", "Green", "Black"],
+        fusion: "The vastness of the sky, the vitality of plants, and the profundity of the earth form the tranquil foundation for the coexistence of plateau nature and culture.",
+        declaration: "Embrace the broad mind of heaven and earth with blue, gather the vitality of growth with green, inherit the profound heritage with black, letting the work carry the calm and steady cultural temperament of the plateau.",
         imageUrl: "20.jpg"
       }
     ];
 
-    // 全局状态变量
+    // 全局变量
     let selectedColors = [];
-    let selectedPaymentType = null;
-    let selectedPaymentPrice = 0;
-    let currentOrderNumber = '';
-    let currentCombination = null;
+    let selectedBangdianType = '';
+    let selectedImageUrl = '';
 
-    // DOM元素
-    const designBtn = document.getElementById('designBtn');
-    const colorModal = document.getElementById('colorModal');
-    const closeModal = document.getElementById('closeModal');
-    const cancelBtn = document.getElementById('cancelBtn');
-    const confirmBtn = document.getElementById('confirmBtn');
-    const colorCardsContainer = document.getElementById('colorCardsContainer');
-    const selectedCount = document.getElementById('selectedCount');
-    
-    // 宣言视图元素
-    const colorSelectionView = document.getElementById('colorSelectionView');
-    const declarationResultView = document.getElementById('declarationResultView');
-    const selectedColorsPreview = document.getElementById('selectedColorsPreview');
-    const fusionText = document.getElementById('fusionText');
-    const declarationText = document.getElementById('declarationText');
-    const backToSelectionBtn = document.getElementById('backToSelectionBtn');
-    const generateBangdianBtn = document.getElementById('generateBangdianBtn');
-    
-    // 支付视图元素
-    const paymentView = document.getElementById('paymentView');
-    const closePaymentBtn = document.getElementById('closePaymentBtn');
-    const digitalCard = document.getElementById('digitalCard');
-    const physicalCard = document.getElementById('physicalCard');
-    const qrCodeSection = document.getElementById('qrCodeSection');
-    const paymentProcessing = document.getElementById('paymentProcessing');
-    const paymentAmount = document.getElementById('paymentAmount');
-    const qrCodeImage = document.getElementById('qrCodeImage');
-    const backToDeclarationBtn = document.getElementById('backToDeclarationBtn');
-    const confirmPaymentBtn = document.getElementById('confirmPaymentBtn');
-    
-    // 支付成功视图元素
-    const paymentSuccessView = document.getElementById('paymentSuccessView');
-    const closeSuccessBtn = document.getElementById('closeSuccessBtn');
-    const orderNumber = document.getElementById('orderNumber');
-    const randomOrder = document.getElementById('randomOrder');
-    const paymentTime = document.getElementById('paymentTime');
-    const successMessage = document.getElementById('successMessage');
-    const additionalInfo = document.getElementById('additionalInfo');
-    const bangdianImageContainer = document.getElementById('bangdianImageContainer');
-    const physicalOrderInfo = document.getElementById('physicalOrderInfo');
-    const viewImageBtn = document.getElementById('viewImageBtn');
-    const backToHomeBtn = document.getElementById('backToHomeBtn');
-    
-    // 图片查看器元素
-    const imageViewerModal = document.getElementById('imageViewerModal');
-    const closeImageViewer = document.getElementById('closeImageViewer');
-    const closeViewerBtn = document.getElementById('closeViewerBtn');
-    const fullSizeImageContainer = document.getElementById('fullSizeImageContainer');
-
-    // 打开模态框
-    designBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      colorModal.style.display = 'flex';
-      showColorSelectionView();
-      document.body.style.overflow = 'hidden';
+    // DOM 加载完成后初始化
+    document.addEventListener('DOMContentLoaded', function() {
+      // 初始化颜色卡片
+      initColorCards();
+      
+      // 绑定按钮事件
+      bindEvents();
     });
 
-    // 关闭模态框
-    function closeColorModal() {
-      colorModal.style.display = 'none';
-      document.body.style.overflow = 'auto';
+    // 初始化颜色卡片
+    function initColorCards() {
+      const container = document.getElementById('colorCardsContainer');
+      container.innerHTML = '';
+      
+      colorData.forEach(color => {
+        const card = document.createElement('div');
+        card.className = 'color-card';
+        card.dataset.id = color.id;
+        card.dataset.name = color.name;
+        
+        // 白色卡片需要特殊样式
+        const previewClass = color.name === 'White' ? 'color-preview white' : 'color-preview';
+        
+        card.innerHTML = `
+          <div class="${previewClass}" style="background-color: ${color.colorCode}">
+            <span class="font-bold ${color.name === 'Black' || color.name === 'Blue' ? 'text-white' : 'text-slate-800'}">${color.name}</span>
+            <div class="checkmark"><i class="fa fa-check"></i></div>
+          </div>
+          <h4 class="font-bold text-lg mb-2">${color.name}</h4>
+          <p class="text-slate-600 text-sm mb-2"><strong>Symbol:</strong> ${color.symbol}</p>
+          <p class="text-slate-600 text-sm"><strong>Meaning:</strong> ${color.meaning}</p>
+        `;
+        
+        // 绑定点击事件
+        card.addEventListener('click', function() {
+          toggleColorSelection(this);
+        });
+        
+        container.appendChild(card);
+      });
     }
 
-    closeModal.addEventListener('click', closeColorModal);
-    cancelBtn.addEventListener('click', closeColorModal);
-    closePaymentBtn.addEventListener('click', closeColorModal);
-    closeSuccessBtn.addEventListener('click', closeColorModal);
-
-    // 显示颜色选择视图
-    function showColorSelectionView() {
-      colorSelectionView.style.display = 'block';
-      declarationResultView.style.display = 'none';
-      paymentView.style.display = 'none';
-      paymentSuccessView.style.display = 'none';
-      selectedColors = [];
-      currentCombination = null;
-      updateSelectionUI();
-    }
-
-    // 显示宣言结果视图
-    function showDeclarationView() {
-      colorSelectionView.style.display = 'none';
-      declarationResultView.style.display = 'block';
-      paymentView.style.display = 'none';
-      paymentSuccessView.style.display = 'none';
-      
-      // 显示选择的颜色
-      displaySelectedColors();
-      
-      // 查找匹配的颜色组合宣言
-      const selectedSimpleNames = selectedColors.map(id => {
-        const color = colorData.find(c => c.id === id);
-        return color.simpleName;
-      }).sort();
-      
-      // 查找匹配的组合
-      currentCombination = colorCombinations.find(combo => {
-        const comboColorsSorted = [...combo.colors].sort();
-        return JSON.stringify(comboColorsSorted) === JSON.stringify(selectedSimpleNames);
+    // 绑定所有事件
+    function bindEvents() {
+      // 设计按钮点击事件 - 打开模态框
+      document.getElementById('designBtn').addEventListener('click', function() {
+        document.getElementById('colorModal').style.display = 'flex';
+        // 重置选择状态
+        resetColorSelection();
       });
       
-      if (currentCombination) {
-        fusionText.textContent = currentCombination.fusion;
-        declarationText.textContent = currentCombination.declaration;
+      // 关闭模态框
+      document.getElementById('closeModal').addEventListener('click', function() {
+        document.getElementById('colorModal').style.display = 'none';
+      });
+      
+      // 取消按钮
+      document.getElementById('cancelBtn').addEventListener('click', function() {
+        document.getElementById('colorModal').style.display = 'none';
+      });
+      
+      // 返回选择颜色
+      document.getElementById('backToSelectionBtn').addEventListener('click', function() {
+        document.getElementById('declarationResultView').style.display = 'none';
+        document.getElementById('colorSelectionView').style.display = 'block';
+      });
+      
+      // 确认选择按钮
+      document.getElementById('confirmBtn').addEventListener('click', function() {
+        showDeclarationResult();
+      });
+      
+      // 生成邦典按钮
+      document.getElementById('generateBangdianBtn').addEventListener('click', function() {
+        document.getElementById('declarationResultView').style.display = 'none';
+        document.getElementById('paymentView').style.display = 'block';
+        // 重置支付选择
+        resetPaymentSelection();
+      });
+      
+      // 关闭支付窗口
+      document.getElementById('closePaymentBtn').addEventListener('click', function() {
+        document.getElementById('colorModal').style.display = 'none';
+      });
+      
+      // 返回宣言页面
+      document.getElementById('backToDeclarationBtn').addEventListener('click', function() {
+        document.getElementById('paymentView').style.display = 'none';
+        document.getElementById('declarationResultView').style.display = 'block';
+      });
+      
+      // 数字版卡片选择
+      document.getElementById('digitalCard').addEventListener('click', function() {
+        selectPaymentType(this);
+      });
+      
+      // 实体版卡片选择
+      document.getElementById('physicalCard').addEventListener('click', function() {
+        selectPaymentType(this);
+      });
+      
+      // 确认支付按钮
+      document.getElementById('confirmPaymentBtn').addEventListener('click', function() {
+        processPayment();
+      });
+      
+      // 关闭成功窗口
+      document.getElementById('closeSuccessBtn').addEventListener('click', function() {
+        document.getElementById('colorModal').style.display = 'none';
+      });
+      
+      // 返回主页
+      document.getElementById('backToHomeBtn').addEventListener('click', function() {
+        document.getElementById('colorModal').style.display = 'none';
+      });
+      
+      // 查看高清图片
+      document.getElementById('viewImageBtn').addEventListener('click', function() {
+        document.getElementById('imageViewerModal').style.display = 'flex';
+        // 显示高清图片
+        document.getElementById('fullSizeImageContainer').innerHTML = `
+          <img src="${selectedImageUrl}" alt="High-Definition Bangdian" class="full-size-image">
+        `;
+      });
+      
+      // 关闭图片查看器
+      document.getElementById('closeImageViewer').addEventListener('click', function() {
+        document.getElementById('imageViewerModal').style.display = 'none';
+      });
+      
+      document.getElementById('closeViewerBtn').addEventListener('click', function() {
+        document.getElementById('imageViewerModal').style.display = 'none';
+      });
+    }
+
+    // 切换颜色选择状态
+    function toggleColorSelection(card) {
+      const colorName = card.dataset.name;
+      const isSelected = card.classList.contains('selected');
+      
+      if (isSelected) {
+        // 取消选择
+        card.classList.remove('selected');
+        selectedColors = selectedColors.filter(color => color !== colorName);
       } else {
-        fusionText.textContent = "您的色彩组合展现了独特的文化意蕴，是高原天地间生动的生命图景。";
-        declarationText.textContent = "以所选色彩为媒，织就民族文化里最鲜活的生活祈愿，让设计承载高原的纯净、富足与热忱。";
-      }
-    }
-
-    // 显示支付视图
-    function showPaymentView() {
-      colorSelectionView.style.display = 'none';
-      declarationResultView.style.display = 'none';
-      paymentView.style.display = 'block';
-      paymentSuccessView.style.display = 'none';
-      
-      // 重置支付选择
-      selectedPaymentType = null;
-      selectedPaymentPrice = 0;
-      digitalCard.classList.remove('selected');
-      physicalCard.classList.remove('selected');
-      confirmPaymentBtn.disabled = true;
-      qrCodeSection.style.display = 'block';
-      paymentProcessing.style.display = 'none';
-      paymentAmount.textContent = '支付金额：¥0.00';
-      
-      // 隐藏工坊定制信息
-      const workshopCustomization = document.getElementById('workshopCustomization');
-      if (workshopCustomization) {
-        workshopCustomization.style.display = 'none';
+        // 最多选择3个颜色
+        if (selectedColors.length >= 3) {
+          alert('You can only select up to 3 colors!');
+          return;
+        }
+        // 添加选择
+        card.classList.add('selected');
+        selectedColors.push(colorName);
       }
       
-      // 更新二维码（模拟不同金额）
-      updateQRCode();
+      // 更新选择计数和按钮状态
+      updateSelectionCount();
     }
 
-    // 显示支付成功视图
-    function showPaymentSuccessView() {
-      colorSelectionView.style.display = 'none';
-      declarationResultView.style.display = 'none';
-      paymentView.style.display = 'none';
-      paymentSuccessView.style.display = 'block';
+    // 更新选择计数
+    function updateSelectionCount() {
+      const countElement = document.getElementById('selectedCount');
+      const confirmBtn = document.getElementById('confirmBtn');
       
-      // 生成随机订单号
-      const randomNum = Math.floor(100000 + Math.random() * 900000);
-      randomOrder.textContent = randomNum;
-      currentOrderNumber = `BD2023${randomNum}`;
+      countElement.textContent = selectedColors.length;
       
-      // 设置当前时间
-      const now = new Date();
-      const formattedTime = now.toLocaleString('zh-CN', {
+      // 更新按钮文本
+      confirmBtn.innerHTML = `<i class="fa fa-check mr-2"></i> Confirm Selection (${selectedColors.length}/3)`;
+      
+      // 启用/禁用按钮
+      confirmBtn.disabled = selectedColors.length !== 3;
+    }
+
+    // 重置颜色选择
+    function resetColorSelection() {
+      selectedColors = [];
+      document.querySelectorAll('.color-card').forEach(card => {
+        card.classList.remove('selected');
+      });
+      updateSelectionCount();
+      
+      // 显示颜色选择视图，隐藏其他视图
+      document.getElementById('colorSelectionView').style.display = 'block';
+      document.getElementById('declarationResultView').style.display = 'none';
+      document.getElementById('paymentView').style.display = 'none';
+      document.getElementById('paymentSuccessView').style.display = 'none';
+    }
+
+    // 显示宣言结果
+    function showDeclarationResult() {
+      // 找到匹配的颜色组合
+      let combination = null;
+      
+      // 排序颜色名称以便匹配
+      const sortedSelected = [...selectedColors].sort();
+      
+      // 查找匹配的组合
+      for (let comb of colorCombinations) {
+        const sortedComb = [...comb.colors].sort();
+        if (JSON.stringify(sortedSelected) === JSON.stringify(sortedComb)) {
+          combination = comb;
+          break;
+        }
+      }
+      
+      // 如果没找到，使用默认值
+      if (!combination) {
+        combination = {
+          fusion: "A unique combination of colors that reflects your personal style and cultural understanding.",
+          declaration: "Your unique color combination creates a one-of-a-kind Bangdian that represents your personal journey and connection to Tibetan culture.",
+          imageUrl: "default.jpg"
+        };
+      }
+      
+      // 保存选中的图片URL
+      selectedImageUrl = combination.imageUrl;
+      
+      // 更新颜色预览
+      const previewContainer = document.getElementById('selectedColorsPreview');
+      previewContainer.innerHTML = '';
+      
+      selectedColors.forEach(color => {
+        const colorObj = colorData.find(c => c.name === color);
+        const circleClass = color === 'White' ? 'color-circle white' : 'color-circle';
+        
+        const circle = document.createElement('div');
+        circle.className = circleClass;
+        circle.style.backgroundColor = colorObj.colorCode;
+        circle.innerHTML = `<span class="${color === 'Black' || color === 'Blue' ? 'text-white' : 'text-slate-800'}">${color}</span>`;
+        
+        previewContainer.appendChild(circle);
+      });
+      
+      // 更新融合文本和宣言
+      document.getElementById('fusionText').textContent = combination.fusion;
+      document.getElementById('declarationText').textContent = combination.declaration;
+      
+      // 切换视图
+      document.getElementById('colorSelectionView').style.display = 'none';
+      document.getElementById('declarationResultView').style.display = 'block';
+    }
+
+    // 重置支付选择
+    function resetPaymentSelection() {
+      selectedBangdianType = '';
+      document.getElementById('digitalCard').classList.remove('selected');
+      document.getElementById('physicalCard').classList.remove('selected');
+      document.getElementById('confirmPaymentBtn').disabled = true;
+      document.getElementById('paymentAmount').textContent = 'Payment Amount: ¥0.00';
+      document.getElementById('workshopCustomization').style.display = 'none';
+      document.getElementById('paymentProcessing').style.display = 'none';
+      document.getElementById('qrCodeSection').style.display = 'block';
+    }
+
+    // 选择支付类型
+    function selectPaymentType(card) {
+      // 移除所有选中状态
+      document.getElementById('digitalCard').classList.remove('selected');
+      document.getElementById('physicalCard').classList.remove('selected');
+      
+      // 添加当前选中状态
+      card.classList.add('selected');
+      
+      // 保存选择的类型和价格
+      selectedBangdianType = card.dataset.type;
+      const price = card.dataset.price;
+      
+      // 更新金额显示
+      document.getElementById('paymentAmount').textContent = `Payment Amount: ¥${price}`;
+      
+      // 显示/隐藏工坊定制信息
+      if (selectedBangdianType === 'physical') {
+        document.getElementById('workshopCustomization').style.display = 'block';
+      } else {
+        document.getElementById('workshopCustomization').style.display = 'none';
+      }
+      
+      // 启用确认支付按钮
+      document.getElementById('confirmPaymentBtn').disabled = false;
+    }
+
+    // 处理支付
+    function processPayment() {
+      // 显示支付中状态
+      document.getElementById('qrCodeSection').style.display = 'none';
+      document.getElementById('paymentProcessing').style.display = 'block';
+      
+      // 模拟支付处理（3秒后完成）
+      setTimeout(function() {
+        showPaymentSuccess();
+      }, 3000);
+    }
+
+    // 显示支付成功页面
+    function showPaymentSuccess() {
+      // 更新订单信息
+      document.getElementById('randomOrder').textContent = Math.floor(100000 + Math.random() * 900000);
+      document.getElementById('paymentTime').textContent = new Date().toLocaleString('en-CN', {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit'
-      });
-      paymentTime.textContent = formattedTime;
+      }).replace(/\//g, '-');
       
-      // 根据支付类型显示不同内容
-      if (selectedPaymentType === 'digital') {
-        successMessage.textContent = '您的数字邦典高清图片已生成！';
-        physicalOrderInfo.style.display = 'none';
-      } else if (selectedPaymentType === 'physical') {
-        successMessage.textContent = '您的实体邦典设计图已生成！';
-        physicalOrderInfo.style.display = 'block';
-      }
-      
-      // 生成邦典图片（根据颜色组合显示对应的图片）
-      generateBangdianImage();
-    }
-
-    // 显示高清图片查看器
-    function showImageViewer() {
-      imageViewerModal.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-      
-      // 清空容器
-      fullSizeImageContainer.innerHTML = '';
-      
-      // 创建高清图片
-      const fullSizeImg = document.createElement('img');
-      
-      // 使用当前颜色组合对应的图片
-      if (currentCombination && currentCombination.imageUrl) {
-        fullSizeImg.src = currentCombination.imageUrl;
-        fullSizeImg.alt = `邦典配色：${currentCombination.colors.join('、')}`;
-        fullSizeImg.className = 'full-size-image';
+      // 更新成功信息
+      if (selectedBangdianType === 'digital') {
+        document.getElementById('successMessage').textContent = 'Your high-definition digital Bangdian image has been generated!';
+        document.getElementById('physicalOrderInfo').style.display = 'none';
       } else {
-        // 如果没有找到对应的组合，使用默认图片
-        fullSizeImg.src = 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80';
-        fullSizeImg.alt = '高清邦典图片';
-        fullSizeImg.className = 'full-size-image';
+        document.getElementById('successMessage').textContent = 'Your physical Bangdian design has been generated!';
+        document.getElementById('physicalOrderInfo').style.display = 'block';
       }
       
-      fullSizeImageContainer.appendChild(fullSizeImg);
+      // 显示生成的图片
+      document.getElementById('bangdianImageContainer').innerHTML = `
+        <img src="${selectedImageUrl}" alt="Your Exclusive Bangdian" class="w-full h-auto">
+      `;
+      
+      // 切换视图
+      document.getElementById('paymentView').style.display = 'none';
+      document.getElementById('paymentSuccessView').style.display = 'block';
     }
-
-    // 关闭图片查看器
-    function closeImageViewerModal() {
-      imageViewerModal.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
-    // 显示选择的颜色预览
-    function displaySelectedColors() {
-      selectedColorsPreview.innerHTML = '';
-      
-      selectedColors.forEach(id => {
-        const color = colorData.find(c => c.id === id);
-        const colorCircle = document.createElement('div');
-        colorCircle.className = `color-circle ${color.name === '白色' ? 'white' : ''}`;
-        colorCircle.style.backgroundColor = color.colorCode;
-        colorCircle.textContent = color.simpleName;
-        
-        if (color.name === '白色') {
-          colorCircle.style.color = '#1f2937';
-        } else {
-          colorCircle.style.color = 'white';
-        }
-        
-        selectedColorsPreview.appendChild(colorCircle);
-      });
-    }
-
-    // 生成邦典图片（根据颜色组合显示对应的图片）
-    function generateBangdianImage() {
-      bangdianImageContainer.innerHTML = '';
-      
-      // 创建图片容器
-      const imgContainer = document.createElement('div');
-      imgContainer.className = 'bangdian-image';
-      
-      // 创建图片
-      const img = document.createElement('img');
-      
-      // 使用当前颜色组合对应的图片
-      if (currentCombination && currentCombination.imageUrl) {
-        img.src = currentCombination.imageUrl;
-        img.alt = `邦典配色：${currentCombination.colors.join('、')}`;
-      } else {
-        // 如果没有找到对应的组合，使用默认图片
-        img.src = 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80';
-        img.alt = '默认邦典图片';
-      }
-      
-      imgContainer.appendChild(img);
-      bangdianImageContainer.appendChild(imgContainer);
-    }
-
-    // 更新支付二维码
-    function updateQRCode() {
-      if (selectedPaymentType && selectedPaymentPrice > 0) {
-        // 模拟不同金额的二维码
-        const qrData = `weixin://wxpay/bizpayurl?pr=bd${selectedPaymentPrice.replace('.', '')}&order=${Date.now()}`;
-        qrCodeImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrData)}`;
-        paymentAmount.textContent = `支付金额：¥${selectedPaymentPrice}`;
-      }
-    }
-
-    // 确认选择
-    confirmBtn.addEventListener('click', () => {
-      if (selectedColors.length !== 3) {
-        alert('请选择3种颜色进行搭配');
-        return;
-      }
-      
-      showDeclarationView();
-    });
-
-    // 生成邦典按钮
-    generateBangdianBtn.addEventListener('click', () => {
-      showPaymentView();
-    });
-
-    // 返回颜色选择
-    backToSelectionBtn.addEventListener('click', () => {
-      showColorSelectionView();
-    });
-
-    // 返回宣言
-    backToDeclarationBtn.addEventListener('click', () => {
-      showDeclarationView();
-    });
-
-    // 支付卡片选择
-    digitalCard.addEventListener('click', () => {
-      digitalCard.classList.add('selected');
-      physicalCard.classList.remove('selected');
-      selectedPaymentType = 'digital';
-      selectedPaymentPrice = '0.1';  // 修改为0.1元
-      confirmPaymentBtn.disabled = false;
-      updateQRCode();
-      
-      // 隐藏工坊定制信息
-      const workshopCustomization = document.getElementById('workshopCustomization');
-      if (workshopCustomization) {
-        workshopCustomization.style.display = 'none';
-      }
-    });
-
-    physicalCard.addEventListener('click', () => {
-      physicalCard.classList.add('selected');
-      digitalCard.classList.remove('selected');
-      selectedPaymentType = 'physical';
-      selectedPaymentPrice = '4.99';  // 修改为4.99元
-      confirmPaymentBtn.disabled = false;
-      updateQRCode();
-      
-      // 显示工坊定制信息
-      const workshopCustomization = document.getElementById('workshopCustomization');
-      if (workshopCustomization) {
-        workshopCustomization.style.display = 'block';
-      }
-    });
-
-    // 确认支付
-    confirmPaymentBtn.addEventListener('click', () => {
-      if (!selectedPaymentType) {
-        alert('请选择邦典类型');
-        return;
-      }
-      
-      // 显示支付处理中
-      qrCodeSection.style.display = 'none';
-      paymentProcessing.style.display = 'block';
-      confirmPaymentBtn.disabled = true;
-      
-      // 模拟支付处理过程
-      setTimeout(() => {
-        showPaymentSuccessView();
-      }, 2000);
-    });
-
-    // 查看高清图片
-    viewImageBtn.addEventListener('click', () => {
-      showImageViewer();
-    });
-
-    // 返回体验主页
-    backToHomeBtn.addEventListener('click', () => {
-      closeColorModal();
-    });
-
-    // 关闭图片查看器
-    closeImageViewer.addEventListener('click', closeImageViewerModal);
-    closeViewerBtn.addEventListener('click', closeImageViewerModal);
-
-    // 点击模态框外部关闭
-    colorModal.addEventListener('click', (e) => {
-      if (e.target === colorModal) {
-        closeColorModal();
-      }
-    });
-
-    imageViewerModal.addEventListener('click', (e) => {
-      if (e.target === imageViewerModal) {
-        closeImageViewerModal();
-      }
-    });
-
-    // 按ESC键关闭模态框
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && colorModal.style.display === 'flex') {
-        closeColorModal();
-      }
-      if (e.key === 'Escape' && imageViewerModal.style.display === 'flex') {
-        closeImageViewerModal();
-      }
-    });
-
-    // 生成颜色卡片
-    function generateColorCards() {
-      colorCardsContainer.innerHTML = '';
-      
-      colorData.forEach(color => {
-        const isSelected = selectedColors.includes(color.id);
-        const textColor = color.name === '白色' ? 'text-slate-800' : 'text-white';
-        const shadowClass = color.name === '白色' ? 'shadow-inner' : '';
-        
-        const card = document.createElement('div');
-        card.className = `color-card ${isSelected ? 'selected' : ''}`;
-        card.dataset.id = color.id;
-        
-        card.innerHTML = `
-          <div class="color-preview ${color.name === '白色' ? 'white' : ''} ${shadowClass}" style="background-color: ${color.colorCode};">
-            <span class="${textColor} font-bold text-lg">${color.name}</span>
-            <div class="checkmark">
-              <i class="fa fa-check"></i>
-            </div>
-          </div>
-          
-          <div class="mb-3">
-            <div class="flex items-center mb-1">
-              <i class="fa fa-mountain text-slate-500 mr-2"></i>
-              <span class="text-slate-700 font-medium">对应：${color.symbol}</span>
-            </div>
-            <div class="flex items-center">
-              <i class="fa fa-star text-slate-500 mr-2"></i>
-              <span class="text-slate-700 font-medium">象征：${color.meaning}</span>
-            </div>
-          </div>
-          
-          <div class="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg">
-            <div class="flex items-start mb-1">
-              <i class="fa fa-quote-left text-slate-400 mr-2 mt-1"></i>
-              <span class="italic">${color.declaration}</span>
-            </div>
-          </div>
-        `;
-        
-        colorCardsContainer.appendChild(card);
-        
-        // 添加卡片点击事件
-        card.addEventListener('click', () => {
-          toggleColorSelection(color.id);
-        });
-      });
-      
-      updateSelectionUI();
-    }
-
-    // 切换颜色选择
-    function toggleColorSelection(colorId) {
-      const index = selectedColors.indexOf(colorId);
-      
-      if (index === -1) {
-        // 如果未选中且已选数量小于3，添加到选中列表
-        if (selectedColors.length < 3) {
-          selectedColors.push(colorId);
-        } else {
-          // 如果已选3个，提示用户
-          alert('最多只能选择3种颜色进行搭配');
-          return;
-        }
-      } else {
-        // 如果已选中，从选中列表移除
-        selectedColors.splice(index, 1);
-      }
-      
-      updateSelectionUI();
-    }
-
-    // 更新选择UI
-    function updateSelectionUI() {
-      // 更新卡片选中状态
-      const cards = document.querySelectorAll('.color-card');
-      cards.forEach(card => {
-        const id = parseInt(card.dataset.id);
-        if (selectedColors.includes(id)) {
-          card.classList.add('selected');
-        } else {
-          card.classList.remove('selected');
-        }
-      });
-      
-      // 更新计数
-      const count = selectedColors.length;
-      selectedCount.textContent = count;
-      
-      // 更新确认按钮状态
-      if (count === 3) {
-        confirmBtn.disabled = false;
-        confirmBtn.innerHTML = `<i class="fa fa-check mr-2"></i> 确认选择 (3/3)`;
-      } else {
-        confirmBtn.disabled = true;
-        confirmBtn.innerHTML = `<i class="fa fa-check mr-2"></i> 确认选择 (${count}/3)`;
-      }
-    }
-
-    // 初始化颜色卡片
-    generateColorCards();
   </script>
 </body>
 </html>
