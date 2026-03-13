@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>邦典文化体验地图</title>
+  <title>Bangdian Cultural Experience Map</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; word-wrap: break-word; }
     html, body { height: 100%; }
     .marker { animation: pulse 2s infinite; }
     @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.6; } }
@@ -23,7 +23,7 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    /* 页面主色调适配虹织译桥项目 */
+    /* 页面主色调适配项目定位 */
     :root {
       --primary-indigo: #4338ca;
       --primary-rose: #e11d48;
@@ -35,107 +35,112 @@
     .text-primary-indigo { color: var(--primary-indigo); }
     .text-primary-rose { color: var(--primary-rose); }
     .border-primary-indigo { border-color: var(--primary-indigo); }
+    /* 英文排版优化 */
+    .text-en {
+      line-height: 1.8;
+      letter-spacing: 0.3px;
+    }
   </style>
 </head>
 <body class="bg-light-bg font-sans">
-  <!-- 导航栏 - 虹织译桥品牌化，页面高亮 -->
+  <!-- 导航栏 - Page highlight -->
   <header class="fixed w-full z-50 py-4 px-5 md:px-8 bg-white shadow-sm">
     <div class="container mx-auto flex justify-between items-center">
       <a href="index.html" class="flex items-center gap-2 text-slate-800">
         <i class="fa fa-scissors text-2xl text-primary-indigo"></i>
-        <span class="font-bold text-xl">邦典</span>
+        <span class="font-bold text-xl">Bangdian</span>
       </a>
       <nav class="flex gap-6 text-base">
-        <a href="decode.html" class="text-slate-600 hover:text-primary-indigo transition-colors duration-300">文化解码</a>
-        <a href="experience.html" class="text-slate-600 hover:text-primary-indigo transition-colors duration-300">沉浸式体验</a>
-        <a href="map.html" class="text-primary-indigo font-medium border-b-2 border-primary-indigo pb-1">体验地图</a>
+        <a href="decode.html" class="text-slate-600 hover:text-primary-indigo transition-colors duration-300">Cultural Decoding</a>
+        <a href="experience.html" class="text-slate-600 hover:text-primary-indigo transition-colors duration-300">Immersive Experience</a>
+        <a href="map.html" class="text-primary-indigo font-medium border-b-2 border-primary-indigo pb-1">Experience Map</a>
       </nav>
     </div>
   </header>
 
-  <!-- 体验地图核心内容 - 贴合虹织译桥项目定位 -->
+  <!-- 体验地图核心内容 -->
   <section class="w-full min-h-screen pt-24 pb-16 px-5 md:px-8">
     <div class="container mx-auto">
       <div class="text-center mb-10">
-        <h2 class="text-[clamp(1.8rem,5vw,2.6rem)] font-bold text-primary-indigo mb-3">邦典 · 西藏非遗深度体验地图</h2>
-        <p class="text-slate-600 text-lg">解码邦典文化，连接中外心灵，探访百年非遗工坊</p>
+        <h2 class="text-[clamp(1.8rem,5vw,2.6rem)] font-bold text-primary-indigo mb-3">Bangdian · In-depth Experience Map of Tibet’s Intangible Cultural Heritage</h2>
+        <p class="text-slate-600 text-lg text-en">Decode Bangdian Culture, Connect Chinese and Foreign Hearts, Visit Century-old ICH Workshops</p>
         <div class="w-20 h-1 bg-secondary-blue mx-auto mt-4"></div>
       </div>
 
       <div class="flex flex-col lg:flex-row gap-8 items-center justify-center">
         <!-- 体验地图可视化区域 -->
         <div class="w-full lg:w-1/2 rounded-xl overflow-hidden shadow-xl relative h-[480px]">
-          <img src="图片20.png" alt="西藏邦典非遗体验地图" class="w-full h-full object-cover">
+          <img src="图片20.png" alt="Tibet Bangdian ICH Experience Map" class="w-full h-full object-cover">
           <!-- 拉萨雪域工坊标记 -->
           <div class="absolute top-[30%] left-[25%] marker">
             <div class="w-6 h-6 bg-primary-rose rounded-full border-2 border-white"></div>
-            <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-white px-3 py-1 rounded-lg shadow-md text-xs font-medium text-primary-rose">拉萨·雪域邦典工坊</div>
+            <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-white px-3 py-1 rounded-lg shadow-md text-xs font-medium text-primary-rose w-max">Lhasa · Snowy Region Bangdian Workshop</div>
           </div>
           <!-- 日喀则巧手工坊标记 -->
           <div class="absolute bottom-[35%] right-[20%] marker">
             <div class="w-6 h-6 bg-primary-indigo rounded-full border-2 border-white"></div>
-            <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-white px-3 py-1 rounded-lg shadow-md text-xs font-medium text-primary-indigo">日喀则·高原巧手工坊</div>
+            <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-white px-3 py-1 rounded-lg shadow-md text-xs font-medium text-primary-indigo w-max">Xigaze · Plateau Skilled Handicraft Workshop</div>
           </div>
         </div>
 
-        <!-- 工坊详情与预约区域 - 贴合虹织译桥工坊定位 -->
+        <!-- 工坊详情与预约区域 -->
         <div class="w-full lg:w-1/2 flex flex-col gap-6 mt-6 lg:mt-0">
-          <!-- 拉萨·雪域邦典工坊（传统非遗核心，文化解码+古法工艺） -->
+          <!-- 拉萨·雪域邦典工坊 -->
           <div class="bg-white rounded-xl p-6 shadow-lg border border-slate-100">
             <h3 class="text-xl font-bold text-primary-indigo mb-3 flex items-center">
-              <i class="fa fa-map-marker text-primary-rose mr-2"></i> 拉萨·雪域邦典工坊
+              <i class="fa fa-map-marker text-primary-rose mr-2"></i> Lhasa · Snowy Region Bangdian Workshop
             </h3>
-            <p class="text-slate-600 mb-4 text-sm">
-              坐落于拉萨八廓街百年老巷，120年邦典制作历史，传承最纯正的藏族传统编织技艺，坚守天然染料与手工编织，是邦典非遗文化的核心传承地，为虹织译桥核心合作传统工坊。
+            <p class="text-slate-600 mb-4 text-sm text-en">
+              Nestled in the century-old alleys of Barkhor Street in Lhasa, it boasts a 120-year history of Bangdian making. It inherits the most authentic traditional Tibetan weaving techniques, adheres to natural dyes and hand weaving, serves as a core inheritance base of Bangdian intangible cultural heritage, and is a key traditional workshop partnered with Hongzhi Translation Bridge.
             </p>
             <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-3 py-1 bg-indigo-100 text-primary-indigo text-xs rounded-full">文化解码课</span>
-              <span class="px-3 py-1 bg-indigo-100 text-primary-indigo text-xs rounded-full">天然染色工艺</span>
-              <span class="px-3 py-1 bg-indigo-100 text-primary-indigo text-xs rounded-full">非遗匠人面对面</span>
-              <span class="px-3 py-1 bg-indigo-100 text-primary-indigo text-xs rounded-full">传统编织体验</span>
+              <span class="px-3 py-1 bg-indigo-100 text-primary-indigo text-xs rounded-full">Cultural Decoding Class</span>
+              <span class="px-3 py-1 bg-indigo-100 text-primary-indigo text-xs rounded-full">Natural Dyeing Craft</span>
+              <span class="px-3 py-1 bg-indigo-100 text-primary-indigo text-xs rounded-full">Face-to-face with ICH Craftsmen</span>
+              <span class="px-3 py-1 bg-indigo-100 text-primary-indigo text-xs rounded-full">Traditional Weaving Experience</span>
             </div>
             <div class="text-slate-700 text-sm space-y-2">
-              <p><i class="fa fa-location-arrow mr-2 text-slate-500"></i> 地址：拉萨市城关区八廓街108号</p>
-              <p><i class="fa fa-clock-o mr-2 text-slate-500"></i> 开放时间：9:00 - 18:00（全年无休，双语导览）</p>
+              <p><i class="fa fa-location-arrow mr-2 text-slate-500"></i> Address: No. 108, Barkhor Street, Chengguan District, Lhasa</p>
+              <p><i class="fa fa-clock-o mr-2 text-slate-500"></i> Opening Hours: 9:00 - 18:00 (Open all year round, bilingual tour guide)</p>
             </div>
             <!-- 点击触发预约弹窗，传入工坊名称 -->
-            <button onclick="openModal('雪域邦典工坊')" class="inline-block mt-4 px-5 py-2 bg-primary-indigo text-white rounded-lg text-sm font-semibold hover:bg-indigo-800 transition-colors">立即预约体验</button>
+            <button onclick="openModal('Snowy Region Bangdian Workshop')" class="inline-block mt-4 px-5 py-2 bg-primary-indigo text-white rounded-lg text-sm font-semibold hover:bg-indigo-800 transition-colors">Book Now</button>
           </div>
 
-          <!-- 日喀则·高原巧手工坊（创新设计核心，数字设计+跨文化美学） -->
+          <!-- 日喀则·高原巧手工坊 -->
           <div class="bg-white rounded-xl p-6 shadow-lg border border-slate-100">
             <h3 class="text-xl font-bold text-primary-rose mb-3 flex items-center">
-              <i class="fa fa-map-marker text-primary-rose mr-2"></i> 日喀则·高原巧手工坊
+              <i class="fa fa-map-marker text-primary-rose mr-2"></i> Xigaze · Plateau Skilled Handicraft Workshop
             </h3>
-            <p class="text-slate-600 mb-4 text-sm">
-              位于日喀则桑珠孜区，虹织译桥核心合作创新工坊，专注邦典传统纹样与现代审美融合，主打数字邦典设计、跨文化美学创作，支持线上设计转实体制作，深受年轻群体与国际游客喜爱。
+            <p class="text-slate-600 mb-4 text-sm text-en">
+              Located in Samzhubzê District, Xigaze, it is a key innovative workshop partnered with Hongzhi Translation Bridge. It focuses on integrating traditional Bangdian patterns with modern aesthetics, specializing in digital Bangdian design and cross-cultural aesthetic creation, supporting online design to physical production, and is deeply popular among young people and international tourists.
             </p>
             <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-3 py-1 bg-rose-100 text-primary-rose text-xs rounded-full">邦典创新设计</span>
-              <span class="px-3 py-1 bg-rose-100 text-primary-rose text-xs rounded-full">数字邦典制作</span>
-              <span class="px-3 py-1 bg-rose-100 text-primary-rose text-xs rounded-full">沉浸式创作</span>
-              <span class="px-3 py-1 bg-rose-100 text-primary-rose text-xs rounded-full">跨文化美学沙龙</span>
+              <span class="px-3 py-1 bg-rose-100 text-primary-rose text-xs rounded-full">Bangdian Innovative Design</span>
+              <span class="px-3 py-1 bg-rose-100 text-primary-rose text-xs rounded-full">Digital Bangdian Production</span>
+              <span class="px-3 py-1 bg-rose-100 text-primary-rose text-xs rounded-full">Immersive Creation</span>
+              <span class="px-3 py-1 bg-rose-100 text-primary-rose text-xs rounded-full">Cross-cultural Aesthetic Salon</span>
             </div>
             <div class="text-slate-700 text-sm space-y-2">
-              <p><i class="fa fa-location-arrow mr-2 text-slate-500"></i> 地址：日喀则市桑珠孜区珠峰路56号</p>
-              <p><i class="fa fa-clock-o mr-2 text-slate-500"></i> 开放时间：9:30 - 19:00（全年无休，跨境预约）</p>
+              <p><i class="fa fa-location-arrow mr-2 text-slate-500"></i> Address: No. 56, Everest Road, Samzhubzê District, Xigaze</p>
+              <p><i class="fa fa-clock-o mr-2 text-slate-500"></i> Opening Hours: 9:30 - 19:00 (Open all year round, cross-border reservation available)</p>
             </div>
             <!-- 点击触发预约弹窗，传入工坊名称 -->
-            <button onclick="openModal('高原巧手工坊')" class="inline-block mt-4 px-5 py-2 bg-primary-rose text-white rounded-lg text-sm font-semibold hover:bg-rose-800 transition-colors">立即预约体验</button>
+            <button onclick="openModal('Plateau Skilled Handicraft Workshop')" class="inline-block mt-4 px-5 py-2 bg-primary-rose text-white rounded-lg text-sm font-semibold hover:bg-rose-800 transition-colors">Book Now</button>
           </div>
         </div>
       </div>
 
-      <!-- 底部品牌化按钮 - 虹织译桥专属 -->
+      <!-- 底部返回主页按钮 -->
       <div class="text-center mt-12">
         <a href="index.html" class="px-8 py-3 bg-primary-indigo text-white rounded-full font-semibold hover:bg-indigo-800 transition-colors duration-300 inline-flex items-center gap-2">
-          <i class="fa fa-home"></i> 回到首页
+          <i class="fa fa-home"></i> Back to Home
         </a>
       </div>
     </div>
   </section>
 
-  <!-- 预约弹窗（虹织译桥定制版，贴合邦典体验项目） -->
+  <!-- 预约弹窗 -->
   <div id="bookingModal" class="fixed inset-0 z-99 hidden">
     <!-- 遮罩层 -->
     <div class="absolute inset-0 bg-black/50 overlay-enter" onclick="closeModal()"></div>
@@ -143,7 +148,7 @@
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white rounded-xl shadow-2xl p-6 modal-enter">
       <!-- 弹窗头部 -->
       <div class="flex justify-between items-center mb-5">
-        <h3 class="text-xl font-bold text-primary-indigo" id="workshopTitle">预约体验 - 雪域邦典工坊</h3>
+        <h3 class="text-xl font-bold text-primary-indigo" id="workshopTitle">Reservation · Snowy Region Bangdian Workshop</h3>
         <button onclick="closeModal()" class="text-slate-500 hover:text-slate-800 transition-colors">
           <i class="fa fa-times text-xl"></i>
         </button>
@@ -152,44 +157,44 @@
       <form id="bookingForm" onsubmit="submitForm(event)">
         <div class="space-y-4">
           <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">姓名</label>
-            <input type="text" id="name" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-indigo focus:border-transparent" placeholder="请输入您的姓名" required>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
+            <input type="text" id="name" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-indigo focus:border-transparent" placeholder="Please enter your name" required>
           </div>
           <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">手机号码</label>
-            <input type="tel" id="phone" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-indigo focus:border-transparent" placeholder="请输入您的手机号" pattern="^1[3-9]\d{9}$" required>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Mobile Phone Number</label>
+            <input type="tel" id="phone" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-indigo focus:border-transparent" placeholder="Please enter your phone number" required>
           </div>
           <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">预约日期</label>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Reservation Date</label>
             <input type="date" id="date" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-indigo focus:border-transparent" min="" required>
           </div>
           <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">体验项目 <span class="text-red-500">*</span></label>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Experience Item <span class="text-red-500">*</span></label>
             <select id="project" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-indigo focus:border-transparent" required>
-              <option value="" disabled selected>请选择体验项目</option>
+              <option value="" disabled selected>Please select an experience item</option>
             </select>
           </div>
           <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">同行人数</label>
-            <input type="number" id="people" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-indigo focus:border-transparent" placeholder="请输入同行人数（含本人）" min="1" value="1" required>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Number of Participants</label>
+            <input type="number" id="people" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-indigo focus:border-transparent" placeholder="Please enter the number of participants (including yourself)" min="1" value="1" required>
           </div>
           <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">备注（选填）</label>
-            <textarea id="remark" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-indigo focus:border-transparent" rows="2" placeholder="如需双语导览、定制体验等需求，请在此说明"></textarea>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Remarks (Optional)</label>
+            <textarea id="remark" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-indigo focus:border-transparent" rows="2" placeholder="Please state your needs such as bilingual guide or customized experience"></textarea>
           </div>
         </div>
         <!-- 提交按钮 -->
         <div class="mt-6">
-          <button type="submit" class="w-full px-5 py-3 bg-primary-indigo text-white rounded-lg font-semibold hover:bg-indigo-800 transition-colors">提交预约申请</button>
+          <button type="submit" class="w-full px-5 py-3 bg-primary-indigo text-white rounded-lg font-semibold hover:bg-indigo-800 transition-colors">Submit Reservation Application</button>
         </div>
       </form>
       <!-- 提交成功提示（默认隐藏） -->
       <div id="successTip" class="hidden text-center py-8">
         <i class="fa fa-check-circle text-4xl text-green-600 mb-3"></i>
-        <h4 class="text-lg font-bold text-slate-800 mb-2">预约申请提交成功！</h4>
-        <p class="text-slate-600 mb-4">客服将在1个工作日内与您联系确认</p>
-        <p class="text-slate-500 text-xs mb-6">温馨提示：支持双语导览、国际游客专属预约服务</p>
-        <button onclick="closeModal()" class="px-5 py-2 bg-primary-indigo text-white rounded-lg font-semibold hover:bg-indigo-800 transition-colors">关闭</button>
+        <h4 class="text-lg font-bold text-slate-800 mb-2">Reservation submitted successfully!</h4>
+        <p class="text-slate-600 mb-4 text-en">Our customer service will contact you for confirmation within 1 working day.</p>
+        <p class="text-slate-500 text-xs mb-6 text-en">Kind Reminder: Bilingual tour guide and exclusive reservation service for international tourists are available.</p>
+        <button onclick="closeModal()" class="px-5 py-2 bg-primary-indigo text-white rounded-lg font-semibold hover:bg-indigo-800 transition-colors">Close</button>
       </div>
     </div>
   </div>
@@ -208,7 +213,7 @@
     function openModal(workshopName) {
       currentWorkshop = workshopName;
       // 更新弹窗标题
-      document.getElementById('workshopTitle').textContent = `预约体验·${workshopName}`;
+      document.getElementById('workshopTitle').textContent = `Reservation · ${workshopName}`;
       // 重置表单和提示
       document.getElementById('bookingForm').reset();
       document.getElementById('bookingForm').classList.remove('hidden');
@@ -224,24 +229,24 @@
       document.getElementById('bookingModal').classList.add('hidden');
     }
 
-    // 加载对应工坊的体验项目 - 严格贴合虹织译桥项目内容
+    // 加载对应工坊的体验项目
     function loadWorkshopProjects(workshopName) {
       const projectSelect = document.getElementById('project');
       // 清空原有选项，保留默认占位
-      projectSelect.innerHTML = '<option value="" disabled selected>请选择体验项目</option>';
-      // 定义虹织译桥项目专属的工坊体验项目
+      projectSelect.innerHTML = '<option value="" disabled selected>Please select an experience item</option>';
+      // 定义工坊体验项目
       const workshopProjects = {
-        '雪域邦典工坊': [
-          '邦典色彩纹样文化解码课（90分钟，双语）',
-          '古法天然染色工艺体验（120分钟）',
-          '非遗匠人面对面交流+手作指导',
-          '1小时传统邦典编织体验（一对一）',
+        'Snowy Region Bangdian Workshop': [
+          'Bangdian Color & Pattern Cultural Decoding Class (90 mins, bilingual)',
+          'Ancient Natural Dyeing Craft Experience (120 mins)',
+          'Face-to-face Communication with ICH Craftsmen + Handmade Guidance',
+          '1-hour Traditional Bangdian Weaving Experience (One-on-one)'
         ],
-        '高原巧手工坊': [
-          '邦典现代创新设计课程（180分钟）',
-          '数字邦典设计转实体制作（含线上设计）',
-          '全天邦典沉浸式创作体验（含作品定制）',
-          '国际游客专属邦典体验套餐（含翻译）',
+        'Plateau Skilled Handicraft Workshop': [
+          'Bangdian Modern Innovative Design Course (180 mins)',
+          'Digital Bangdian Design to Physical Production (Including online design)',
+          'Full-day Bangdian Immersive Creation Experience (Including customized works)',
+          'Exclusive Bangdian Experience Package for International Tourists (Including translation)'
         ]
       };
       // 动态添加对应工坊的选项
@@ -268,11 +273,11 @@
         people: document.getElementById('people').value,
         remark: document.getElementById('remark').value
       };
-      console.log('预约表单数据：', formData);
+      console.log('Reservation Form Data:', formData);
       // 模拟表单提交加载
       const submitBtn = e.target.querySelector('button[type="submit"]');
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i> 提交中...';
+      submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i> Submitting...';
       // 模拟接口请求延迟
       setTimeout(() => {
         // 隐藏表单，显示成功提示
@@ -280,7 +285,7 @@
         document.getElementById('successTip').classList.remove('hidden');
         // 恢复按钮状态
         submitBtn.disabled = false;
-        submitBtn.innerHTML = '提交预约申请';
+        submitBtn.innerHTML = 'Submit Reservation Application';
       }, 1200);
     }
 
