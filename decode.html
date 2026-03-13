@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>文化解码 - 邦典藏族文化</title>
+  <title>Cultural Decoding - Bangdian Tibetan Culture</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; }
+    * { margin: 0; padding: 0; box-sizing: border-box; word-wrap: break-word; }
+    html, body { height: 100%; line-height: 1.7; }
     .color-item:hover .color-tips { opacity: 1; transform: translateY(0); }
     .color-tips { 
       opacity: 0; 
@@ -41,92 +41,97 @@
       transform: translateY(-5px);
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
     }
+    /* 英文排版优化：统一行高和间距 */
+    .text-en {
+      line-height: 1.8;
+      letter-spacing: 0.3px;
+    }
   </style>
 </head>
 <body class="bg-gradient-to-b from-gray-50 to-white font-sans">
-  <!-- 导航栏 - 当前页面高亮 【LOGO点击返回主页】 -->
+  <!-- 导航栏 - Current page highlight 【LOGO click to return homepage】 -->
   <header class="fixed w-full z-50 py-4 px-5 md:px-8 bg-white/90 backdrop-blur-sm shadow-sm">
     <div class="container mx-auto flex justify-between items-center">
       <a href="index.html" class="flex items-center gap-2 text-slate-800 hover:text-indigo-800 transition-colors duration-300">
         <i class="fa fa-paint-brush text-2xl text-indigo-800"></i>
-        <span class="font-bold text-xl">邦典</span>
+        <span class="font-bold text-xl">Bangdian</span>
       </a>
       <nav class="flex gap-6 text-base">
-        <a href="decode.html" class="text-indigo-800 font-medium border-b-2 border-indigo-800 pb-1">文化解码</a>
-        <a href="experience.html" class="text-slate-600 hover:text-indigo-800 transition-colors duration-300">沉浸式体验</a>
-        <a href="map.html" class="text-slate-600 hover:text-indigo-800 transition-colors duration-300">体验地图</a>
+        <a href="decode.html" class="text-indigo-800 font-medium border-b-2 border-indigo-800 pb-1">Cultural Decoding</a>
+        <a href="experience.html" class="text-slate-600 hover:text-indigo-800 transition-colors duration-300">Immersive Experience</a>
+        <a href="map.html" class="text-slate-600 hover:text-indigo-800 transition-colors duration-300">Experience Map</a>
       </nav>
     </div>
   </header>
 
-  <!-- 文化解码完整内容 -->
+  <!-- Cultural Decoding Full Content -->
   <section class="w-full min-h-screen pt-24 pb-16 px-5 md:px-8">
     <div class="container mx-auto">
       <div class="text-center mb-12">
-        <h2 class="text-[clamp(1.8rem,5vw,2.6rem)] font-bold bg-gradient-to-r from-indigo-800 to-amber-600 bg-clip-text text-transparent mb-3">邦典 · 文化解码与共鸣</h2>
-        <p class="text-slate-600 text-lg max-w-2xl mx-auto">解码邦典色彩密码与纹样寓意，读懂藏族女性的生命传记</p>
+        <h2 class="text-[clamp(1.8rem,5vw,2.6rem)] font-bold bg-gradient-to-r from-indigo-800 to-amber-600 bg-clip-text text-transparent mb-3">Bangdian · Cultural Decoding and Resonance</h2>
+        <p class="text-slate-600 text-lg max-w-3xl mx-auto text-en">Decoding the color codes and pattern symbolism of Bangdian to understand the life biography of Xizang women</p>
         <div class="w-24 h-1.5 bg-gradient-to-r from-indigo-800 to-amber-500 mx-auto mt-6 rounded-full"></div>
       </div>
 
-      <!-- 图片与色彩解码部分 -->
+      <!-- Image & Color Decoding Section -->
       <div class="flex flex-col lg:flex-row gap-10 mb-16">
-        <!-- 图片区域 -->
+        <!-- Image Area -->
         <div class="w-full lg:w-2/5 relative">
           <div class="rounded-2xl overflow-hidden shadow-2xl relative border-8 border-white">
-            <img src="zhan.png" alt="藏族邦典展示" class="w-full h-auto object-cover">
+            <img src="zhan.png" alt="Tibetan Bangdian Display" class="w-full h-auto object-cover">
             
-            <!-- 中央显示区域 -->
+            <!-- Central Display Area -->
             <div id="central-display" class="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div class="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-2xl max-w-sm text-center mx-4 transition-all duration-300 opacity-0">
-                <h4 class="font-bold text-slate-800 text-xl mb-2">悬停色点查看色彩寓意</h4>
-                <p class="text-slate-700">将鼠标悬停在色点上，了解每个色彩的深刻含义</p>
+                <h4 class="font-bold text-slate-800 text-xl mb-2">Hover over the color dots</h4>
+                <p class="text-slate-700 text-en">Hover over the color dots to view their meanings</p>
               </div>
             </div>
             
-            <!-- 6个颜色标注点 -->
+            <!-- 6 Color Markers -->
             <div class="absolute top-[15%] left-[15%] color-item" 
-                 onmouseenter="showColorInfo('雪山云白', '寓意纯洁、吉祥，象征雪域高原的圣洁，是藏族的吉祥之色<br>染料：天然矿物/植物汁', 'slate-300')">
+                 onmouseenter="showColorInfo('Snow Mountain White', 'Represents purity and good fortune, symbolizing the sacredness of the snow-covered plateau. It is an auspicious color in Xizang culture.<br>Dye: Natural minerals / plant extracts', 'slate-300')">
               <div class="w-8 h-8 bg-white rounded-full border-4 border-slate-300 cursor-pointer flex items-center justify-center shadow-lg">
                 <div class="w-4 h-4 rounded-full bg-slate-300"></div>
               </div>
             </div>
             
             <div class="absolute top-[35%] left-[10%] color-item"
-                 onmouseenter="showColorInfo('金沙暖阳', '代表智慧、尊贵与富足，象征高原的阳光与黄金，是地位与美好的象征<br>染料：姜黄', 'amber-600')">
+                 onmouseenter="showColorInfo('Golden Sand Warmth', 'Stands for wisdom, nobility and abundance, symbolizing the plateau’s sunshine and gold. It represents status and beauty.<br>Dye: Turmeric', 'amber-600')">
               <div class="w-8 h-8 bg-amber-600 rounded-full border-4 border-white cursor-pointer shadow-lg"></div>
             </div>
             
             <div class="absolute bottom-[40%] left-[20%] color-item"
-                 onmouseenter="showColorInfo('珊瑚绯红', '象征生命、热情与安康，代表高原珍宝珊瑚，寓意生生不息的生命力<br>染料：茜草', 'rose-800')">
+                 onmouseenter="showColorInfo('Coral Red', 'Symbolizes life, passion and health. Inspired by the precious plateau coral, it embodies endless vitality.<br>Dye: Madder', 'rose-800')">
               <div class="w-8 h-8 bg-rose-800 rounded-full border-4 border-white cursor-pointer shadow-lg"></div>
             </div>
             
             <div class="absolute top-[20%] right-[20%] color-item"
-                 onmouseenter="showColorInfo('天空藏蓝', '藏族文化中最神圣的色彩，象征苍穹、自由与永恒，代表对天地的敬畏<br>染料：蓼蓝草', 'indigo-800')">
+                 onmouseenter="showColorInfo('Xizang Sky Blue', 'The most sacred color in Xizang culture, symbolizing the sky, freedom and eternity, and expressing reverence for heaven and earth.<br>Dye: Indigo', 'indigo-800')">
               <div class="w-8 h-8 bg-indigo-800 rounded-full border-4 border-white cursor-pointer shadow-lg"></div>
             </div>
             
             <div class="absolute top-[55%] right-[15%] color-item"
-                 onmouseenter="showColorInfo('森林青稞', '象征生命力、生长与丰收，代表高原的森林与青稞，寓意生生不息<br>染料：天然植物汁', 'emerald-700')">
+                 onmouseenter="showColorInfo('Barley Green', 'Represents vitality, growth and harvest, embodying the plateau’s forests and barley crops, signifying continuous life.<br>Dye: Natural plant extracts', 'emerald-700')">
               <div class="w-8 h-8 bg-emerald-700 rounded-full border-4 border-white cursor-pointer shadow-lg"></div>
             </div>
             
             <div class="absolute bottom-[25%] right-[25%] color-item"
-                 onmouseenter="showColorInfo('大地岩石', '代表坚实、稳重与根基，象征高原的大地与岩石，寓意稳固与传承<br>染料：天然矿物', 'slate-900')">
+                 onmouseenter="showColorInfo('Earth Rock Brown', 'Stands for firmness, stability and foundation, symbolizing the plateau’s earth and rocks, representing steadiness and inheritance.<br>Dye: Natural minerals', 'slate-900')">
               <div class="w-8 h-8 bg-slate-900 rounded-full border-4 border-white cursor-pointer shadow-lg"></div>
             </div>
             
             <div class="absolute bottom-4 right-4 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full">
-              <p class="text-slate-700 text-sm font-medium">悬停色点查看色彩寓意</p>
+              <p class="text-slate-700 text-sm font-medium">Hover over the color dots to view their meanings</p>
             </div>
           </div>
           
           <div class="mt-6 text-center">
-            <p class="text-slate-600 text-sm">邦典六大经典色系：白、黄、红、蓝、绿、黑，取自高原天然万物</p>
+            <p class="text-slate-600 text-sm text-en">The six classic color series of Bangdian: white, yellow, red, blue, green, and black, derived from the natural elements of the plateau</p>
           </div>
         </div>
 
-        <!-- 文化内涵区域（新增Tab切换） -->
+        <!-- Cultural Connotation Area (Tab Switch) -->
         <div class="w-full lg:w-3/5">
           <div class="bg-white rounded-2xl p-8 shadow-xl h-full border border-slate-100">
             <div class="flex items-center mb-8">
@@ -134,302 +139,302 @@
                 <i class="fa fa-book text-white text-xl"></i>
               </div>
               <div>
-                <h3 class="text-2xl font-bold text-slate-800">邦典文化内涵</h3>
-                <p class="text-slate-500">藏族女性的生命传记与文化载体</p>
+                <h3 class="text-2xl font-bold text-slate-800">Bangdian Cultural Connotation</h3>
+                <p class="text-slate-500">Life Histories and Cultural Carriers of Xizang Women</p>
               </div>
             </div>
             
-            <!-- 四大文化内涵Tab切换 -->
+            <!-- Four Cultural Connotation Tabs -->
             <div class="flex flex-wrap gap-3 mb-6 border-b border-slate-200 pb-3">
               <div class="tab-item active px-4 py-2 rounded-lg cursor-pointer bg-indigo-800 text-white font-medium" data-index="0">
-                自然崇拜
+                Nature Worship
               </div>
               <div class="tab-item px-4 py-2 rounded-lg cursor-pointer bg-slate-100 text-slate-700 hover:bg-indigo-100" data-index="1">
-                宗教信仰
+                Religious Belief
               </div>
               <div class="tab-item px-4 py-2 rounded-lg cursor-pointer bg-slate-100 text-slate-700 hover:bg-indigo-100" data-index="2">
-                人生礼俗
+                Life Rituals
               </div>
               <div class="tab-item px-4 py-2 rounded-lg cursor-pointer bg-slate-100 text-slate-700 hover:bg-indigo-100" data-index="3">
-                族群文化
+                Ethnic Culture
               </div>
             </div>
             
-            <!-- Tab内容区域 -->
+            <!-- Tab Content Area -->
             <div class="culture-content">
-              <div class="content-item active text-slate-700 leading-relaxed">
-                取之于自然的色系与染料，体现人与自然共生的朴素生态观，六大色系对应高原万物，是藏族先民敬畏自然、顺应自然的生存智慧体现。
+              <div class="content-item active text-slate-700 leading-relaxed text-en">
+                Colors and dyes derived from nature embody the simple ecological view of harmony between humans and nature. The six color systems correspond to all things on the plateau, reflecting the survival wisdom of the ancient Xizang people who revered and adapted to nature.
                 <div class="flex flex-wrap gap-4 mt-4 pt-4 border-t border-slate-100">
                   <div class="flex items-center gap-2">
                     <div class="w-8 h-8 rounded-full bg-white border border-slate-300"></div>
                     <div class="text-sm">
-                      <div class="font-medium">白色</div>
-                      <div class="text-xs text-slate-500">→ 雪山、云朵</div>
+                      <div class="font-medium">White</div>
+                      <div class="text-xs text-slate-500">→ Snow mountains, clouds</div>
                     </div>
                   </div>
                   <div class="flex items-center gap-2">
                     <div class="w-8 h-8 rounded-full bg-amber-500"></div>
                     <div class="text-sm">
-                      <div class="font-medium">黄色</div>
-                      <div class="text-xs text-slate-500">→ 草原、金沙</div>
+                      <div class="font-medium">Yellow</div>
+                      <div class="text-xs text-slate-500">→ Grasslands, golden sand</div>
                     </div>
                   </div>
                   <div class="flex items-center gap-2">
                     <div class="w-8 h-8 rounded-full bg-rose-800"></div>
                     <div class="text-sm">
-                      <div class="font-medium">红色</div>
-                      <div class="text-xs text-slate-500">→ 火焰、暖阳</div>
+                      <div class="font-medium">Red</div>
+                      <div class="text-xs text-slate-500">→ Flames, warm sun</div>
                     </div>
                   </div>
                   <div class="flex items-center gap-2">
                     <div class="w-8 h-8 rounded-full bg-indigo-800"></div>
                     <div class="text-sm">
-                      <div class="font-medium">蓝色</div>
-                      <div class="text-xs text-slate-500">→ 天空、湖泊</div>
+                      <div class="font-medium">Blue</div>
+                      <div class="text-xs text-slate-500">→ Sky, lakes</div>
                     </div>
                   </div>
                   <div class="flex items-center gap-2">
                     <div class="w-8 h-8 rounded-full bg-emerald-700"></div>
                     <div class="text-sm">
-                      <div class="font-medium">绿色</div>
-                      <div class="text-xs text-slate-500">→ 森林、青稞</div>
+                      <div class="font-medium">Green</div>
+                      <div class="text-xs text-slate-500">→ Forests, highland barley</div>
                     </div>
                   </div>
                   <div class="flex items-center gap-2">
                     <div class="w-8 h-8 rounded-full bg-slate-900"></div>
                     <div class="text-sm">
-                      <div class="font-medium">黑色</div>
-                      <div class="text-xs text-slate-500">→ 大地、岩石</div>
+                      <div class="font-medium">Black</div>
+                      <div class="text-xs text-slate-500">→ Earth, rocks</div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="content-item hidden text-slate-700 leading-relaxed">
-                藏传佛教+本土苯教融合纹样，是行走的信仰徽章，吉祥八宝、雍仲纹、十相自在纹等承载着藏族人对精神世界的追求，寄托消灾祈福、福运绵长的愿望。邦典上的纹样或织或绣，将宗教信仰融入日常服饰，成为藏族人精神世界的外在表达。
+              <div class="content-item hidden text-slate-700 leading-relaxed text-en">
+                Patterns integrating Tibetan Buddhism and the indigenous Bon religion serve as wearable badges of faith. The Eight Auspicious Symbols, Yongzhong pattern, Tenfold Powerful Symbols and others carry the Xizang people’s pursuit of the spiritual world, expressing wishes for disaster elimination, blessing and lasting good fortune. Woven or embroidered on Bangdian, religious beliefs are integrated into daily attire, becoming an external expression of the Xizang people’s spiritual world.
               </div>
-              <div class="content-item hidden text-slate-700 leading-relaxed">
-                与藏族女性五个人生阶段深度绑定，是身份转变的仪式信物，从少女的简纹浅色系到老年的素纹深色系，每一个阶段都有专属的邦典特征。邦典的款式、色彩、纹样随人生阶段更迭，见证着藏族女性从成长、婚嫁到持家、传承的完整生命历程。
+              <div class="content-item hidden text-slate-700 leading-relaxed text-en">
+                Bangdian is deeply tied to the five life stages of Xizang women, acting as a ceremonial token of identity transformation. From simple patterns and light colors for young girls to plain patterns and dark colors for the elderly, each stage has its own distinctive Bangdian features. Its style, color and pattern change with life stages, witnessing the complete life journey of Xizang women from growth, marriage and family care to inheritance.
               </div>
-              <div class="content-item hidden text-slate-700 leading-relaxed">
-                手工纺线、天然染色、腰机织造的技艺手口相传延续千年，是族群文化认同与传承的纽带。在藏历新年、锅庄舞会等族群活动中，身着邦典的女性是最鲜明的文化标识；如今邦典更走进博物馆、登上文化展演舞台，成为向外传递藏族文化的重要载体，维系着族群的历史记忆。
+              <div class="content-item hidden text-slate-700 leading-relaxed text-en">
+                The crafts of hand-spinning, natural dyeing and waist-loom weaving have been passed down orally for thousands of years, serving as a bond for ethnic cultural identity and inheritance. During ethnic events such as the Xizang New Year and Guozhuang dance, women wearing Bangdian are the most distinctive cultural symbol. Today, Bangdian has entered museums and cultural stages, becoming an important carrier for spreading Xizang culture and preserving the ethnic group’s historical memory.
               </div>
             </div>
             
             <div class="mt-8 pt-6 border-t border-slate-100">
-              <p class="text-slate-700 italic text-center">
-                "邦典，是藏族女性腰间的彩虹，更是藏族女性的生命传记。"
+              <p class="text-slate-700 italic text-center text-en">
+                "Bangdian is the rainbow around Xizang women's waists, and even more, the biography of their lives."
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 人生阶段与邦典绑定 -->
+      <!-- Bangdian & Life Stages Binding -->
       <div class="mb-16">
         <div class="text-center mb-10">
           <div class="inline-flex items-center justify-center gap-3 mb-4">
             <div class="w-10 h-10 rounded-full bg-gradient-to-r from-rose-600 to-amber-500 flex items-center justify-center">
               <i class="fa fa-female text-white"></i>
             </div>
-            <h3 class="text-2xl font-bold text-slate-800">邦典：藏族女性的一生成长见证</h3>
+            <h3 class="text-2xl font-bold text-slate-800">Bangdian: A Witness to the Growth of Xizang Women’s Life</h3>
             <div class="w-10 h-10 rounded-full bg-gradient-to-r from-amber-500 to-emerald-600 flex items-center justify-center">
               <i class="fa fa-life-ring text-white"></i>
             </div>
           </div>
-          <p class="text-slate-600 max-w-3xl mx-auto">邦典的款式、色彩随人生阶段更迭，见证藏族女性完整的生命历程</p>
+          <p class="text-slate-600 max-w-3xl mx-auto text-en">The style and color of Bangdian change with life stages, witnessing the complete life journey of Xizang women</p>
         </div>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           <div class="stage-item bg-white rounded-xl p-6 shadow-lg border-t-4 border-indigo-500">
-            <div class="text-lg font-bold text-indigo-800 mb-3">少女</div>
-            <div class="text-slate-700 text-sm mb-3">简纹浅色系邦典，标志着青春期的启蒙，是成长路上的重要仪式。</div>
+            <div class="text-lg font-bold text-indigo-800 mb-3">Young Girl</div>
+            <div class="text-slate-700 text-sm mb-3 text-en">Bangdian with simple patterns and light colors, marking the enlightenment of adolescence and serving as an important ritual on the path of growth.</div>
             <div class="text-sm">
-              <span class="font-medium text-slate-800">推荐纹样：</span>
-              <span class="text-indigo-700">吉祥结</span>
+              <span class="font-medium text-slate-800">Recommended Patterns:</span>
+              <span class="text-indigo-700">Auspicious Knot</span>
             </div>
           </div>
           
           <div class="stage-item bg-white rounded-xl p-6 shadow-lg border-t-4 border-rose-500">
-            <div class="text-lg font-bold text-rose-800 mb-3">成年礼</div>
-            <div class="text-slate-700 text-sm mb-3">彩纹系邦典，宣告获得社交资格，象征着步入成年的身份转变。</div>
+            <div class="text-lg font-bold text-rose-800 mb-3">Coming-of-Age Ceremony</div>
+            <div class="text-slate-700 text-sm mb-3 text-en">Bangdian with colorful patterns, announcing the acquisition of social qualifications and symbolizing the identity transformation into adulthood.</div>
             <div class="text-sm">
-              <span class="font-medium text-slate-800">推荐纹样：</span>
-              <span class="text-rose-700">吉祥结、妙莲、金鱼</span>
+              <span class="font-medium text-slate-800">Recommended Patterns:</span>
+              <span class="text-rose-700">Auspicious Knot, Wonderful Lotus, Golden Fish</span>
             </div>
           </div>
           
           <div class="stage-item bg-white rounded-xl p-6 shadow-lg border-t-4 border-amber-500">
-            <div class="text-lg font-bold text-amber-800 mb-3">新婚</div>
-            <div class="text-slate-700 text-sm mb-3">繁纹华彩系邦典，承载家庭责任与婚姻祈愿，是对新生活的美好期许。</div>
+            <div class="text-lg font-bold text-amber-800 mb-3">Newly Married</div>
+            <div class="text-slate-700 text-sm mb-3 text-en">Bangdian with complex patterns and gorgeous colors, carrying family responsibilities and marital wishes, and embodying good expectations for a new life.</div>
             <div class="text-sm">
-              <span class="font-medium text-slate-800">推荐纹样：</span>
-              <span class="text-amber-700">吉祥结、妙莲、宝伞、宝瓶、金鱼</span>
+              <span class="font-medium text-slate-800">Recommended Patterns:</span>
+              <span class="text-amber-700">Auspicious Knot, Wonderful Lotus, Precious Umbrella, Precious Vase, Golden Fish</span>
             </div>
           </div>
           
           <div class="stage-item bg-white rounded-xl p-6 shadow-lg border-t-4 border-emerald-500">
-            <div class="text-lg font-bold text-emerald-800 mb-3">持家立业</div>
-            <div class="text-slate-700 text-sm mb-3">沉稳色系邦典，彰显担当与付出，寓意家庭安康、万事顺遂。</div>
+            <div class="text-lg font-bold text-emerald-800 mb-3">Running a Family</div>
+            <div class="text-slate-700 text-sm mb-3 text-en">Bangdian with calm colors, highlighting responsibility and dedication, symbolizing family well-being and smoothness in all things.</div>
             <div class="text-sm">
-              <span class="font-medium text-slate-800">推荐纹样：</span>
-              <span class="text-emerald-700">宝瓶、雍仲纹、十相自在</span>
+              <span class="font-medium text-slate-800">Recommended Patterns:</span>
+              <span class="text-emerald-700">Precious Vase, Yongzhong Pattern, Tenfold Powerful Symbols</span>
             </div>
           </div>
           
           <div class="stage-item bg-white rounded-xl p-6 shadow-lg border-t-4 border-slate-600">
-            <div class="text-lg font-bold text-slate-800 mb-3">老年</div>
-            <div class="text-slate-700 text-sm mb-3">素纹深色系邦典，是岁月沉淀的象征，更是文化传承的纽带。</div>
+            <div class="text-lg font-bold text-slate-800 mb-3">Elderly</div>
+            <div class="text-slate-700 text-sm mb-3 text-en">Bangdian with plain patterns and dark colors, a symbol of the precipitation of years and even a bond of cultural inheritance.</div>
             <div class="text-sm">
-              <span class="font-medium text-slate-800">推荐纹样：</span>
-              <span class="text-slate-700">宝瓶、雍仲纹</span>
+              <span class="font-medium text-slate-800">Recommended Patterns:</span>
+              <span class="text-slate-700">Precious Vase, Yongzhong Pattern</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 优化：邦典纹样的生命意义板块 -->
+      <!-- The Life Meaning of Bangdian Patterns -->
       <div class="mb-16">
         <div class="text-center mb-10">
           <div class="inline-flex items-center justify-center gap-3 mb-4">
             <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-700 to-indigo-700 flex items-center justify-center">
               <i class="fa fa-heartbeat text-white"></i>
             </div>
-            <h3 class="text-2xl font-bold text-slate-800">邦典纹样的生命意义</h3>
+            <h3 class="text-2xl font-bold text-slate-800">The Life Meaning of Bangdian Patterns</h3>
             <div class="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-700 to-rose-700 flex items-center justify-center">
               <i class="fa fa-lightbulb-o text-white"></i>
             </div>
           </div>
-          <p class="text-slate-600 max-w-3xl mx-auto">藏民族对生命本质、生存状态与精神信仰的具象化表达，承载贯穿生命全程的哲思与祈愿</p>
+          <p class="text-slate-600 max-w-3xl mx-auto text-en">It is a concrete expression of the Tibetan people’s understanding of the essence of life, living conditions and spiritual beliefs, carrying the philosophy and wishes throughout the entire life.</p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- 第一层：对生命本源的敬畏与认同 -->
+          <!-- Level 1: Awe and Recognition of the Origin of Life -->
           <div class="life-meaning-card bg-white rounded-xl p-7 shadow-lg border-top-4 border-indigo-600">
             <div class="flex items-center mb-6">
               <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center mr-4">
                 <i class="fa fa-mountain text-indigo-800 text-xl"></i>
               </div>
               <div>
-                <span class="inline-block px-3 py-1 bg-indigo-50 text-indigo-800 text-xs font-medium rounded-full mb-1">第一层</span>
-                <h4 class="font-bold text-xl text-slate-800">对生命本源的敬畏与认同</h4>
+                <span class="inline-block px-3 py-1 bg-indigo-50 text-indigo-800 text-xs font-medium rounded-full mb-1">Level 1</span>
+                <h4 class="font-bold text-xl text-slate-800">Awe & Recognition of Life Origin</h4>
               </div>
             </div>
             
-            <div class="text-slate-700 leading-relaxed text-base space-y-3">
-              <p>邦典纹样的灵感根植于高原的自然生命与原始信仰，是藏民族对生命本源的敬畏表达：</p>
+            <div class="text-slate-700 leading-relaxed text-base space-y-3 text-en">
+              <p>The inspiration for Bangdian patterns is rooted in the natural life and primitive beliefs of the plateau, expressing the Tibetan people’s awe for the origin of life:</p>
               <ul class="space-y-2 pl-5">
                 <li class="flex items-start">
                   <i class="fa fa-angle-right text-indigo-600 mt-1 mr-2"></i>
-                  <span><span class="font-medium text-indigo-800">雍仲纹</span>：形似旋转的太阳与火焰，象征生命的永恒轮回与不竭活力</span>
+                  <span><span class="font-medium text-indigo-800">Yongzhong Pattern</span>: Shaped like a rotating sun and flame, symbolizing the eternal reincarnation of life and endless vitality</span>
                 </li>
                 <li class="flex items-start">
                   <i class="fa fa-angle-right text-indigo-600 mt-1 mr-2"></i>
-                  <span><span class="font-medium text-indigo-800">十字纹</span>：源自太阳崇拜，寓意阳光滋养万物、生命蓬勃生长</span>
+                  <span><span class="font-medium text-indigo-800">Cross Pattern</span>: Derived from sun worship, symbolizing that sunlight nourishes all things and life grows vigorously</span>
                 </li>
                 <li class="flex items-start">
                   <i class="fa fa-angle-right text-indigo-600 mt-1 mr-2"></i>
-                  <span><span class="font-medium text-indigo-800">回旋纹</span>：模仿水流云絮轨迹，象征生命如自然万物生生不息</span>
+                  <span><span class="font-medium text-indigo-800">Spiral Pattern</span>: Imitating the trajectory of water flow and clouds, symbolizing that life is endless like all things in nature</span>
                 </li>
               </ul>
-              <p class="text-sm text-slate-600 italic mt-2">传递"人与自然同生共荣"的生命认知</p>
+              <p class="text-sm text-slate-600 italic mt-2">Conveying the life cognition of "coexistence and prosperity between humans and nature"</p>
             </div>
           </div>
 
-          <!-- 第二层：对生命历程的守护与祈愿 -->
+          <!-- Level 2: Guardianship and Blessings for the Life Journey -->
           <div class="life-meaning-card bg-white rounded-xl p-7 shadow-lg border-top-4 border-rose-600">
             <div class="flex items-center mb-6">
               <div class="w-12 h-12 rounded-full bg-rose-100 flex items-center justify-center mr-4">
                 <i class="fa fa-shield text-rose-800 text-xl"></i>
               </div>
               <div>
-                <span class="inline-block px-3 py-1 bg-rose-50 text-rose-800 text-xs font-medium rounded-full mb-1">第二层</span>
-                <h4 class="font-bold text-xl text-slate-800">对生命历程的守护与祈愿</h4>
+                <span class="inline-block px-3 py-1 bg-rose-50 text-rose-800 text-xs font-medium rounded-full mb-1">Level 2</span>
+                <h4 class="font-bold text-xl text-slate-800">Guardianship & Blessings for Life Journey</h4>
               </div>
             </div>
             
-            <div class="text-slate-700 leading-relaxed text-base space-y-3">
-              <p>不同纹样守护生命不同阶段，成为藏族女性一生的"精神护身符"：</p>
+            <div class="text-slate-700 leading-relaxed text-base space-y-3 text-en">
+              <p>Different patterns guard different stages of life, becoming 'spiritual amulets' for Tibetan women throughout their lives:</p>
               <ul class="space-y-2 pl-5">
                 <li class="flex items-start">
                   <i class="fa fa-angle-right text-rose-600 mt-1 mr-2"></i>
-                  <span><span class="font-medium text-rose-800">少女时期</span>：简版吉祥结，祈愿成长顺遂和睦</span>
+                  <span><span class="font-medium text-rose-800">Maidenhood</span>: A simplified auspicious knot, praying for smooth and harmonious growth</span>
                 </li>
                 <li class="flex items-start">
                   <i class="fa fa-angle-right text-rose-600 mt-1 mr-2"></i>
-                  <span><span class="font-medium text-rose-800">成年/婚嫁</span>：吉祥八宝纹样，寄托婚姻美满、家庭富足</span>
+                  <span><span class="font-medium text-rose-800">Adulthood/Marriage</span>: The Eight Auspicious Symbols pattern, embodying wishes for a happy marriage and a prosperous family</span>
                 </li>
                 <li class="flex items-start">
                   <i class="fa fa-angle-right text-rose-600 mt-1 mr-2"></i>
-                  <span><span class="font-medium text-rose-800">持家阶段</span>：十相自在纹，寓意家庭安康、生命与宇宙和谐</span>
+                  <span><span class="font-medium text-rose-800">Family-Running Stage</span>: The Tenfold Powerful Symbols (Kalachakra) pattern, symbolizing family well-being and harmony between life and the universe</span>
                 </li>
                 <li class="flex items-start">
                   <i class="fa fa-angle-right text-rose-600 mt-1 mr-2"></i>
-                  <span><span class="font-medium text-rose-800">老年阶段</span>：古朴宝瓶纹，象征生命圆满、庇佑后代</span>
+                  <span><span class="font-medium text-rose-800">Elderly Stage</span>: The simple and primitive Precious Vase pattern, representing a fulfilled life and blessing for future generations</span>
                 </li>
               </ul>
-              <p class="text-sm text-slate-600 italic mt-2">每个纹样都承载着对生命的美好祈愿</p>
+              <p class="text-sm text-slate-600 italic mt-2">Every pattern carries beautiful wishes for life</p>
             </div>
           </div>
 
-          <!-- 第三层：对生命传承的承载与延续 -->
+          <!-- Level 3: Inheritance and Continuity of Life -->
           <div class="life-meaning-card bg-white rounded-xl p-7 shadow-lg border-top-4 border-emerald-600">
             <div class="flex items-center mb-6">
               <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mr-4">
                 <i class="fa fa-handshake-o text-emerald-800 text-xl"></i>
               </div>
               <div>
-                <span class="inline-block px-3 py-1 bg-emerald-50 text-emerald-800 text-xs font-medium rounded-full mb-1">第三层</span>
-                <h4 class="font-bold text-xl text-slate-800">对生命传承的承载与延续</h4>
+                <span class="inline-block px-3 py-1 bg-emerald-50 text-emerald-800 text-xs font-medium rounded-full mb-1">Level 3</span>
+                <h4 class="font-bold text-xl text-slate-800">Inheritance & Continuity of Life</h4>
               </div>
             </div>
             
-            <div class="text-slate-700 leading-relaxed text-base space-y-3">
-              <p>邦典纹样是连接过去与未来的生命纽带，承载文化与精神的代际传递：</p>
+            <div class="text-slate-700 leading-relaxed text-base space-y-3 text-en">
+              <p>Bangdian patterns are the life link connecting the past and the future, carrying the intergenerational transmission of culture and spirit:</p>
               <ul class="space-y-2 pl-5">
                 <li class="flex items-start">
                   <i class="fa fa-angle-right text-emerald-600 mt-1 mr-2"></i>
-                  <span>织造纹样时，将祖辈流传的故事与信仰织入经纬</span>
+                  <span>When weaving patterns, weave the stories and beliefs passed down from ancestors into the warp and weft</span>
                 </li>
                 <li class="flex items-start">
                   <i class="fa fa-angle-right text-emerald-600 mt-1 mr-2"></i>
-                  <span>讲解纹样寓意，传递藏民族的生命观与价值观</span>
+                  <span>Explain the meanings of patterns to pass on the Xizang people’s outlook on life and values</span>
                 </li>
                 <li class="flex items-start">
                   <i class="fa fa-angle-right text-emerald-600 mt-1 mr-2"></i>
-                  <span>纹样代代相传，延续生命智慧与文化根脉</span>
+                  <span>Patterns are passed down from generation to generation, continuing the wisdom of life and the root of culture</span>
                 </li>
               </ul>
-              <p class="text-sm text-slate-600 italic mt-2">让每一代藏族人都能从纹样中找到精神归属</p>
+              <p class="text-sm text-slate-600 italic mt-2">Let every generation of Xizang people find their spiritual belonging in the patterns</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 纹样寓意部分 -->
+      <!-- 12 Patterns' Exclusive Cultural Meanings -->
       <div class="mb-16">
         <div class="text-center mb-10">
           <div class="inline-flex items-center justify-center gap-3 mb-4">
             <div class="w-10 h-10 rounded-full bg-gradient-to-r from-amber-500 to-rose-600 flex items-center justify-center">
               <i class="fa fa-star text-white"></i>
             </div>
-            <h3 class="text-2xl font-bold text-slate-800">12种纹样专属文化寓意</h3>
+            <h3 class="text-2xl font-bold text-slate-800">The Exclusive Cultural Meanings of 12 Patterns</h3>
             <div class="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-700 to-emerald-600 flex items-center justify-center">
               <i class="fa fa-snowflake-o text-white"></i>
             </div>
           </div>
-          <p class="text-slate-600 max-w-3xl mx-auto">邦典上的纹样是藏传佛教与本土苯教文化融合的视觉符号，承载着消灾祈福、福运绵长的愿望</p>
+          <p class="text-slate-600 max-w-3xl mx-auto text-en">The patterns on Bangdian are visual symbols integrating Tibetan Buddhism and indigenous Bon religion, carrying wishes for disaster elimination, blessing and lasting good fortune</p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- 第1-4个纹样 -->
+          <!-- Pattern 1-12 -->
           <div class="pattern-card bg-white rounded-xl p-5 shadow-lg border-t-4 border-indigo-600">
             <div class="flex items-start mb-3">
               <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3 flex-shrink-0">
                 <span class="text-indigo-800 font-bold">1</span>
               </div>
               <div>
-                <h4 class="font-bold text-slate-800 text-lg mb-1">吉祥结</h4>
-                <p class="text-slate-700 text-sm">两个相连的万字字徽，象征团结、和睦、祥和，是藏族女性成长路上的顺遂祈愿。</p>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">Auspicious Knot</h4>
+                <p class="text-slate-700 text-sm text-en">Two connected swastika emblems, symbolizing unity, harmony and peace, and embodying wishes for a smooth journey for Xizang women’s growth.</p>
               </div>
             </div>
           </div>
@@ -440,8 +445,8 @@
                 <span class="text-indigo-800 font-bold">2</span>
               </div>
               <div>
-                <h4 class="font-bold text-slate-800 text-lg mb-1">妙莲</h4>
-                <p class="text-slate-700 text-sm">开敷绽放、花果俱全的莲花图案，寓意高贵圣洁，是对婚姻与品格的美好祈愿。</p>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">Wonderful Lotus</h4>
+                <p class="text-slate-700 text-sm text-en">A fully bloomed lotus pattern with flowers and fruits, symbolizing nobility and purity, and embodying good wishes for marriage and character.</p>
               </div>
             </div>
           </div>
@@ -452,8 +457,8 @@
                 <span class="text-indigo-800 font-bold">3</span>
               </div>
               <div>
-                <h4 class="font-bold text-slate-800 text-lg mb-1">宝伞</h4>
-                <p class="text-slate-700 text-sm">寓能消除众生的贪、嗔、痴、慢、疑五毒，象征拯救苦难，守护生命历程的安宁。</p>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">Precious Umbrella</h4>
+                <p class="text-slate-700 text-sm text-en">It is meant to eliminate the five poisons of greed, anger, ignorance, arrogance and doubt among all beings, symbolizing saving suffering and guarding the peace of the life journey.</p>
               </div>
             </div>
           </div>
@@ -464,8 +469,8 @@
                 <span class="text-amber-800 font-bold">4</span>
               </div>
               <div>
-                <h4 class="font-bold text-slate-800 text-lg mb-1">右旋海螺</h4>
-                <p class="text-slate-700 text-sm">常为白色，象征佛法之音遍布四方，传递生命与信仰共生的精神内核。</p>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">Right-Turning Conch</h4>
+                <p class="text-slate-700 text-sm text-en">Usually white, symbolizing that the sound of Buddhism spreads everywhere, conveying the spiritual core of coexistence between life and faith.</p>
               </div>
             </div>
           </div>
@@ -476,8 +481,8 @@
                 <span class="text-amber-800 font-bold">5</span>
               </div>
               <div>
-                <h4 class="font-bold text-slate-800 text-lg mb-1">金轮</h4>
-                <p class="text-slate-700 text-sm">象征佛法无边，运转不息，寓意生命如法轮般生生不息、循环向前。</p>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">Golden Wheel</h4>
+                <p class="text-slate-700 text-sm text-en">Symbolizing the boundlessness and unceasing operation of Buddhism, meaning life is endless and progresses in a cycle like the Dharma wheel.</p>
               </div>
             </div>
           </div>
@@ -488,8 +493,8 @@
                 <span class="text-amber-800 font-bold">6</span>
               </div>
               <div>
-                <h4 class="font-bold text-slate-800 text-lg mb-1">金幢</h4>
-                <p class="text-slate-700 text-sm">象征佛法无上，坚固不衰，能获最终解脱，是对生命终极圆满的祈愿。</p>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">Golden Banner</h4>
+                <p class="text-slate-700 text-sm text-en">Symbolizing the supremacy and unshakable nature of Buddhism, enabling ultimate liberation, and embodying wishes for the ultimate perfection of life.</p>
               </div>
             </div>
           </div>
@@ -500,8 +505,8 @@
                 <span class="text-rose-800 font-bold">7</span>
               </div>
               <div>
-                <h4 class="font-bold text-slate-800 text-lg mb-1">宝瓶</h4>
-                <p class="text-slate-700 text-sm">聚不竭的万千甘露，包罗善业智慧，可满足众生圆满正觉的愿望，是生命福泽绵长的象征。</p>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">Precious Vase</h4>
+                <p class="text-slate-700 text-sm text-en">Gathers endless nectar, embraces good deeds and wisdom, can fulfill all beings’ wishes for complete enlightenment, and is a symbol of long-lasting blessings in life.</p>
               </div>
             </div>
           </div>
@@ -512,8 +517,8 @@
                 <span class="text-rose-800 font-bold">8</span>
               </div>
               <div>
-                <h4 class="font-bold text-slate-800 text-lg mb-1">金鱼</h4>
-                <p class="text-slate-700 text-sm">象征解脱的境地，又有复苏、永生、再生等意，代表生命挣脱束缚、获得自在。</p>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">Golden Fish</h4>
+                <p class="text-slate-700 text-sm text-en">Symbolizes the state of liberation, and also means recovery, eternal life and rebirth, representing life breaking free from constraints and gaining freedom.</p>
               </div>
             </div>
           </div>
@@ -524,8 +529,8 @@
                 <span class="text-emerald-800 font-bold">9</span>
               </div>
               <div>
-                <h4 class="font-bold text-slate-800 text-lg mb-1">雍仲纹</h4>
-                <p class="text-slate-700 text-sm">即"卐"字纹，被认为是火和太阳的象征，代表永恒生命力与轮回，是对生命本源的敬畏表达。</p>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">Yongzhong Pattern</h4>
+                <p class="text-slate-700 text-sm text-en">Also known as the swastika pattern, it is regarded as a symbol of fire and the sun, representing eternal life force and reincarnation, and expressing awe for the origin of life.</p>
               </div>
             </div>
           </div>
@@ -536,8 +541,8 @@
                 <span class="text-emerald-800 font-bold">10</span>
               </div>
               <div>
-                <h4 class="font-bold text-slate-800 text-lg mb-1">十字纹</h4>
-                <p class="text-slate-700 text-sm">在藏族中代表太阳，有富足、美满、生命蓬勃生长等含义，是对自然滋养生命的感恩。</p>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">Cross Pattern</h4>
+                <p class="text-slate-700 text-sm text-en">Represents the sun in Xizang culture, with meanings of prosperity, completeness and vigorous growth of life, expressing gratitude for nature nourishing life.</p>
               </div>
             </div>
           </div>
@@ -548,8 +553,8 @@
                 <span class="text-purple-800 font-bold">11</span>
               </div>
               <div>
-                <h4 class="font-bold text-slate-800 text-lg mb-1">回旋纹</h4>
-                <p class="text-slate-700 text-sm">也叫狗鼻纹或唐草纹，形似狗鼻，旋转的花叶富有韵律感，象征生命如自然万物般生生不息。</p>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">Spiral Pattern</h4>
+                <p class="text-slate-700 text-sm text-en">Also known as Dog Nose Pattern or Tang Grass Pattern, it looks like a dog’s nose, with rhythmic rotating flowers and leaves, symbolizing that life is endless like all things in nature.</p>
               </div>
             </div>
           </div>
@@ -560,70 +565,70 @@
                 <span class="text-purple-800 font-bold">12</span>
               </div>
               <div>
-                <h4 class="font-bold text-slate-800 text-lg mb-1">十相自在</h4>
-                <p class="text-slate-700 text-sm">由时轮佛心咒七个梵文字和三个附加符号组成，象征宇宙和生命合一、家庭安康，守护持家阶段的生命和谐。</p>
+                <h4 class="font-bold text-slate-800 text-lg mb-1">Tenfold Powerful Symbols</h4>
+                <p class="text-slate-700 text-sm text-en">Composed of seven Sanskrit characters of the Kalachakra Mantra and three additional symbols, it symbolizes the unity of the universe and life, family well-being, and guards the life harmony in the family-running stage.</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 底部返回主页按钮 -->
+      <!-- Bottom Back to Homepage Button -->
       <div class="text-center">
         <a href="index.html" class="px-10 py-4 bg-gradient-to-r from-indigo-800 to-indigo-700 text-white rounded-full font-semibold hover:shadow-xl transition-all duration-300 inline-flex items-center gap-3 shadow-lg hover:shadow-indigo-200">
-          <i class="fa fa-home"></i> 返回主页
+          <i class="fa fa-home"></i> Return to Homepage
         </a>
       </div>
     </div>
   </section>
 
   <script>
-    // 显示颜色信息的函数
+    // Show Color Info Function
     function showColorInfo(title, description, colorClass) {
       const centralDisplay = document.getElementById('central-display');
       const displayContent = centralDisplay.querySelector('div');
       
-      // 设置内容
+      // Set Content
       displayContent.innerHTML = `
         <h4 class="font-bold text-slate-800 text-xl mb-2">${title}</h4>
-        <p class="text-slate-700">${description}</p>
+        <p class="text-slate-700 text-en">${description}</p>
         <div class="mt-3">
           <div class="w-8 h-8 rounded-full bg-${colorClass} mx-auto border-2 border-white shadow-md"></div>
         </div>
       `;
       
-      // 显示内容
+      // Show Content
       displayContent.classList.remove('opacity-0');
       displayContent.classList.add('opacity-100');
     }
     
-    // 鼠标离开图片区域时重置显示
+    // Reset Display when Mouse Leaves Image Area
     document.querySelector('.rounded-2xl.overflow-hidden').addEventListener('mouseleave', function() {
       const centralDisplay = document.getElementById('central-display');
       const displayContent = centralDisplay.querySelector('div');
       
       displayContent.innerHTML = `
-        <h4 class="font-bold text-slate-800 text-xl mb-2">悬停色点查看色彩寓意</h4>
-        <p class="text-slate-700">将鼠标悬停在色点上，了解每个色彩的深刻含义</p>
+        <h4 class="font-bold text-slate-800 text-xl mb-2">Hover over the color dots</h4>
+        <p class="text-slate-700 text-en">Hover over the color dots to view their meanings</p>
       `;
       
       displayContent.classList.remove('opacity-100');
       displayContent.classList.add('opacity-0');
     });
     
-    // 页面加载时初始化
+    // Initialization on Page Load
     document.addEventListener('DOMContentLoaded', function() {
       const centralDisplay = document.getElementById('central-display');
       const displayContent = centralDisplay.querySelector('div');
       displayContent.classList.add('opacity-100');
 
-      // Tab切换交互逻辑
+      // Tab Switch Interaction
       const tabItems = document.querySelectorAll('.tab-item');
       const contentItems = document.querySelectorAll('.content-item');
 
       tabItems.forEach(item => {
         item.addEventListener('click', () => {
-          // 移除所有active类并重置样式
+          // Remove all active classes and reset styles
           tabItems.forEach(tab => {
             tab.classList.remove('active', 'bg-indigo-800', 'text-white');
             tab.classList.add('bg-slate-100', 'text-slate-700');
@@ -631,7 +636,7 @@
           contentItems.forEach(content => content.classList.remove('active'));
           contentItems.forEach(content => content.classList.add('hidden'));
           
-          // 添加当前active类
+          // Add active class to current tab
           const index = item.dataset.index;
           item.classList.add('active', 'bg-indigo-800', 'text-white');
           item.classList.remove('bg-slate-100', 'text-slate-700');
