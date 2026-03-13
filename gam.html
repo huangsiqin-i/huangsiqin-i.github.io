@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>藏族邦典：人生历程的文化印记</title>
+    <title>Tibetan Bangdian: Cultural Imprints of a Lifetime</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
         }
         /* 藏式主题配色体系 */
         :root {
@@ -104,11 +104,11 @@
             }
         }
 
-        /* 头部区域样式 */
+        /* 头部区域样式 - 优化英文排版 */
         .header {
             text-align: center;
             margin-bottom: 50px;
-            padding: 40px 0;
+            padding: 40px 20px;
             position: relative;
             background-color: var(--bg-card);
             border-radius: 20px;
@@ -139,13 +139,14 @@
         }
         .header h1 {
             color: var(--primary);
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 25px;
             font-weight: 700;
             letter-spacing: 0.8px;
             position: relative;
-            padding: 0 20px;
+            padding: 0 10px;
             text-shadow: 0 2px 4px rgba(42, 75, 124, 0.1);
+            line-height: 1.3;
         }
         .header h1 span {
             background: var(--gradient-accent);
@@ -154,12 +155,12 @@
             color: transparent;
         }
         .header-intro {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto 20px;
             color: var(--text-main);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 1.8;
-            padding: 0 20px;
+            padding: 0 10px;
             text-align: justify;
         }
         .header-tip {
@@ -167,10 +168,26 @@
             font-size: 1.05rem;
             font-style: italic;
             margin-top: 15px;
-            padding: 10px;
+            padding: 12px 20px;
             background-color: var(--primary-light);
             border-radius: 10px;
             display: inline-block;
+            white-space: nowrap;
+            max-width: 90%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .header-intro {
+                font-size: 1rem;
+            }
+            .header-tip {
+                font-size: 0.95rem;
+                padding: 10px 15px;
+            }
         }
 
         /* 游戏按钮样式 */
@@ -195,6 +212,7 @@
             border-bottom-right-radius: 30px;
             box-shadow: 0 0 15px rgba(42, 75, 124, 0.2);
             font-weight: 600;
+            white-space: nowrap;
         }
         .game-btn:hover {
             transform: translateY(-4px);
@@ -209,10 +227,11 @@
                 padding: 14px 35px;
                 font-size: 1rem;
                 width: 90%;
+                justify-content: center;
             }
         }
 
-        /* 游戏弹窗样式 */
+        /* 游戏弹窗样式 - 优化英文适配 */
         .game-modal {
             position: fixed;
             top: 0;
@@ -235,7 +254,7 @@
         }
         .modal-content {
             background-color: var(--bg-card);
-            padding: 45px;
+            padding: 45px 30px;
             border-radius: 20px;
             max-width: 500px;
             width: 90%;
@@ -260,6 +279,7 @@
             font-weight: 600;
             position: relative;
             padding-bottom: 10px;
+            line-height: 1.3;
         }
         .modal-title::after {
             content: "";
@@ -287,6 +307,7 @@
             border-top-left-radius: 20px;
             border-bottom-right-radius: 20px;
             box-shadow: 0 0 10px rgba(42, 75, 124, 0.2);
+            white-space: nowrap;
         }
         .game-link:hover {
             transform: translateY(-3px);
@@ -312,8 +333,17 @@
             border-color: var(--primary);
             box-shadow: 0 0 10px rgba(42, 75, 124, 0.2);
         }
+        @media (max-width: 480px) {
+            .modal-title {
+                font-size: 1.6rem;
+            }
+            .game-link {
+                padding: 14px 30px;
+                width: 90%;
+            }
+        }
 
-        /* 人物卡片：核心修改 - 缩小图片显示尺寸 */
+        /* 人物卡片：优化英文名称显示 */
         .characters-grid {
             display: flex;
             justify-content: center;
@@ -323,7 +353,6 @@
             margin-bottom: 80px;
             padding: 0 10px;
         }
-        /* 卡片尺寸调整 - 整体缩小，降低图片占比 */
         .character-card {
             flex: 0 0 calc(20% - 16px);
             max-width: calc(20% - 16px);
@@ -338,10 +367,9 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            /* 核心修改：降低卡片整体高度，从原来的min-height: 600px调整 */
-            aspect-ratio: 900 / 1200; /* 调整比例，缩短高度 */
+            aspect-ratio: 900 / 1200;
             height: auto;
-            min-height: 350px; /* 大幅降低最小高度 */
+            min-height: 380px;
         }
         .character-card::before {
             content: "";
@@ -365,10 +393,9 @@
             box-shadow: 0 0 0 5px var(--primary-light);
             border-top: 4px solid var(--accent-deep);
         }
-        /* 图片容器：核心修改 - 缩小图片显示区域 */
         .character-img {
             width: 100%;
-            height: calc(100% - 40px); /* 预留更多文字区域 */
+            height: calc(100% - 50px);
             flex: 1;
             overflow: hidden;
             display: flex;
@@ -379,13 +406,11 @@
             background-size: 40px;
             border-radius: 18px 18px 0 0;
             position: relative;
-            /* 新增：限制图片容器最大高度 */
-            max-height: 300px;
+            max-height: 330px;
         }
-        /* 图片样式优化 - 保证缩小后清晰 */
         .character-img img {
-            width: 90%; /* 核心修改：图片宽度从100%改为90%，缩小显示 */
-            height: 90%; /* 核心修改：图片高度从100%改为90%，缩小显示 */
+            width: 90%;
+            height: 90%;
             object-fit: contain;
             object-position: center;
             transition: transform 0.5s ease, opacity 0.8s ease;
@@ -397,7 +422,7 @@
             opacity: 1;
         }
         .character-img::after {
-            content: "加载中...";
+            content: "Loading...";
             position: absolute;
             color: var(--primary);
             font-size: 0.9rem;
@@ -406,32 +431,75 @@
         .character-card:hover .character-img img {
             transform: scale(1.02);
         }
-        /* 文字区域：扩大高度，提升文字可见性 */
+        /* 优化英文名称行高和换行 */
         .character-name {
-            padding: 8px 4px;
+            padding: 10px 6px;
             text-align: center;
             color: var(--primary);
             font-weight: 600;
-            font-size: 0.9rem; /* 放大字体 */
-            line-height: 1.4;
+            font-size: 0.9rem;
+            line-height: 1.5;
             background: linear-gradient(to right, var(--primary-light), var(--accent-light));
             position: relative;
             z-index: 2;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            height: 40px; /* 增加文字区域高度 */
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
+            word-wrap: break-word;
+        }
+        /* 卡片响应式优化 */
+        @media (max-width: 1400px) {
+            .character-card {
+                flex: 0 0 calc(25% - 15px);
+                max-width: calc(25% - 15px);
+                min-height: 350px;
+            }
+        }
+        @media (max-width: 1024px) {
+            .character-card {
+                flex: 0 0 calc(33.33% - 13px);
+                max-width: calc(33.33% - 13px);
+                min-height: 320px;
+            }
+        }
+        @media (max-width: 768px) {
+            .character-card {
+                flex: 0 0 calc(50% - 10px);
+                max-width: calc(50% - 10px);
+                min-height: 300px;
+            }
+            .character-img img {
+                width: 90%;
+                height: 90%;
+            }
+            .character-name {
+                font-size: 0.85rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .character-card {
+                flex: 0 0 100%;
+                max-width: 100%;
+                min-height: 280px;
+            }
+            .character-name {
+                font-size: 0.95rem;
+                padding: 8px 5px;
+                height: 55px;
+            }
+            .character-img img {
+                width: 85%;
+                height: 85%;
+            }
         }
 
-        /* 故事详情样式 */
+        /* 故事详情样式 - 优化英文排版 */
         .story-details {
             max-width: 1200px; 
             margin: 0 auto;
             background-color: var(--bg-card);
-            padding: 50px;
+            padding: 50px 40px;
             border-radius: 20px;
             box-shadow: var(--shadow);
             display: none;
@@ -442,7 +510,6 @@
             overflow: hidden;
             transform: translateY(10px);
             transition: all 0.5s ease;
-            /* 新增：提升故事区域的视觉优先级 */
             margin-top: 20px;
         }
         .story-details::before {
@@ -467,7 +534,7 @@
         }
         .story-title {
             color: var(--primary);
-            font-size: 2rem;
+            font-size: 1.9rem;
             margin-bottom: 20px;
             font-weight: 600;
             border-left: 5px solid var(--accent-deep);
@@ -476,6 +543,7 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            line-height: 1.4;
         }
         .story-age {
             color: var(--text-secondary);
@@ -491,7 +559,7 @@
         .story-content {
             line-height: 1.8;
             margin-bottom: 35px;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--text-main);
             text-align: justify;
             letter-spacing: 0.3px;
@@ -499,7 +567,7 @@
         .feature-list {
             list-style: none;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
         .feature-list li {
@@ -513,6 +581,8 @@
             border-top-left-radius: 20px;
             border-bottom-right-radius: 20px;
             transition: all 0.3s ease;
+            line-height: 1.6;
+            word-wrap: break-word;
         }
         .feature-list li:hover {
             transform: translateX(5px);
@@ -552,6 +622,7 @@
             border-top-left-radius: 20px;
             border-bottom-right-radius: 20px;
             box-shadow: 0 0 12px rgba(212, 159, 88, 0.3);
+            white-space: nowrap;
         }
         .read-btn:hover {
             transform: translateY(-3px);
@@ -562,37 +633,14 @@
             background: linear-gradient(135deg, #e74c3c, #c0392b);
             box-shadow: 0 0 12px rgba(231, 76, 60, 0.3);
         }
-
-        /* 响应式适配：同步调整移动端图片尺寸 */
-        @media (max-width: 1400px) {
-            .character-card {
-                flex: 0 0 calc(25% - 15px);
-                max-width: calc(25% - 15px);
-                min-height: 320px; /* 降低移动端最小高度 */
-            }
-        }
-        @media (max-width: 1024px) {
-            .character-card {
-                flex: 0 0 calc(33.33% - 13px);
-                max-width: calc(33.33% - 13px);
-                min-height: 300px; /* 降低移动端最小高度 */
-            }
-        }
+        /* 故事详情响应式 */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            .header-intro {
-                font-size: 1.05rem;
-            }
-            .modal-title {
-                font-size: 1.6rem;
-            }
             .story-details {
                 padding: 35px 25px;
             }
             .story-title {
-                font-size: 1.7rem;
+                font-size: 1.6rem;
+                padding-left: 15px;
             }
             .feature-list {
                 grid-template-columns: 1fr;
@@ -601,52 +649,8 @@
                 width: 100%;
                 justify-content: center;
             }
-            /* 平板端：同步调整卡片尺寸 */
-            .character-card {
-                flex: 0 0 calc(50% - 10px);
-                max-width: calc(50% - 10px);
-                min-height: 280px; /* 降低移动端最小高度 */
-            }
-            .character-img img {
-                width: 90%; /* 保持图片缩放比例 */
-                height: 90%;
-            }
-        }
-        @media (max-width: 480px) {
-            .game-btn {
-                padding: 12px 30px;
-                font-size: 1rem;
-                width: 90%;
-                justify-content: center;
-            }
-            .modal-content {
-                padding: 35px 25px;
-            }
-            /* 手机端：同步调整卡片尺寸 */
-            .character-card {
-                flex: 0 0 100%;
-                max-width: 100%;
-                min-height: 250px; /* 降低移动端最小高度 */
-            }
-            .character-name {
-                font-size: 1rem;
-                padding: 8px 5px;
-                height: 45px; /* 增加手机端文字高度 */
-            }
             .story-content {
                 font-size: 1rem;
-            }
-            .back-btn {
-                width: calc(100% - 30px);
-                justify-content: center;
-                left: 15px;
-                top: auto;
-                bottom: 20px;
-                z-index: 998;
-            }
-            .character-img img {
-                width: 85%; /* 手机端进一步缩小图片 */
-                height: 85%;
             }
         }
 
@@ -676,6 +680,19 @@
             transform: translateY(-3px);
             box-shadow: 0 0 15px rgba(42, 75, 124, 0.4);
         }
+        @media (max-width: 480px) {
+            .back-btn {
+                width: calc(100% - 30px);
+                justify-content: center;
+                left: 15px;
+                top: auto;
+                bottom: 20px;
+                z-index: 998;
+            }
+            .to-top-btn {
+                bottom: 80px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -683,7 +700,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M19 12H5M5 12l7 7M5 12l7-7"/>
         </svg>
-        返回上一页
+        Back to Previous Page
     </button>
 
     <button class="to-top-btn" id="to-top-btn">
@@ -694,83 +711,77 @@
     
     <div class="container">
         <div class="header">
-            <h1>藏族邦典：<span>人生历程的文化印记</span></h1>
-            <p class="header-intro">藏族邦典作为藏族女性的标志性围裙，不仅是承载民族美学的服饰符号，更与女性从少女到长者的人生成长阶段深度绑定，每一段邦典的更换与佩戴，都对应着身份的转变、责任的承接与文化的传承。</p>
-            <p class="header-tip">点击下方人物，聆听不同人生阶段的邦典故事</p>
+            <h1>Tibetan Bangdian: <span>Cultural Imprints of a Lifetime</span></h1>
+            <p class="header-intro">As the iconic apron of Tibetan women, the Tibetan Bangdian is not only a clothing symbol carrying national aesthetics, but also deeply connected with women’s growth from a young girl to an elder. Every change and wearing of the Bangdian corresponds to the transformation of identity, the undertaking of responsibilities and the inheritance of culture.</p>
+            <p class="header-tip">Tap the characters below to listen to the stories of the Bangdian in different life stages</p>
         </div>
 
         <div class="game-btn-container">
             <button class="game-btn" id="game-button">
-                🎮 体验邦典文化互动游戏
+                🎮 Experience the Bangdian Culture Interactive Game
             </button>
         </div>
 
         <div class="game-modal" id="game-modal">
             <div class="modal-content">
-                <h3 class="modal-title">邦典文化互动游戏</h3>
-                <p>点击下方链接，体验我们设计的邦典文化互动游戏：</p>
-                <a href="https://your-game-link.com" target="_blank" class="game-link">点击进入游戏</a>
-                <p style="color: var(--text-light); font-size: 0.9rem;">（温馨提示：游戏将在新窗口打开）</p>
-                <button class="close-modal" id="close-modal">关闭</button>
+                <h3 class="modal-title">Bangdian Culture Interactive Game</h3>
+                <p>Click the link below to experience our specially designed Bangdian Culture Interactive Game:</p>
+                <a href="https://your-game-link.com" target="_blank" class="game-link">Enter the Game</a>
+                <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 10px;">(Warm reminder: The game will open in a new window.)</p>
+                <button class="close-modal" id="close-modal">Close</button>
             </div>
         </div>
 
         <div class="characters-grid">
-            <!-- 替换为你的900×1875分辨率图片实际链接 -->
             <div class="character-card" data-index="0">
                 <div class="character-img">
-                    <!-- 第一张图：替换成你的实际图片URL -->
-                    <img src="图片14.png" alt="少女成长期的藏族邦典" loading="lazy">
+                    <img src="图片14.png" alt="Maidenhood of Tibetan Bangdian" loading="lazy">
                 </div>
-                <div class="character-name">少女成长期 (12-15岁)</div>
+                <div class="character-name">Maidenhood (12–15 years old)</div>
             </div>
             <div class="character-card" data-index="1">
                 <div class="character-img">
-                    <!-- 第二张图：替换成你的实际图片URL -->
-                    <img src="图片15.png" alt="成年礼阶段的藏族邦典" loading="lazy">
+                    <img src="图片15.png" alt="Coming-of-Age Ceremony of Tibetan Bangdian" loading="lazy">
                 </div>
-                <div class="character-name">成年礼阶段 (16-18岁)</div>
+                <div class="character-name">Coming-of-Age Ceremony (16–18 years old)</div>
             </div>
             <div class="character-card" data-index="2">
                 <div class="character-img">
-                    <!-- 第三张图：替换成你的实际图片URL -->
-                    <img src="图片16.png" alt="新婚嫁阶段的藏族邦典" loading="lazy">
+                    <img src="图片16.png" alt="Newlywed Period of Tibetan Bangdian" loading="lazy">
                 </div>
-                <div class="character-name">新婚嫁阶段 (1-3年)</div>
+                <div class="character-name">Newlywed Period (1–3 years)</div>
             </div>
             <div class="character-card" data-index="3">
                 <div class="character-img">
-                    <!-- 第四张图：替换成你的实际图片URL -->
-                    <img src="图片17.png" alt="持家立业期的藏族邦典" loading="lazy">
+                    <img src="图片17.png" alt="Family-Management Stage of Tibetan Bangdian" loading="lazy">
                 </div>
-                <div class="character-name">持家立业期 (30-50岁)</div>
+                <div class="character-name">Family-Management Stage (30–50 years old)</div>
             </div>
             <div class="character-card" data-index="4">
                 <div class="character-img">
-                    <!-- 第五张图：替换成你的实际图片URL -->
-                    <img src="图片18.png" alt="长者尊荣期的藏族邦典" loading="lazy">
+                    <img src="图片18.png" alt="Elder Esteemed Stage of Tibetan Bangdian" loading="lazy">
                 </div>
-                <div class="character-name">长者尊荣期 (50岁以上)</div>
+                <div class="character-name">Elder Esteemed Stage (Over 50 years old)</div>
             </div>
         </div>
 
         <div class="story-details" id="story-container">
-            <h2 class="story-title" id="story-title">少女成长期：初佩简纹邦典，启萌文化认知</h2>
-            <p class="story-age" id="story-age">年龄阶段：约12-15岁</p>
+            <h2 class="story-title" id="story-title">Maidenhood: First Wearing a Simple-Patterned Bangdian, Awakening Cultural Awareness</h2>
+            <p class="story-age" id="story-age">Age: About 12–15 years old</p>
             <p class="story-content" id="story-content">
-                这一阶段是藏族少女的“邦典初戴礼”，标志着从孩童向少女的过渡。少女佩戴的邦典多以浅白、浅蓝等清新色系为主，纹样简洁素雅，常见少量回旋纹、十字纹。佩戴邦典的仪式，是长辈向少女传授藏族服饰文化、礼仪规范的开端，少女在学习系扎邦典的过程中，初识身为藏族女性的文化身份，萌生出对民族传统的敬畏之心。
+                This stage is the "First Bangdian Wearing Ceremony" for Tibetan girls, marking the transition from childhood to maidenhood. The Bangdian worn by young girls mostly features fresh colors such as pale white and light blue, with simple and elegant patterns, usually a small number of whirl patterns and cross patterns. The ceremony of wearing the Bangdian is the beginning for elders to teach Tibetan clothing culture and etiquette to young girls. While learning to tie the Bangdian, girls begin to recognize their cultural identity as Tibetan women and develop reverence for ethnic traditions.
             </p>
             <ul class="feature-list" id="story-features">
-                <li>色彩：浅白、浅蓝等清新色系</li>
-                <li>纹样：简洁素雅，少量回旋纹、十字纹</li>
-                <li>意义：初识民族文化身份，萌生对传统的敬畏</li>
+                <li>Colors: Fresh colors such as pale white and light blue</li>
+                <li>Patterns: Simple and elegant, with a small number of whirl patterns and cross patterns</li>
+                <li>Significance: First understanding of ethnic and cultural identity, and fostering reverence for traditions</li>
             </ul>
             <button class="read-btn" id="read-btn">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                     <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                 </svg>
-                朗读故事
+                Read the story
             </button>
         </div>
     </div>
@@ -804,37 +815,37 @@
             }
         });
 
-        // 邦典故事数据
+        // 邦典故事英文数据
         const storyData = [
             {
-                title: "少女成长期：初佩简纹邦典，启萌文化认知",
-                age: "年龄阶段：约12-15岁",
-                content: "这一阶段是藏族少女的“邦典初戴礼”，标志着从孩童向少女的过渡。少女佩戴的邦典多以浅白、浅蓝等清新色系为主，纹样简洁素雅，常见少量回旋纹、十字纹。佩戴邦典的仪式，是长辈向少女传授藏族服饰文化、礼仪规范的开端，少女在学习系扎邦典的过程中，初识身为藏族女性的文化身份，萌生出对民族传统的敬畏之心。",
-                features: ["色彩：浅白、浅蓝等清新色系", "纹样：简洁素雅，少量回旋纹、十字纹", "意义：初识民族文化身份，萌生对传统的敬畏"]
+                title: "Maidenhood: First Wearing a Simple-Patterned Bangdian, Awakening Cultural Awareness",
+                age: "Age: About 12–15 years old",
+                content: "This stage is the 'First Bangdian Wearing Ceremony' for Tibetan girls, marking the transition from childhood to maidenhood. The Bangdian worn by young girls mostly features fresh colors such as pale white and light blue, with simple and elegant patterns, usually a small number of whirl patterns and cross patterns. The ceremony of wearing the Bangdian is the beginning for elders to teach Tibetan clothing culture and etiquette to young girls. While learning to tie the Bangdian, girls begin to recognize their cultural identity as Tibetan women and develop reverence for ethnic traditions.",
+                features: ["Colors: Fresh colors such as pale white and light blue", "Patterns: Simple and elegant, with a small number of whirl patterns and cross patterns", "Significance: First understanding of ethnic and cultural identity, and fostering reverence for traditions"]
             },
             {
-                title: "成年礼阶段：换上彩纹邦典，确立成年身份",
-                age: "年龄阶段：16-18岁",
-                content: "成年礼是人生的重要里程碑，此时少女会换上色彩明艳、纹样丰富的邦典，以白、黄、红、蓝、绿、黑六大经典色系的组合为主，点缀吉祥结、妙莲等纹样。在亲友的见证下换上新邦典，意味着正式获得成年女性的身份，从此可参与部落或家族的社交、节庆活动。这一阶段的邦典，是少女向世界宣告成年的信物，承载着长辈对其独立生活的期许。",
-                features: ["色彩：白、黄、红、蓝、绿、黑六大色系组合", "纹样：吉祥结、妙莲等吉祥纹样", "意义：宣告成年，承载长辈对独立生活的期许"]
+                title: "Coming-of-Age Ceremony: Changing into a Colorful Bangdian, Confirming Adult Identity",
+                age: "Age: 16–18 years old",
+                content: "The coming-of-age ceremony is an important milestone in life. At this time, the maiden will change into a brightly colored and richly patterned Bangdian, mainly composed of six classic colors: white, yellow, red, blue, green and black, decorated with auspicious patterns such as auspicious knots and lotus flowers. Putting on a new Bangdian in front of relatives and friends means officially gaining the status of an adult woman, and from then on, she can participate in social and festival activities of the tribe or family. The Bangdian at this stage is a token for the maiden to declare her adulthood to the world, carrying the elders’ expectations for her independent life.",
+                features: ["Colors: Combination of six classic colors: white, yellow, red, blue, green and black", "Patterns: Auspicious patterns such as auspicious knots and lotus flowers", "Significance: Declaring adulthood, carrying elders’ expectations for independent life"]
             },
             {
-                title: "新婚嫁阶段：身着繁纹邦典，承载家庭责任",
-                age: "年龄阶段：新婚1-3年",
-                content: "新婚阶段的邦典是女性服饰中最为华丽的，多采用高饱和度的色彩搭配，纹样以吉祥八宝（吉祥结、妙莲、宝伞等）、雍仲纹为主，工艺繁复精美。新婚女性佩戴这样的邦典，既是对婚姻的珍视，也是对新家庭责任的承接。在婚礼、走亲访友等场合，繁纹邦典象征着新媳妇的端庄与体面，更寓意着为家庭带来吉祥与富足，开启相夫教子、操持家务的人生新篇。",
-                features: ["色彩：高饱和度色彩搭配", "纹样：吉祥八宝、雍仲纹等繁复纹样", "意义：寓意家庭吉祥富足，开启相夫教子新篇"]
+                title: "Newlywed Period: Wearing an Elaborately Patterned Bangdian, Shouldering Family Responsibilities",
+                age: "Age: 1–3 years after marriage",
+                content: "The Bangdian worn during the newlywed period is the most gorgeous type of women’s attire, mostly using highly saturated colors. Its patterns mainly include the Eight Auspicious Symbols (auspicious knot, lotus, parasol, etc.) and the Yongzhong pattern, with elaborate and exquisite craftsmanship. For a newly married woman, wearing such a Bangdian represents her cherishment of marriage and her acceptance of responsibilities for her new family. On occasions such as weddings and family visits, the elaborately patterned Bangdian symbolizes the dignity and grace of the new wife, and also brings auspiciousness and prosperity to the family, marking the beginning of her new life supporting her husband, raising children, and managing household affairs.",
+                features: ["Colors: Highly saturated color combinations", "Patterns: Complex patterns such as the Eight Auspicious Symbols and Yongzhong pattern", "Significance: Symbolizing auspiciousness and prosperity for the family, starting a new life of supporting husband and raising children"]
             },
             {
-                title: "持家立业期：佩戴稳重大方邦典，践行担当使命",
-                age: "年龄阶段：30-50岁",
-                content: "这一阶段的女性成为家庭的中流砥柱，佩戴的邦典色调趋于沉稳，多以深蓝、墨绿、暗红为底色，纹样选择简洁大气的十相自在纹、金鱼纹，既保留民族特色，又兼顾劳作的实用性。此时的邦典，不再追求华丽繁复，而是与持家立业的人生状态相契合。女性在田间劳作、照料家人、参与宗族事务时，身上的邦典是责任与担当的象征，见证着她们为家庭和族群付出的岁月。",
-                features: ["色彩：深蓝、墨绿、暗红等沉稳色调", "纹样：十相自在纹、金鱼纹等简洁大气纹样", "意义：象征责任与担当，见证为家庭族群的付出"]
+                title: "Family-Management Stage: Wearing a Dignified and Graceful Bangdian, Fulfilling Responsibilities",
+                age: "Age: 30–50 years old",
+                content: "Women at this stage become the backbone of the family. The Bangdian they wear features calm and steady tones, mostly dark blue, dark green and dark red as base colors, with simple and grand patterns such as the Ten Powerful Symbols and goldfish patterns, retaining ethnic characteristics while being practical for daily labor. The Bangdian at this stage no longer pursues magnificence and complexity, but matches the life state of managing a family and building a career. When women work in the fields, take care of their families and participate in clan affairs, the Bangdian they wear symbolizes responsibility and commitment, witnessing the years they devote to their family and ethnic group.",
+                features: ["Colors: Calm and steady tones such as dark blue, dark green and dark red", "Patterns: Simple and grand patterns such as the Ten Powerful Symbols and goldfish patterns", "Significance: Symbolizing responsibility and commitment, witnessing devotion to family and community"]
             },
             {
-                title: "长者尊荣期：身着素纹深色邦典，传承文化根脉",
-                age: "年龄阶段：50岁以上",
-                content: "步入长者阶段，女性的邦典回归素雅，多以深色为底，搭配少量古朴的雍仲纹、宝瓶纹，象征着历经岁月沉淀后的从容与尊荣。此时的长者，不仅是家庭的长辈，更是民族文化的传承者。她们会向晚辈传授邦典的织造技艺、纹样寓意，讲述邦典背后的人生故事，让邦典承载的文化记忆代代相传。这一阶段的邦典，是岁月的勋章，更是连接民族过去与未来的文化纽带。",
-                features: ["色彩：深色为底，素雅简约", "纹样：古朴雍仲纹、宝瓶纹", "意义：岁月的勋章，连接民族过去与未来的文化纽带"]
+                title: "Elder Esteemed Stage: Wearing a Dark, Simple-Patterned Bangdian, Inheriting Cultural Roots",
+                age: "Age: Over 50 years old",
+                content: "When entering the elderly stage, women’s Bangdian returns to simplicity and elegance, mostly with dark backgrounds and a few ancient patterns such as Yongzhong and treasure vase patterns, symbolizing calmness and honor accumulated over years. Elderly women at this time are not only family elders but also inheritors of ethnic culture. They pass on the weaving skills and symbolic meanings of the Bangdian to the younger generations, and tell life stories behind it, so that the cultural memory carried by the Bangdian is passed down from generation to generation. The Bangdian at this stage is a medal of time and a cultural bond connecting the nation’s past and future.",
+                features: ["Colors: Dark base colors, simple and elegant", "Patterns: Ancient Yongzhong patterns and treasure vase patterns", "Significance: A medal of time, a cultural bond linking the nation’s past and future"]
             }
         ];
 
@@ -880,14 +891,13 @@
                 this.classList.add('loaded');
             });
             img.addEventListener('error', function() {
-                // 加载失败时显示备用图
-                this.src = 'https://via.placeholder.com/900x1200?text=藏族邦典文化&color=2A4B7C&bg=EBF0F7';
-                this.alt = '藏族邦典文化展示图';
+                this.src = 'https://via.placeholder.com/900x1200?text=Tibetan+Bangdian&color=2A4B7C&bg=EBF0F7';
+                this.alt = 'Tibetan Bangdian Culture';
                 this.classList.add('loaded');
             });
         });
 
-        // 文本朗读功能
+        // 英文文本朗读功能
         let speechSynthesis = window.speechSynthesis;
         let currentUtterance = null;
         const readBtn = document.getElementById('read-btn');
@@ -901,9 +911,9 @@
         });
 
         function startReading() {
-            const text = `${storyTitle.textContent}。${storyAge.textContent}。${storyContent.textContent}。特点有：${Array.from(storyFeatures.children).map(li => li.textContent).join('。')}。`;
+            const text = `${storyTitle.textContent}. ${storyAge.textContent}. ${storyContent.textContent}. Features: ${Array.from(storyFeatures.children).map(li => li.textContent).join('. ')}.`;
             currentUtterance = new SpeechSynthesisUtterance(text);
-            currentUtterance.lang = 'zh-CN';
+            currentUtterance.lang = 'en-US'; // 英文朗读
             currentUtterance.rate = 0.9;
             currentUtterance.pitch = 1.1;
             currentUtterance.volume = 1;
@@ -914,7 +924,7 @@
                     <rect x="6" y="4" width="4" height="16"></rect>
                     <rect x="14" y="4" width="4" height="16"></rect>
                 </svg>
-                停止朗读
+                Stop reading
             `;
 
             currentUtterance.onend = function() {
@@ -938,7 +948,7 @@
                     <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                     <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                 </svg>
-                朗读故事
+                Read the story
             `;
         }
 
