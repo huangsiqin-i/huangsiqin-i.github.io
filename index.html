@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>邦典 - 藏族文化数字体验平台</title>
+  <title>Bangdian- A Digital Experience Platform for Tibetan Culture</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <style>
@@ -66,11 +66,13 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
     
-    /* 强制标题单行显示 */
-    .title-single-line {
-      white-space: nowrap; /* 禁止换行 */
-      overflow: hidden; /* 隐藏溢出内容（极端情况） */
-      text-overflow: ellipsis; /* 极端情况显示省略号 */
+    /* 标题样式调整：允许换行，保证完整显示，同时控制行高和间距 */
+    .main-title {
+      white-space: normal; /* 取消强制单行，允许自动换行 */
+      line-height: 1.2; /* 优化行高，换行后更美观 */
+      word-wrap: break-word; /* 长单词自动换行 */
+      word-break: normal; /* 正常断词，避免字母被截断 */
+      padding: 0 5px; /* 增加左右内边距，避免文字贴边 */
     }
   </style>
 </head>
@@ -80,13 +82,19 @@
     <div class="container mx-auto flex justify-between items-center">
       <a href="index.html" class="flex items-center gap-2 text-white relative z-10">
         <i class="fa fa-paint-brush text-2xl text-yellow-300"></i>
-        <span class="font-bold text-xl md:text-2xl tracking-wider">邦典</span>
+        <span class="font-bold text-xl md:text-2xl tracking-wider">Bangdian</span>
       </a>
       <!-- 导航文字优化：添加文字阴影+更细腻的hover效果 -->
       <nav class="flex gap-6 md:gap-8 text-white font-semibold text-lg md:text-xl relative z-10">
-        <a href="decode.html" class="hover:text-yellow-300 transition-colors duration-300 text-shadow-md relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-yellow-300 after:transition-all after:duration-300 hover:after:w-full">文化解码</a>
-        <a href="experience.html" class="hover:text-yellow-300 transition-colors duration-300 text-shadow-md relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-yellow-300 after:transition-all after:duration-300 hover:after:w-full">沉浸式体验</a>
-        <a href="map.html" class="hover:text-yellow-300 transition-colors duration-300 text-shadow-md relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-yellow-300 after:transition-all after:duration-300 hover:after:w-full">体验地图</a>
+        <a href="decode.html" class="hover:text-yellow-300 transition-colors duration-300 text-shadow-md relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-yellow-300 after:transition-all after:duration-300 hover:after:w-full">
+          Cultural Decoding
+        </a>
+        <a href="experience.html" class="hover:text-yellow-300 transition-colors duration-300 text-shadow-md relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-yellow-300 after:transition-all after:duration-300 hover:after:w-full">
+          Immersive Experience
+        </a>
+        <a href="map.html" class="hover:text-yellow-300 transition-colors duration-300 text-shadow-md relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-yellow-300 after:transition-all after:duration-300 hover:after:w-full">
+          Experience Map
+        </a>
       </nav>
     </div>
   </header>
@@ -96,19 +104,22 @@
     <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
       <!-- 左侧文字内容优化：添加文字阴影+更细腻的间距 -->
       <div class="text-left sm:text-center lg:text-left px-4 md:px-8">
-        <!-- 标题添加单行显示类，调整clamp范围保证单行 -->
-        <h1 class="title-single-line text-[clamp(1.8rem,6vw,4rem)] font-bold leading-tight mb-8 tracking-wide text-shadow-2xl">编织生命的纹样</h1>
+        <!-- 标题样式调整：使用新的main-title类，保证完整显示 -->
+        <h1 class="main-title text-[clamp(1.5rem,5vw,3.5rem)] font-bold leading-tight mb-8 tracking-wide text-shadow-2xl">
+          Weaving the Patterns of Life
+        </h1>
         <p class="text-[clamp(1rem,2vw,1.3rem)] max-w-2xl mx-auto lg:mx-0 mb-12 opacity-95 leading-relaxed text-shadow-md">
-          探索藏族邦典的文化密码，读懂传统服饰中的生命叙事<br>连接民族文化与女性身份的精神表达
+          Exploring the Cultural Codes of Tibetan Bangdian: Understanding the Life Narratives in Traditional Attire<br><br>
+          Connecting Ethnic Culture with the Spiritual Expression of Female Identity
         </p>
         <div class="flex flex-col sm:flex-row gap-6 mt-4 justify-center lg:justify-start">
           <!-- 按钮优化：更细腻的渐变+阴影+hover效果 -->
           <a href="decode.html" class="px-10 py-4 bg-gradient-to-r from-yellow-500/30 to-white/20 backdrop-blur-md rounded-full font-semibold text-white hover:bg-gradient-to-r hover:from-yellow-500/40 hover:from-white/30 transition-all duration-300 transform hover:scale-105 shadow-xl relative overflow-hidden group">
-            <span class="relative z-10">开始解码 <i class="fa fa-book ml-2"></i></span>
+            <span class="relative z-10">Start Decoding <i class="fa fa-book ml-2"></i></span>
             <span class="absolute top-0 left-0 w-0 h-full bg-white/10 transition-all duration-500 group-hover:w-full"></span>
           </a>
           <a href="experience.html" class="px-10 py-4 bg-transparent border-2 border-white/80 rounded-full font-semibold text-white hover:bg-white/10 hover:border-yellow-300 transition-all duration-300 transform hover:scale-105 relative overflow-hidden group">
-            <span class="relative z-10">沉浸式体验 <i class="fa fa-puzzle-piece ml-2"></i></span>
+            <span class="relative z-10">Immersive Experience <i class="fa fa-puzzle-piece ml-2"></i></span>
             <span class="absolute top-0 left-0 w-0 h-full bg-white/5 transition-all duration-500 group-hover:w-full"></span>
           </a>
         </div>
@@ -119,23 +130,23 @@
         <div class="carousel-container">
           <!-- 轮播图片1 -->
           <div class="carousel-slide active">
-            <img src="图片1.png" alt="邦典文化图片1">
+            <img src="图片1.png" alt="Bangdian Culture Image 1">
           </div>
           <!-- 轮播图片2 -->
           <div class="carousel-slide">
-            <img src="图片2.png" alt="邦典文化图片2">
+            <img src="图片2.png" alt="Bangdian Culture Image 2">
           </div>
           <!-- 轮播图片3 -->
           <div class="carousel-slide">
-            <img src="图片3.png" alt="邦典文化图片3">
+            <img src="图片3.png" alt="Bangdian Culture Image 3">
           </div>
           <!-- 轮播图片4 -->
           <div class="carousel-slide">
-            <img src="图片4.png" alt="邦典文化图片4">
+            <img src="图片4.png" alt="Bangdian Culture Image 4">
           </div>
           <!-- 新增：轮播图片5 -->
           <div class="carousel-slide">
-            <img src="图片11.png" alt="邦典文化图片5">
+            <img src="图片11.png" alt="Bangdian Culture Image 5">
           </div>
         </div>
       </div>
@@ -160,11 +171,11 @@
         nextSlide();
       } catch (e) {
         clearInterval(slideTimer);
-        console.log("轮播切换异常:", e);
+        console.log("Carousel switch exception:", e);
       }
     }, slideInterval);
 
-    // 导航栏滚动效果：滚动时添加背景，提升层次感
+    // 导航栏滚动效果：滚动时背景渐变，更丝滑
     const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
