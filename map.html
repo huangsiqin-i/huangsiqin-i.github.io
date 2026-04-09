@@ -2,304 +2,308 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bangdian Cultural Experience Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Bangdian · In-depth Experience Map of Xizang Intangible Cultural Heritage</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; word-wrap: break-word; }
-    html, body { height: 100%; }
-    .marker { animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.6; } }
-    /* 弹窗动画 */
-    .modal-enter { animation: modalFadeIn 0.3s ease-in-out; }
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background-color: #ffffff; font-family: system-ui, 'Segoe UI', 'Roboto', sans-serif; }
+    .marker { animation: gentlePulse 2s infinite; cursor: pointer; transition: transform 0.2s ease; }
+    .marker:hover { transform: scale(1.1); }
+    @keyframes gentlePulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
+    .modal-enter { animation: fadeSlideUp 0.3s ease-out; }
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    /* 遮罩层动画 */
-    .overlay-enter { animation: overlayFadeIn 0.3s ease-in-out; }
-    @keyframes overlayFadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    /* 页面主色调适配项目定位 */
+    .overlay-enter { animation: overlayFade 0.25s ease; }
+    @keyframes overlayFade { from { opacity: 0; } to { opacity: 1; } }
     :root {
-      --primary-indigo: #4338ca;
-      --primary-rose: #e11d48;
-      --secondary-blue: #3b82f6;
-      --light-bg: #f8fafc;
+      --bridge-indigo: #2e2c8a;
+      --bridge-rose: #bc3f4b;
+      --bridge-gold: #d4af37;
     }
-    .bg-primary-indigo { background-color: var(--primary-indigo); }
-    .bg-primary-rose { background-color: var(--primary-rose); }
-    .text-primary-indigo { color: var(--primary-indigo); }
-    .text-primary-rose { color: var(--primary-rose); }
-    .border-primary-indigo { border-color: var(--primary-indigo); }
-    /* 英文排版优化 */
-    .text-en {
-      line-height: 1.8;
-      letter-spacing: 0.3px;
-    }
+    .bg-bridge-indigo { background-color: var(--bridge-indigo); }
+    .text-bridge-indigo { color: var(--bridge-indigo); }
+    .bg-bridge-rose { background-color: var(--bridge-rose); }
+    .text-bridge-rose { color: var(--bridge-rose); }
+    .hover\:bg-bridge-indigo-dark:hover { background-color: #1f1d6b; }
+    .hover\:bg-bridge-rose-dark:hover { background-color: #9e2d38; }
+    .btn-home-return { transition: all 0.3s ease; }
+    .btn-home-return:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2); }
   </style>
 </head>
-<body class="bg-light-bg font-sans">
-  <!-- 导航栏 - Page highlight -->
-  <header class="fixed w-full z-50 py-4 px-5 md:px-8 bg-white shadow-sm">
-    <div class="container mx-auto flex justify-between items-center">
-      <a href="index.html" class="flex items-center gap-2 text-slate-800">
-        <i class="fa fa-scissors text-2xl text-primary-indigo"></i>
-        <span class="font-bold text-xl">Bangdian</span>
-      </a>
-      <nav class="flex gap-6 text-base">
-        <a href="decode.html" class="text-slate-600 hover:text-primary-indigo transition-colors duration-300">Cultural Decoding</a>
-        <a href="experience.html" class="text-slate-600 hover:text-primary-indigo transition-colors duration-300">Immersive Experience</a>
-        <a href="map.html" class="text-primary-indigo font-medium border-b-2 border-primary-indigo pb-1">Experience Map</a>
+<body class="bg-white">
+  <!-- Header / Navigation - exact English from document -->
+  <header class="fixed w-full z-50 py-3 md:py-4 px-5 md:px-8 bg-white/95 backdrop-blur-sm shadow-md">
+    <div class="container mx-auto flex justify-between items-center flex-wrap gap-2">
+      <div class="flex items-center gap-2">
+        <i class="fa fa-scissors text-2xl text-bridge-rose"></i>
+        <span class="font-bold text-xl tracking-tight text-slate-800"><span class="text-bridge-indigo"> · Bangdian</span></span>
+      </div>
+      <nav class="flex gap-5 text-sm md:text-base">
+        <a href="#" class="text-slate-600 hover:text-bridge-indigo transition">Cultural Decoding</a>
+        <a href="#" class="text-slate-600 hover:text-bridge-indigo transition">Immersive Experience</a>
+        <a href="#" class="text-bridge-indigo font-medium border-b-2 border-bridge-indigo pb-1">Experience Map</a>
       </nav>
     </div>
   </header>
 
-  <!-- 体验地图核心内容 -->
-  <section class="w-full min-h-screen pt-24 pb-16 px-5 md:px-8">
+  <!-- Main content -->
+  <main class="pt-24 pb-8 px-5 md:px-8">
     <div class="container mx-auto">
-      <div class="text-center mb-10">
-        <h2 class="text-[clamp(1.8rem,5vw,2.6rem)] font-bold text-primary-indigo mb-3">Bangdian · In-depth Experience Map of Tibet’s Intangible Cultural Heritage</h2>
-        <p class="text-slate-600 text-lg text-en">Decode Bangdian Culture, Connect Chinese and Foreign Hearts, Visit Century-old ICH Workshops</p>
-        <div class="w-20 h-1 bg-secondary-blue mx-auto mt-4"></div>
+      <!-- Title section -->
+      <div class="text-center mb-8">
+        <h1 class="text-[clamp(1.8rem,6vw,2.5rem)] font-bold text-bridge-indigo">Bangdian · In-depth Experience Map of Xizang Intangible Cultural Heritage</h1>
+        <p class="text-slate-600 max-w-2xl mx-auto mt-2 text-base md:text-lg">Decode Bangdian Culture, Connect Chinese and Foreign Hearts, Visit Century-old Intangible Cultural Heritage Workshop</p>
+        <div class="w-24 h-1 bg-bridge-gold mx-auto mt-4 rounded-full"></div>
       </div>
 
-      <div class="flex flex-col lg:flex-row gap-8 items-center justify-center">
-        <!-- 体验地图可视化区域 -->
-        <div class="w-full lg:w-1/2 rounded-xl overflow-hidden shadow-xl relative h-[480px]">
-          <img src="图片20.png" alt="Tibet Bangdian ICH Experience Map" class="w-full h-full object-cover">
-          <!-- 拉萨雪域工坊标记 -->
-          <div class="absolute top-[30%] left-[25%] marker">
-            <div class="w-6 h-6 bg-primary-rose rounded-full border-2 border-white"></div>
-            <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-white px-3 py-1 rounded-lg shadow-md text-xs font-medium text-primary-rose w-max">Lhasa · Snowy Region Bangdian Workshop</div>
+      <div class="flex flex-col lg:flex-row gap-8 items-stretch">
+        <!-- Left: visual map -->
+        <div class="w-full lg:w-1/2 rounded-2xl overflow-hidden shadow-xl relative bg-slate-100 border border-slate-200" style="min-height: 440px;">
+          <img src="图片20.png" alt="Bangdian Xizang Intangible Cultural Heritage Experience Map" class="w-full h-full object-cover" style="min-height: 400px;">
+          
+          <!-- Map marker: Gesang Apron Cooperative · Jedexiu -->
+          <div class="absolute marker" style="top: 42%; left: 24%;" onclick="openWorkshopModal('Jedexiu')">
+            <div class="w-7 h-7 bg-bridge-rose rounded-full border-2 border-white shadow-lg flex items-center justify-center">
+              <i class="fa fa-map-marker text-white text-sm"></i>
+            </div>
+            <div class="absolute -bottom-9 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full shadow-md text-xs font-semibold text-bridge-rose whitespace-nowrap border border-rose-200">
+              🧣 Gesang Apron Cooperative · Jedexiu
+            </div>
           </div>
-          <!-- 日喀则巧手工坊标记 -->
-          <div class="absolute bottom-[35%] right-[20%] marker">
-            <div class="w-6 h-6 bg-primary-indigo rounded-full border-2 border-white"></div>
-            <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-white px-3 py-1 rounded-lg shadow-md text-xs font-medium text-primary-indigo w-max">Xigaze · Plateau Skilled Handicraft Workshop</div>
+          
+          <!-- Map marker: Looking Forward to Your Joining · Workshop Recruitment -->
+          <div class="absolute marker" style="bottom: 28%; right: 16%;" onclick="openCooperationModal()">
+            <div class="w-7 h-7 bg-amber-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center">
+              <i class="fa fa-handshake-o text-white text-sm"></i>
+            </div>
+            <div class="absolute -bottom-9 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full shadow-md text-xs font-semibold text-amber-700 whitespace-nowrap border border-amber-300">
+              🤝 Looking Forward to Your Joining · Workshop Recruitment
+            </div>
           </div>
         </div>
 
-        <!-- 工坊详情与预约区域 -->
-        <div class="w-full lg:w-1/2 flex flex-col gap-6 mt-6 lg:mt-0">
-          <!-- 拉萨·雪域邦典工坊 -->
-          <div class="bg-white rounded-xl p-6 shadow-lg border border-slate-100">
-            <h3 class="text-xl font-bold text-primary-indigo mb-3 flex items-center">
-              <i class="fa fa-map-marker text-primary-rose mr-2"></i> Lhasa · Snowy Region Bangdian Workshop
-            </h3>
-            <p class="text-slate-600 mb-4 text-sm text-en">
-              Nestled in the century-old alleys of Barkhor Street in Lhasa, it boasts a 120-year history of Bangdian making. It inherits the most authentic traditional Tibetan weaving techniques, adheres to natural dyes and hand weaving, serves as a core inheritance base of Bangdian intangible cultural heritage, and is a key traditional workshop partnered with Hongzhi Translation Bridge.
+        <!-- Right: workshop cards (exact English from document) -->
+        <div class="w-full lg:w-1/2 flex flex-col gap-6">
+          
+          <!-- Card 1: Gesang Apron Farmers' Professional Cooperative -->
+          <div class="bg-white rounded-xl p-6 shadow-xl border-l-8 border-bridge-rose transition-all hover:shadow-2xl">
+            <div class="flex justify-between items-start">
+              <h3 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                <i class="fa fa-leaf text-bridge-rose"></i> Gesang Apron Farmers' Professional Cooperative
+              </h3>
+              <span class="bg-rose-100 text-bridge-rose text-xs px-3 py-1 rounded-full font-medium">Intangible Cultural Heritage Bangdian Workshop</span>
+            </div>
+            <p class="text-sm text-bridge-indigo mt-1 flex items-center gap-1"><i class="fa fa-map-marker"></i> Jedexiu Community, Jedexiu Town, Gongga County, Shannan City, Xizang</p>
+            <p class="text-slate-600 text-sm mt-3 leading-relaxed">
+              Jedexiu, the Hometown of Century-old Bangdian --- the Hometown of Xizang Aprons and the Core Inheritance Place of National-level Intangible Cultural Heritage. Gesang Apron Cooperative inherits the ancient "Pulu" weaving skill, composed of dozens of Xizang female craftsmen, and the patterns carry snow-capped mountains, lakes and the scale of life.
             </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-3 py-1 bg-indigo-100 text-primary-indigo text-xs rounded-full">Cultural Decoding Class</span>
-              <span class="px-3 py-1 bg-indigo-100 text-primary-indigo text-xs rounded-full">Natural Dyeing Craft</span>
-              <span class="px-3 py-1 bg-indigo-100 text-primary-indigo text-xs rounded-full">Face-to-face with ICH Craftsmen</span>
-              <span class="px-3 py-1 bg-indigo-100 text-primary-indigo text-xs rounded-full">Traditional Weaving Experience</span>
+        
+            <div class="flex flex-wrap gap-2 my-4">
+              <span class="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs rounded-full">🧵 1-hour Traditional Weaving Experience</span>
+              <span class="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs rounded-full">🎨 Natural Dyes·Madder / Walnut Peel</span>
+              <span class="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs rounded-full">📖 Bangdian Pattern Life Narrative Class</span>
+              <span class="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs rounded-full">🤝 Face-to-face with Intangible Cultural Heritage Inheritors</span>
             </div>
-            <div class="text-slate-700 text-sm space-y-2">
-              <p><i class="fa fa-location-arrow mr-2 text-slate-500"></i> Address: No. 108, Barkhor Street, Chengguan District, Lhasa</p>
-              <p><i class="fa fa-clock-o mr-2 text-slate-500"></i> Opening Hours: 9:00 - 18:00 (Open all year round, bilingual tour guide)</p>
+            <div class="text-slate-600 text-sm space-y-1 border-t pt-3 border-slate-100">
+              <p><i class="fa fa-clock-o mr-2 text-slate-400"></i> Experience Hours: 9:30 - 17:30 (Reservation 1 day in advance required, bilingual tour guide available)</p>
+              <p><i class="fa fa-tag mr-2 text-slate-400"></i> Featured Program: 1-hour Bangdian Weaving Workshop + Cultural Decoding Package</p>
             </div>
-            <!-- 点击触发预约弹窗，传入工坊名称 -->
-            <button onclick="openModal('Snowy Region Bangdian Workshop')" class="inline-block mt-4 px-5 py-2 bg-primary-indigo text-white rounded-lg text-sm font-semibold hover:bg-indigo-800 transition-colors">Book Now</button>
+            <button onclick="openWorkshopModal('Jedexiu')" class="mt-5 w-full md:w-auto px-6 py-2.5 bg-bridge-rose text-white rounded-xl font-semibold hover:bg-rose-700 transition-all flex items-center justify-center gap-2 shadow-md">
+              <i class="fa fa-calendar-check-o"></i> Make an Appointment Now · In-depth Weaving Experience
+            </button>
           </div>
 
-          <!-- 日喀则·高原巧手工坊 -->
-          <div class="bg-white rounded-xl p-6 shadow-lg border border-slate-100">
-            <h3 class="text-xl font-bold text-primary-rose mb-3 flex items-center">
-              <i class="fa fa-map-marker text-primary-rose mr-2"></i> Xigaze · Plateau Skilled Handicraft Workshop
+          <!-- Card 2: Looking Forward to Your Joining · Rainbow Weaving Translation Bridge -->
+          <div class="bg-gradient-to-br from-white to-amber-50 rounded-xl p-6 shadow-xl border border-amber-200 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 text-7xl"><i class="fa fa-handshake-o"></i></div>
+            <h3 class="text-2xl font-bold text-amber-700 flex items-center gap-2">
+              <i class="fa fa-users"></i> Looking Forward to Your Joining
             </h3>
-            <p class="text-slate-600 mb-4 text-sm text-en">
-              Located in Samzhubzê District, Xigaze, it is a key innovative workshop partnered with Hongzhi Translation Bridge. It focuses on integrating traditional Bangdian patterns with modern aesthetics, specializing in digital Bangdian design and cross-cultural aesthetic creation, supporting online design to physical production, and is deeply popular among young people and international tourists.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-3 py-1 bg-rose-100 text-primary-rose text-xs rounded-full">Bangdian Innovative Design</span>
-              <span class="px-3 py-1 bg-rose-100 text-primary-rose text-xs rounded-full">Digital Bangdian Production</span>
-              <span class="px-3 py-1 bg-rose-100 text-primary-rose text-xs rounded-full">Immersive Creation</span>
-              <span class="px-3 py-1 bg-rose-100 text-primary-rose text-xs rounded-full">Cross-cultural Aesthetic Salon</span>
+            <p class="text-slate-700 mt-2 text-sm leading-relaxed">Rainbow Weaving Translation Bridge · Intangible Cultural Heritage Co-creation Partner Recruitment Program</p>
+            <div class="mt-4 space-y-3">
+              <p class="text-slate-600 text-sm">We are looking for more Bangdian workshops, cooperatives and intangible cultural heritage inheritance teams in Xizang to jointly build a "1+N" cross-cultural communication network. Rainbow Weaving Translation Bridge Provides:</p>
+              <ul class="text-sm text-slate-700 space-y-1.5 list-disc pl-5">
+                <li>🌐 Overseas digital content drainage, multilingual cultural translation support</li>
+                <li>📸 Global dissemination of craftsmen's stories, brand exposure</li>
+                <li>🎁 Priority inclusion in in-depth experience maps, precise connection with international tourists</li>
+              </ul>
             </div>
-            <div class="text-slate-700 text-sm space-y-2">
-              <p><i class="fa fa-location-arrow mr-2 text-slate-500"></i> Address: No. 56, Everest Road, Samzhubzê District, Xigaze</p>
-              <p><i class="fa fa-clock-o mr-2 text-slate-500"></i> Opening Hours: 9:30 - 19:00 (Open all year round, cross-border reservation available)</p>
-            </div>
-            <!-- 点击触发预约弹窗，传入工坊名称 -->
-            <button onclick="openModal('Plateau Skilled Handicraft Workshop')" class="inline-block mt-4 px-5 py-2 bg-primary-rose text-white rounded-lg text-sm font-semibold hover:bg-rose-800 transition-colors">Book Now</button>
+            <button onclick="openCooperationModal()" class="mt-5 w-full py-2.5 bg-amber-600 text-white rounded-xl font-semibold hover:bg-amber-700 transition-all flex items-center justify-center gap-2 shadow">
+              <i class="fa fa-hand-peace-o"></i> Apply to Join
+            </button>
           </div>
         </div>
-      </div>
-
-      <!-- 底部返回主页按钮 -->
-      <div class="text-center mt-12">
-        <a href="index.html" class="px-8 py-3 bg-primary-indigo text-white rounded-full font-semibold hover:bg-indigo-800 transition-colors duration-300 inline-flex items-center gap-2">
-          <i class="fa fa-home"></i> Back to Home
-        </a>
       </div>
     </div>
-  </section>
+  </main>
 
-  <!-- 预约弹窗 -->
-  <div id="bookingModal" class="fixed inset-0 z-99 hidden">
-    <!-- 遮罩层 -->
-    <div class="absolute inset-0 bg-black/50 overlay-enter" onclick="closeModal()"></div>
-    <!-- 弹窗内容 -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white rounded-xl shadow-2xl p-6 modal-enter">
-      <!-- 弹窗头部 -->
-      <div class="flex justify-between items-center mb-5">
-        <h3 class="text-xl font-bold text-primary-indigo" id="workshopTitle">Reservation · Snowy Region Bangdian Workshop</h3>
-        <button onclick="closeModal()" class="text-slate-500 hover:text-slate-800 transition-colors">
-          <i class="fa fa-times text-xl"></i>
-        </button>
+  <!-- Return to Homepage Button -->
+  <div class="text-center mt-6 mb-8 px-5">
+    <a href="index.html" class="inline-flex items-center gap-3 px-8 py-3 bg-bridge-indigo text-white rounded-full font-semibold shadow-lg btn-home-return hover:bg-indigo-800 transition-all duration-300">
+      <i class="fa fa-home fa-lg"></i> Return to Homepage
+    </a>
+  </div>
+
+  <!-- MODAL 1: Gesang Apron Cooperative · Experience Reservation (exact English from document) -->
+  <div id="workshopModal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-black/60 overlay-enter" onclick="closeWorkshopModal()"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg bg-white rounded-2xl shadow-2xl p-6 modal-enter max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-bridge-rose flex items-center gap-2"><i class="fa fa-scissors"></i> Gesang Apron Cooperative · Experience Reservation</h3>
+        <button onclick="closeWorkshopModal()" class="text-slate-400 hover:text-slate-700"><i class="fa fa-times text-xl"></i></button>
       </div>
-      <!-- 预约表单 -->
-      <form id="bookingForm" onsubmit="submitForm(event)">
+      <form id="workshopBookingForm" onsubmit="submitWorkshopBooking(event)">
         <div class="space-y-4">
           <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
-            <input type="text" id="name" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-indigo focus:border-transparent" placeholder="Please enter your name" required>
+            <label class="block text-sm font-medium text-slate-700">Full Name <span class="text-red-500">*</span></label>
+            <input type="text" id="ws_name" class="w-full mt-1 px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-bridge-rose" placeholder="Your Name" required>
           </div>
           <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Mobile Phone Number</label>
-            <input type="tel" id="phone" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-indigo focus:border-transparent" placeholder="Please enter your phone number" required>
+            <label class="block text-sm font-medium text-slate-700">Email / Mobile Phone Number <span class="text-red-500">*</span></label>
+            <input type="text" id="ws_contact" class="w-full mt-1 px-4 py-2 border border-slate-300 rounded-lg" placeholder="For sending confirmation information" required>
           </div>
           <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Reservation Date</label>
-            <input type="date" id="date" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-indigo focus:border-transparent" min="" required>
+            <label class="block text-sm font-medium text-slate-700">Reservation Date <span class="text-red-500">*</span></label>
+            <input type="date" id="ws_date" class="w-full mt-1 px-4 py-2 border border-slate-300 rounded-lg" required>
           </div>
           <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Experience Item <span class="text-red-500">*</span></label>
-            <select id="project" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-indigo focus:border-transparent" required>
-              <option value="" disabled selected>Please select an experience item</option>
+            <label class="block text-sm font-medium text-slate-700">Experience Items</label>
+            <select id="ws_project" class="w-full mt-1 px-4 py-2 border border-slate-300 rounded-lg">
+              <option value="1-hour Traditional Bangdian Weaving Experience (One-on-one Craftsman Guidance)">🧣 1-hour Traditional Bangdian Weaving Experience (One-on-one Craftsman Guidance)</option>
+              <option value="Bangdian Pattern · Female Life Narrative Cultural Decoding Class (90 minutes, bilingual)">📖 Bangdian Pattern · Female Life Narrative Cultural Decoding Class (90 minutes, bilingual)</option>
+              <option value="In-depth Experience of Natural Dyeing + Ancient Pulu Craft (120 minutes)">🎨 In-depth Experience of Natural Dyeing + Ancient Pulu Craft (120 minutes)</option>
+              <option value="Full-process Craftsman Workshop: Design My Own Bangdian Pattern">✨ Full-process Craftsman Workshop: Design My Own Bangdian Pattern</option>
             </select>
           </div>
           <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Number of Participants</label>
-            <input type="number" id="people" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-indigo focus:border-transparent" placeholder="Please enter the number of participants (including yourself)" min="1" value="1" required>
+            <label class="block text-sm font-medium text-slate-700">Number of Companions</label>
+            <input type="number" id="ws_people" min="1" value="1" class="w-full mt-1 px-4 py-2 border border-slate-300 rounded-lg">
           </div>
           <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Remarks (Optional)</label>
-            <textarea id="remark" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-indigo focus:border-transparent" rows="2" placeholder="Please state your needs such as bilingual guide or customized experience"></textarea>
+            <label class="block text-sm font-medium text-slate-700">Remarks (Language Requirements / Special Instructions)</label>
+            <textarea rows="2" id="ws_remark" class="w-full mt-1 px-4 py-2 border border-slate-300 rounded-lg" placeholder=""></textarea>
           </div>
         </div>
-        <!-- 提交按钮 -->
-        <div class="mt-6">
-          <button type="submit" class="w-full px-5 py-3 bg-primary-indigo text-white rounded-lg font-semibold hover:bg-indigo-800 transition-colors">Submit Reservation Application</button>
-        </div>
+        <button type="submit" class="w-full mt-6 bg-bridge-rose text-white py-2.5 rounded-xl font-semibold hover:bg-rose-700 transition">Submit Reservation · Reserve Seats for Craftsmen</button>
+        <p class="text-center text-xs text-slate-400 mt-3">Customer service will confirm within 24 hours after submission, and Rainbow Weaving Translation Bridge provides full cross-cultural service support</p>
       </form>
-      <!-- 提交成功提示（默认隐藏） -->
-      <div id="successTip" class="hidden text-center py-8">
-        <i class="fa fa-check-circle text-4xl text-green-600 mb-3"></i>
-        <h4 class="text-lg font-bold text-slate-800 mb-2">Reservation submitted successfully!</h4>
-        <p class="text-slate-600 mb-4 text-en">Our customer service will contact you for confirmation within 1 working day.</p>
-        <p class="text-slate-500 text-xs mb-6 text-en">Kind Reminder: Bilingual tour guide and exclusive reservation service for international tourists are available.</p>
-        <button onclick="closeModal()" class="px-5 py-2 bg-primary-indigo text-white rounded-lg font-semibold hover:bg-indigo-800 transition-colors">Close</button>
+      <div id="workshopSuccessMsg" class="hidden text-center py-4">
+        <i class="fa fa-check-circle text-4xl text-green-600"></i>
+        <h4 class="text-lg font-bold mt-2">Reservation Application Successful!</h4>
+        <p class="text-slate-600 text-sm">Gesang Apron Cooperative Looks Forward to Your Arrival</p>
+        <button onclick="closeWorkshopModal()" class="mt-4 px-5 py-2 bg-bridge-rose text-white rounded-lg">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: Join Rainbow Weaving Translation Bridge · Co-creation Partner -->
+  <div id="cooperationModal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-black/60 overlay-enter" onclick="closeCooperationModal()"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md bg-white rounded-2xl shadow-2xl p-6 modal-enter">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-amber-700 flex items-center gap-2"><i class="fa fa-handshake-o"></i> Join Rainbow Weaving Translation Bridge · Co-creation Partner</h3>
+        <button onclick="closeCooperationModal()" class="text-slate-400 hover:text-slate-700"><i class="fa fa-times"></i></button>
+      </div>
+      <p class="text-sm text-slate-600 mb-4">"1+N" Workshop Cooperation Program, looking forward to the participation of Bangdian workshops and handicraft cooperatives to jointly bring Bangdian culture to women around the world.</p>
+      <form id="cooperationForm" onsubmit="submitCooperation(event)">
+        <div class="space-y-3">
+          <input type="text" id="coop_name" placeholder="Workshop / Cooperative / Team Name" class="w-full px-4 py-2 border rounded-lg" required>
+          <input type="text" id="coop_contact" placeholder="Contact Name" class="w-full px-4 py-2 border rounded-lg" required>
+          <input type="tel" id="coop_phone" placeholder="Contact Phone / WeChat" class="w-full px-4 py-2 border rounded-lg" required>
+          <input type="email" id="coop_email" placeholder="Email Address" class="w-full px-4 py-2 border rounded-lg">
+          <textarea rows="2" id="coop_intro" placeholder="Briefly introduce the origin of your workshop/team with Bangdian (Optional)" class="w-full px-4 py-2 border rounded-lg"></textarea>
+        </div>
+        <button type="submit" class="w-full mt-5 bg-amber-600 text-white py-2.5 rounded-xl font-semibold hover:bg-amber-700 transition">Submit Cooperation Intention</button>
+        <p class="text-center text-xs text-slate-400 mt-3">Rainbow Weaving Translation Bridge team will connect with you for drainage and co-creation plans within 3 working days</p>
+      </form>
+      <div id="coopSuccessMsg" class="hidden text-center py-4">
+        <i class="fa fa-check-circle text-4xl text-green-600"></i>
+        <p class="font-semibold mt-2">Thank you for your trust! Looking forward to jointly promoting the transoceanic journey of Bangdian</p>
+        <button onclick="closeCooperationModal()" class="mt-3 px-5 py-2 bg-amber-600 text-white rounded-lg">Confirm</button>
       </div>
     </div>
   </div>
 
   <script>
-    // 全局变量存储当前选中的工坊名称
-    let currentWorkshop = '';
+    // Set minimum date for reservation picker
+    const today = new Date().toISOString().split('T')[0];
+    const dateInput = document.getElementById('ws_date');
+    if(dateInput) dateInput.min = today;
 
-    // 初始化日期最小值为今天
-    document.addEventListener('DOMContentLoaded', () => {
-      const today = new Date().toISOString().split('T')[0];
-      document.getElementById('date').min = today;
-    });
-
-    // 打开预约弹窗 - 加载对应工坊的体验项目
-    function openModal(workshopName) {
-      currentWorkshop = workshopName;
-      // 更新弹窗标题
-      document.getElementById('workshopTitle').textContent = `Reservation · ${workshopName}`;
-      // 重置表单和提示
-      document.getElementById('bookingForm').reset();
-      document.getElementById('bookingForm').classList.remove('hidden');
-      document.getElementById('successTip').classList.add('hidden');
-      // 加载对应工坊的体验项目
-      loadWorkshopProjects(workshopName);
-      // 显示弹窗
-      document.getElementById('bookingModal').classList.remove('hidden');
-    }
-
-    // 关闭预约弹窗
-    function closeModal() {
-      document.getElementById('bookingModal').classList.add('hidden');
-    }
-
-    // 加载对应工坊的体验项目
-    function loadWorkshopProjects(workshopName) {
-      const projectSelect = document.getElementById('project');
-      // 清空原有选项，保留默认占位
-      projectSelect.innerHTML = '<option value="" disabled selected>Please select an experience item</option>';
-      // 定义工坊体验项目
-      const workshopProjects = {
-        'Snowy Region Bangdian Workshop': [
-          'Bangdian Color & Pattern Cultural Decoding Class (90 mins, bilingual)',
-          'Ancient Natural Dyeing Craft Experience (120 mins)',
-          'Face-to-face Communication with ICH Craftsmen + Handmade Guidance',
-          '1-hour Traditional Bangdian Weaving Experience (One-on-one)'
-        ],
-        'Plateau Skilled Handicraft Workshop': [
-          'Bangdian Modern Innovative Design Course (180 mins)',
-          'Digital Bangdian Design to Physical Production (Including online design)',
-          'Full-day Bangdian Immersive Creation Experience (Including customized works)',
-          'Exclusive Bangdian Experience Package for International Tourists (Including translation)'
-        ]
-      };
-      // 动态添加对应工坊的选项
-      if (workshopProjects[workshopName]) {
-        workshopProjects[workshopName].forEach(project => {
-          const option = document.createElement('option');
-          option.value = project;
-          option.textContent = project;
-          projectSelect.appendChild(option);
-        });
+    function openWorkshopModal(type) {
+      if(type === 'Jedexiu') {
+        const modal = document.getElementById('workshopModal');
+        if(!modal) return;
+        modal.classList.remove('hidden');
+        const form = document.getElementById('workshopBookingForm');
+        const successDiv = document.getElementById('workshopSuccessMsg');
+        if(form) form.classList.remove('hidden');
+        if(successDiv) successDiv.classList.add('hidden');
+        if(form) form.reset();
+        const dateField = document.getElementById('ws_date');
+        if(dateField) dateField.min = new Date().toISOString().split('T')[0];
       }
     }
-
-    // 提交表单处理 - 模拟接口请求
-    function submitForm(e) {
-      e.preventDefault(); // 阻止默认提交
-      // 获取表单数据（实际项目可对接后端接口）
-      const formData = {
-        workshop: currentWorkshop,
-        name: document.getElementById('name').value,
-        phone: document.getElementById('phone').value,
-        date: document.getElementById('date').value,
-        project: document.getElementById('project').value,
-        people: document.getElementById('people').value,
-        remark: document.getElementById('remark').value
-      };
-      console.log('Reservation Form Data:', formData);
-      // 模拟表单提交加载
-      const submitBtn = e.target.querySelector('button[type="submit"]');
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i> Submitting...';
-      // 模拟接口请求延迟
-      setTimeout(() => {
-        // 隐藏表单，显示成功提示
-        document.getElementById('bookingForm').classList.add('hidden');
-        document.getElementById('successTip').classList.remove('hidden');
-        // 恢复按钮状态
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Submit Reservation Application';
-      }, 1200);
+    function closeWorkshopModal() {
+      const modal = document.getElementById('workshopModal');
+      if(modal) modal.classList.add('hidden');
     }
-
-    // 点击ESC关闭弹窗
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !document.getElementById('bookingModal').classList.contains('hidden')) {
-        closeModal();
+    function openCooperationModal() {
+      const modal = document.getElementById('cooperationModal');
+      if(!modal) return;
+      modal.classList.remove('hidden');
+      const form = document.getElementById('cooperationForm');
+      const successDiv = document.getElementById('coopSuccessMsg');
+      if(form) form.classList.remove('hidden');
+      if(successDiv) successDiv.classList.add('hidden');
+      if(form) form.reset();
+    }
+    function closeCooperationModal() {
+      const modal = document.getElementById('cooperationModal');
+      if(modal) modal.classList.add('hidden');
+    }
+    function submitWorkshopBooking(e) {
+      e.preventDefault();
+      const name = document.getElementById('ws_name').value.trim();
+      const contact = document.getElementById('ws_contact').value.trim();
+      const date = document.getElementById('ws_date').value;
+      if(!name || !contact || !date) {
+        alert('Please fill in your full name, contact information and reservation date.');
+        return;
       }
-    });
-
-    // 阻止弹窗内容点击触发遮罩关闭
-    document.getElementById('bookingModal').querySelector('.modal-enter').addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
+      const formEl = document.getElementById('workshopBookingForm');
+      const successDiv = document.getElementById('workshopSuccessMsg');
+      if(formEl && successDiv) {
+        formEl.classList.add('hidden');
+        successDiv.classList.remove('hidden');
+      }
+    }
+    function submitCooperation(e) {
+      e.preventDefault();
+      const workshopName = document.getElementById('coop_name').value.trim();
+      const contactName = document.getElementById('coop_contact').value.trim();
+      const phone = document.getElementById('coop_phone').value.trim();
+      if(!workshopName || !contactName || !phone) {
+        alert('Please provide workshop/cooperative/team name, contact person and phone/WeChat.');
+        return;
+      }
+      const formEl = document.getElementById('cooperationForm');
+      const successDiv = document.getElementById('coopSuccessMsg');
+      if(formEl && successDiv) {
+        formEl.classList.add('hidden');
+        successDiv.classList.remove('hidden');
+      }
+    }
+    window.openWorkshopModal = openWorkshopModal;
+    window.closeWorkshopModal = closeWorkshopModal;
+    window.openCooperationModal = openCooperationModal;
+    window.closeCooperationModal = closeCooperationModal;
+    window.submitWorkshopBooking = submitWorkshopBooking;
+    window.submitCooperation = submitCooperation;
   </script>
 </body>
 </html>
