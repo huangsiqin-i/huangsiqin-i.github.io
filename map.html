@@ -35,16 +35,18 @@
   </style>
 </head>
 <body class="bg-white">
-  <!-- Header / Navigation - with page redirects -->
+  <!-- Header / Navigation - exact English from document -->
   <header class="fixed w-full z-50 py-3 md:py-4 px-5 md:px-8 bg-white/95 backdrop-blur-sm shadow-md">
     <div class="container mx-auto flex justify-between items-center flex-wrap gap-2">
-      <!-- Bangdian logo links to index.html -->
-      <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition">
+      <!-- 修改点1：Bangdian logo区域添加跳转链接到 index.html -->
+      <a href="index.html" class="flex items-center gap-2" style="text-decoration: none; color: inherit;">
         <i class="fa fa-scissors text-2xl text-bridge-rose"></i>
         <span class="font-bold text-xl tracking-tight text-slate-800"><span class="text-bridge-indigo"> · Bangdian</span></span>
       </a>
       <nav class="flex gap-5 text-sm md:text-base">
+        <!-- 修改点2：Cultural Decoding 跳转到 decode.html -->
         <a href="decode.html" class="text-slate-600 hover:text-bridge-indigo transition">Cultural Decoding</a>
+        <!-- 修改点3：Immersive Experience 跳转到 experience.html -->
         <a href="experience.html" class="text-slate-600 hover:text-bridge-indigo transition">Immersive Experience</a>
         <a href="#" class="text-bridge-indigo font-medium border-b-2 border-bridge-indigo pb-1">Experience Map</a>
       </nav>
@@ -62,8 +64,9 @@
       </div>
 
       <div class="flex flex-col lg:flex-row gap-8 items-stretch">
-        <!-- Left: visual map with correct image 25.jpg -->
+        <!-- Left: visual map -->
         <div class="w-full lg:w-1/2 rounded-2xl overflow-hidden shadow-xl relative bg-slate-100 border border-slate-200" style="min-height: 440px;">
+          <!-- 修改点4：图片替换为 25.jpg -->
           <img src="25.jpg" alt="Bangdian Xizang Intangible Cultural Heritage Experience Map" class="w-full h-full object-cover" style="min-height: 400px;">
           
           <!-- Map marker: Gesang Apron Cooperative · Jedexiu -->
@@ -223,7 +226,7 @@
       </form>
       <div id="coopSuccessMsg" class="hidden text-center py-4">
         <i class="fa fa-check-circle text-4xl text-green-600"></i>
-        <p class="font-semibold mt-2">Thank you for your trust! Looking forward to jointly promoting the transoceanic journey of Bangdian culture</p>
+        <p class="font-semibold mt-2">Thank you for your trust! Looking forward to jointly promoting the transoceanic journey of Bangdian</p>
         <button onclick="closeCooperationModal()" class="mt-3 px-5 py-2 bg-amber-600 text-white rounded-lg">Confirm</button>
       </div>
     </div>
