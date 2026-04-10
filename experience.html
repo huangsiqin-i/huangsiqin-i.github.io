@@ -573,7 +573,7 @@
           <div class="mb-8">
             <h4 class="text-lg font-semibold text-slate-800 mb-4">Bangdian Type Options</h4>
             
-            <div class="payment-card" id="digitalCard" data-type="digital" data-price=">$0.99">
+            <div class="payment-card" id="digitalCard" data-type="digital" data-price=">0.99">
               <div class="flex justify-between items-start mb-3">
                 <div>
                   <h5 class="font-bold text-lg text-slate-800">Digital High-Definition Bangdian Image</h5>
@@ -589,7 +589,7 @@
               </ul>
             </div>
             
-            <div class="payment-card" id="physicalCard" data-type="physical" data-price="$4.99">
+            <div class="payment-card" id="physicalCard" data-type="physical" data-price="4.99">
               <div class="flex justify-between items-start mb-3">
                 <div>
                   <h5 class="font-bold text-lg text-slate-800">Physical Bangdian Design + Workshop Production</h5>
@@ -629,7 +629,7 @@
                 <div class="step-number">3</div>
                 <div class="step-content">
                   <h5>Pay Customization Fee</h5>
-                  <p class="text-en">Basic cotton: ¥100–400, High-end wool: ¥401–800</p>
+                  <p class="text-en">Basic cotton: $14–56, High-end wool: $55.69–$111.11</p>
                 </div>
               </div>
               <div class="step">
@@ -1241,7 +1241,7 @@
       const price = card.dataset.price;
       
       // 更新金额显示
-      document.getElementById('paymentAmount').textContent = `Payment Amount: ${price}`;
+      document.getElementById('paymentAmount').textContent = `Payment Amount: $${price}`;
       
       // 显示/隐藏工坊定制信息
       if (selectedBangdianType === 'physical') {
