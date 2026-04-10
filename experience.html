@@ -573,7 +573,7 @@
           <div class="mb-8">
             <h4 class="text-lg font-semibold text-slate-800 mb-4">Bangdian Type Options</h4>
             
-            <div class="payment-card" id="digitalCard" data-type="digital" data-price="0.99">
+            <div class="payment-card" id="digitalCard" data-type="digital" data-price=">$0.99">
               <div class="flex justify-between items-start mb-3">
                 <div>
                   <h5 class="font-bold text-lg text-slate-800">Digital High-Definition Bangdian Image</h5>
@@ -589,7 +589,7 @@
               </ul>
             </div>
             
-            <div class="payment-card" id="physicalCard" data-type="physical" data-price="4.99">
+            <div class="payment-card" id="physicalCard" data-type="physical" data-price="$4.99">
               <div class="flex justify-between items-start mb-3">
                 <div>
                   <h5 class="font-bold text-lg text-slate-800">Physical Bangdian Design + Workshop Production</h5>
@@ -1241,7 +1241,7 @@
       const price = card.dataset.price;
       
       // 更新金额显示
-      document.getElementById('paymentAmount').textContent = `Payment Amount: $${price}`;
+      document.getElementById('paymentAmount').textContent = `Payment Amount: ${price}`;
       
       // 显示/隐藏工坊定制信息
       if (selectedBangdianType === 'physical') {
