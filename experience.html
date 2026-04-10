@@ -573,13 +573,13 @@
           <div class="mb-8">
             <h4 class="text-lg font-semibold text-slate-800 mb-4">Bangdian Type Options</h4>
             
-            <div class="payment-card" id="digitalCard" data-type="digital" data-price="0.1">
+            <div class="payment-card" id="digitalCard" data-type="digital" data-price="0.99">
               <div class="flex justify-between items-start mb-3">
                 <div>
                   <h5 class="font-bold text-lg text-slate-800">Digital High-Definition Bangdian Image</h5>
                   <p class="text-slate-600 text-sm mt-1 text-en">Generate an exclusive high-definition digital Bangdian image for sharing and printing</p>
                 </div>
-                <div class="price-tag">¥0.1</div>
+                <div class="price-tag">$0.99</div>
               </div>
               <ul class="space-y-2 text-slate-700 text-sm">
                 <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> High resolution (3000×3000)</li>
@@ -595,7 +595,7 @@
                   <h5 class="font-bold text-lg text-slate-800">Physical Bangdian Design + Workshop Production</h5>
                   <p class="text-slate-600 text-sm mt-1 text-en">Generate a physical design and entrust the workshop to make a real Bangdian</p>
                 </div>
-                <div class="price-tag">¥4.99</div>
+                <div class="price-tag">$4.99</div>
               </div>
               <ul class="space-y-2 text-slate-700 text-sm">
                 <li class="flex items-center"><i class="fa fa-check text-emerald-600 mr-2"></i> Professional physical design drawings</li>
@@ -646,7 +646,7 @@
           <div class="text-center mb-8" id="qrCodeSection">
             <h4 class="text-lg font-semibold text-slate-800 mb-4">Scan to Pay</h4>
             <p class="text-slate-600 mb-2 text-en">Please scan the QR code below using WeChat or Alipay to complete payment</p>
-            <p class="text-slate-800 font-bold mb-4" id="paymentAmount">Payment Amount: ¥0.00</p>
+            <p class="text-slate-800 font-bold mb-4" id="paymentAmount">Payment Amount: $0.00</p>
             
             <div class="qr-container">
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=weixin://wxpay/bizpayurl?pr=yourpaymentcode" alt="Payment QR Code" id="qrCodeImage">
@@ -1221,7 +1221,7 @@
       document.getElementById('digitalCard').classList.remove('selected');
       document.getElementById('physicalCard').classList.remove('selected');
       document.getElementById('confirmPaymentBtn').disabled = true;
-      document.getElementById('paymentAmount').textContent = 'Payment Amount: ¥0.00';
+      document.getElementById('paymentAmount').textContent = 'Payment Amount: $0.00';
       document.getElementById('workshopCustomization').style.display = 'none';
       document.getElementById('paymentProcessing').style.display = 'none';
       document.getElementById('qrCodeSection').style.display = 'block';
@@ -1241,7 +1241,7 @@
       const price = card.dataset.price;
       
       // 更新金额显示
-      document.getElementById('paymentAmount').textContent = `Payment Amount: ¥${price}`;
+      document.getElementById('paymentAmount').textContent = `Payment Amount: $${price}`;
       
       // 显示/隐藏工坊定制信息
       if (selectedBangdianType === 'physical') {
